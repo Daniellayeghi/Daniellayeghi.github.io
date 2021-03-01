@@ -43,7 +43,7 @@ The intuition behind this objective follows the bellman principle of optimiality
 obtaind by DDP $ddp(x'|x)$ with some importance defined by $k$. 
 
 <p>
-Following the same principles as the deravation in 111 we can combine all expectations:
+We can combine all expectations:
 
 $$
 E_{x^{'}\sim u}[log\frac{u(x'|x)}{p(x'|x)}+klog\frac{u(x'|x)}{ddp(x'|x)}+v(x')]\\ 
@@ -72,9 +72,9 @@ $$
 <p>
 Considering the above likelihoods across full trajectories $V = [u_1, u_2, u_3, ... u_N]$ and replacing $u^*$ with trajectory distribution $q^*(V)$ we can then follow the information theoretic derevation for path integrals and the above can be written as probability distributions as:
 
-$$q^*(V) = \frac{1}{\eta}exp(\frac{1}{\lambda}S(V))p(V)ddp(v)$$
+$$q^*(V) = (\frac{1}{\eta}exp(\frac{1}{\lambda}S(V))p(V)ddp(v)^{k})^{\frac{1}{k+1}}$$
 
-As a result the optimal control strategy is to minimise the divergence between the optimal $Q*$ and the control $Q$ distributions $U* = argmin_u KL(Q^*|| Q)$:
+As a result the optimal control strategy is to minimise the divergence between the optimal $Q^*$ and the control $Q$ distributions $U^* = argmin_u KL(Q^*|| Q)$:
 </p>
 
 <h3> Modified Importance Sampling </h3>
@@ -82,21 +82,24 @@ As a result the optimal control strategy is to minimise the divergence between t
 <p>
 Followoing the derervation from the information theoroetic approach we know that the minimisation leads to the optimal controls being the expecation of $u_s$ under the optimal distribution $Q^*$. Since this distribution is not known we will need to resort to importance sampling. However in this formulation the importance sampling is biased towards the joint distribution $q(V)ddp(V)$. As a result the importance sampling can be written as:
 
-$$u^* = \int q(V)\underbrace{\frac{q^*(V)}{p(V)^{\frac{1}{k+1}}ddp(V)^{\frac{k}{k+1}}}\frac{p(V)^{\frac{1}{k+1}}}{ddp(V)^{\frac{k}{k+1}}}}_{w(v)} v_t dV$$
+$$u^* = \int q(V)\underbrace{\frac{q^*(V)}{p(V)^{\frac{1}{k+1}}ddp(V)^{\frac{k}{k+1}}}\frac{p(V)^{\frac{1}{k+1}}ddp(V)^{\frac{k}{k+1}}}{q(V)}}_{w(v)} v_t dV$$
 
 Assuming the each distribution as Gaussian with the following form:
 
 $$
-p(V) = \prod_{t=0}^{T-1}Z^{-1}\exp(\frac{1}{2}v_t^{T}\Sigma^{-1}v_t) = Z^{-T}\exp(-\frac{1}{2}\sum_{t=0}^{T_1}v_t^{T}\Sigma^{-1}v_t) \\
-q(V) = \prod_{t=0}^{T-1}Z^{-1}\exp(\frac{1}{2}(v_t - u_t)^T\Sigma^{-1}(v_t - u_t)) = Z^{-T}\exp(-\frac{1}{2}\sum_{t=0}^{T_1}(v_t - u_t)^T\Sigma^{-1}(v_t - u_t)) \\
-ddp(U) = \prod_{t=0}^{T-1}Z^{-1}\exp(\frac{1}{2}(v_t - u_{ddp})^T\Sigma^{-1}(v_t - u_{ddp})) = Z^{-T}\exp(-\frac{1}{2}\sum_{t=0}^{T_1}(v_t - u_{ddp})^T\Sigma^{-1}(v_t - u_{ddp}))
+p(V) = \prod_{t=0}^{T-1}Z^{-1}\exp(\frac{1}{2}v_t^{T}\Sigma^{-1}v_t) = Z^{-1}\exp(-\frac{1}{2}\sum_{t=0}^{T_1}v_t^{T}\Sigma^{-1}v_t) \\
+q(V) = \prod_{t=0}^{T-1}Z^{-1}\exp(\frac{1}{2}(v_t - u_t)^T\Sigma^{-1}(v_t - u_t)) = Z^{-1}\exp(-\frac{1}{2}\sum_{t=0}^{T_1}(v_t - u_t)^T\Sigma^{-1}(v_t - u_t)) \\
+ddp(U) = \prod_{t=0}^{T-1}Z^{-1}_{ddp}\exp(\frac{1}{2}(v_t - u_{ddp})^T\Sigma^{-1}_{ddp}(v_t - u_{ddp})) = Z^{-1}_{ddp}\exp(-\frac{1}{2}\sum_{t=0}^{T_1}(v_t - u_{ddp})^T\Sigma^{-1}_{ddp}(v_t - u_{ddp}))
 $$
 
 Solving for the weights:
 
 $$
-w(v) = \frac{1}{\eta z z_{ddp}}\exp(-\frac{1}{2}\frac{1}{\lambda}S(V)\sum_{t=0}^{T_1}\frac{k}{k+1}({v_t}^T\Sigma_{ddp}^{-1}v_t-2{v_t}^T\Sigma_{ddp}^{-1}u_{ddp}+{v_{ddp}}^T\Sigma_{ddp}^{-1}u_{ddp}-{v_t}^T\Sigma^{-1}v_t) + 2{v_t}^T\Sigma^{-1}u_t-{u_t}^T\Sigma^{-1}u_t)
+w(v) = \frac{1}{\eta z z_{ddp}}\exp(-\frac{1}{2}\frac{1}{\lambda}S(V)\sum_{t=0}^{T_1}\underbrace{\frac{k}{k+1}({v_t}^T\Sigma_{ddp}^{-1}v_t-2{v_t}^T\Sigma_{ddp}^{-1}u_{ddp}+{v_{ddp}}^T\Sigma_{ddp}^{-1}u_{ddp}-{v_t}^T\Sigma^{-1}v_t)}_{\text{DDP Bias}} + \underbrace{2{v_t}^T\Sigma^{-1}u_t-{u_t}^T\Sigma^{-1}u_t}_{\text{Path Integral Bias}})
 $$
+
+
+The normalisation factor $\frac{1}{\eta z z_{ddp}}$ can also be approximated by monte carlo sampling. As a result it is obvious that the optimal control with the bias of $k = 0$ is equivalent to the path integral formulation and with factors $k > 0$ the control distribution is biased towards DDP solution.
 </p>
 
 
