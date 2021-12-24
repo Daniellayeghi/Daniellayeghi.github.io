@@ -7,7 +7,7 @@
   Site specific styles
 ============================================================ */
 body {
-  background-color: #f6f6f6;
+  background-color: #e4e4e4;
 }
 header[role="banner"] {
   color: #fff;
@@ -23,11 +23,11 @@ header[role="banner"] {
   }
   header[role="banner"] .headline,
   header[role="banner"] .lede {
-    color: #fff;
+    color: #e4e4e4;
     text-shadow: 0 -2px 0 rgba(0,0,0,0.25);
   }
 main[role="main"] {
-  background-color: #fff;
+  background-color: #e4e4e4;
   padding: 1em 0;
 }
 footer[role="contentinfo"] {
