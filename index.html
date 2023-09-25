@@ -8,17 +8,63 @@ This nice minimalist style is (C) 2013 Paul Robert Lloyd (http://paulrobertlloyd
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" href="css/styles.css" type="text/css"/>
+  <style>
+    header {
+      text-align: center;
+      padding: 10px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      background-color:  #d7dbdd; 
+    }
+
+    .breadcrumb-nav a {
+      margin: 0 8px;
+      text-decoration: none;
+      color: #666;
+      font-weight: 300;
+      transition: color 0.3s;
+    }
+
+    .breadcrumb-nav a:hover {
+      color: #007BFF;
+    }
+
+    img {
+      margin-right: 15px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%; /* Circular shape */
+    }
+
+    .email {
+      display: block;
+      margin-top: 5px;
+      font-family: FreeMono, monospace;
+      font-size: 16px;
+      color: #777;
+    }
+
+    .details {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  </style>
 </head>
 <body>
   <main role="main">
     <div class="container">
       <header>
-        <h1>Daniel Layeghi</h1>
-        <nav role="navigation" class="breadcrumb-nav">
-          <a href="blog/">Blog</a> / <a href="inf/">Inf</a> / <a href="https://github.com/Daniellayeghi">Github</a>/ <a href="https://scholar.google.com/citations?user=iYLENLcAAAAJ&hl=en&oi=ao">Google Scholar</a>
-        </nav>
-        <h1><img src="./resource/pics/profile.jpg" alt="Me" width="220" height="220"></h1>
-        <span style="font-family:FreeMono">d.layeghi [at] sms.ed.ac.uk</span>
+        <img src="./resource/pics/profile.jpg" alt="Me">
+        <div class="details">
+            <h1>Daniel Layeghi</h1>
+            <nav role="navigation" class="breadcrumb-nav">
+                <a href="blog/">Blog</a> · <a href="inf/">Inf</a> · <a href="https://github.com/Daniellayeghi">Github</a> · <a href="https://scholar.google.com/citations?user=iYLENLcAAAAJ&hl=en&oi=ao">Google Scholar</a>
+            </nav>
+            <span class="email">d.layeghi [at] sms.ed.ac.uk</span>
+        </div>
       </header>
       <p>
         I am a PhD student in autonomous systems and a member of <a href="http://homepages.inf.ed.ac.uk/mmistry/index.html">Mistry Robitics Lab</a> and Edinburgh Centre for Robotics. 
