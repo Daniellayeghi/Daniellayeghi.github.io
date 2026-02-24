@@ -1,96 +1,348 @@
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Neural Stochastic Optimal Control</title>
-<meta name="description" content="Thesis segment blog post" />
-<style type="text/css">
-body{margin:40px auto;max-width:900px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}
-h1,h2,h3{line-height:1.2}
-a{color:#0b57d0}
-.media-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:12px 0}
-.media-grid img,.single-media img{width:100%;height:auto;display:block}
-.single-media{margin:12px 0}
-.section{margin-top:30px}
+<meta name="description" content="Thesis segment blog post"/>
+<style>
+  body {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", serif;
+    background: #f4f3ef;
+    color: #202124;
+    margin: 0;
+  }
+
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 18px 18px 34px;
+  }
+
+  a {
+    color: #1f4e8c;
+    text-decoration: none;
+    border-bottom: 1px solid #b6c8e3;
+  }
+
+  a:hover {
+    border-bottom-color: #1f4e8c;
+  }
+
+  .back {
+    margin: 0 0 10px;
+    font-size: 0.94rem;
+  }
+
+  .page-header {
+    border-bottom: 1px solid #d9d7cf;
+    padding-bottom: 12px;
+    margin-bottom: 14px;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 2rem;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: #171717;
+  }
+
+  .meta {
+    margin: 6px 0 0;
+    color: #585d64;
+    font-size: 0.95rem;
+  }
+
+  .section {
+    border-bottom: 1px solid #e3e1d9;
+    padding: 12px 0 14px;
+  }
+
+  .section:last-of-type {
+    border-bottom: 0;
+  }
+
+  h2 {
+    margin: 0 0 8px;
+    font-size: 1.4rem;
+    line-height: 1.2;
+    color: #191919;
+  }
+
+  h3 {
+    margin: 16px 0 7px;
+    font-size: 1.12rem;
+    line-height: 1.2;
+    color: #1f1f1f;
+  }
+
+  p {
+    margin: 0 0 8px;
+    line-height: 1.5;
+    font-size: 1rem;
+  }
+
+  ul {
+    margin: 0 0 8px 20px;
+    padding: 0;
+  }
+
+  li {
+    margin: 3px 0;
+  }
+
+  .single-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid #ddd9ce;
+    border-radius: 4px;
+    background: #fff;
+  }
+
+  .single-image {
+    margin: 8px auto;
+    max-width: 80%;
+  }
+
+  .diagram-image {
+    max-width: 66%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .media-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin: 8px auto;
+    max-width: 80%;
+  }
+
+  .media-grid img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid #ddd9ce;
+    border-radius: 4px;
+    background: #fff;
+  }
+
+  .equation {
+    overflow-x: auto;
+    margin: 8px 0;
+    padding: 6px 8px;
+    border-left: 2px solid #d3d0c6;
+  }
+
+  .algo-block {
+    margin: 8px 0;
+    border: 1px solid #dedcd3;
+    background: #faf9f5;
+    border-radius: 4px;
+    padding: 10px 12px;
+    overflow-x: auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  }
+
+  .algo-block pre {
+    margin: 0;
+    white-space: pre-wrap;
+    line-height: 1.45;
+    font-size: 0.98rem;
+    color: #26292d;
+  }
+
+  .algo-keyword {
+    font-weight: 700;
+  }
+
+  .algo-block sub {
+    font-size: 0.72em;
+    vertical-align: -0.22em;
+  }
+
+  .algo-block sup {
+    font-size: 0.72em;
+    line-height: 0;
+  }
+
+  .conclusion-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .conclusion-block {
+    border: 1px solid #dedcd3;
+    background: #faf9f5;
+    border-radius: 4px;
+    padding: 10px 12px;
+  }
+
+  .conclusion-block h4 {
+    margin: 0 0 6px;
+    font-size: 1.02rem;
+    color: #1f1f1f;
+  }
+
+  .conclusion-block ul {
+    margin: 0 0 0 18px;
+  }
+
+  .conclusion-block li {
+    margin: 2px 0;
+  }
+
+  @media (max-width: 860px) {
+    .container {
+      padding: 14px 14px 22px;
+    }
+
+    h1 {
+      font-size: 1.62rem;
+    }
+
+    .media-grid,
+    .conclusion-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .diagram-image {
+      max-width: 100%;
+    }
+
+    .single-image,
+    .media-grid {
+      max-width: 100%;
+    }
+  }
 </style>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    macros: {
+      vec: ['\\mathbf{#1}', 1]
+    }
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <body>
-<p><a href="/blog/">← Back to blog index</a></p>
-<h1>Neural Stochastic Optimal Control</h1>
+  <main role="main">
+    <div class="container">
+      <p class="back"><a href="/blog/">&larr; Back to blog index</a></p>
+      <header class="page-header">
+        <h1>Neural Stochastic Optimal Control</h1>
+        <p class="meta">Generalisation + Efficiency + Flexibility segment</p>
+      </header>
 
-<h2>Opening: Problem Framing</h2>
-<h3>Problem Statement</h3>
-<p>Typical tasks in robotics.</p>
-<div class="media-grid">
-  <img src="value%20learning%20content/Screenshot%20from%202021-10-26%2018-29-19.png" alt="Robot task example 1">
-  <img src="value%20learning%20content/Screenshot%20from%202021-10-26%2018-39-19.png" alt="Robot task example 2">
-  <img src="value%20learning%20content/Screenshot%20from%202021-10-26%2018-31-36.png" alt="Robot task example 3">
-  <img src="value%20learning%20content/hand.jpeg" alt="Robot hand task example">
-</div>
+      <section class="section">
+        <h2>Segment: Generalisation + Efficiency + Flexibility</h2>
 
-<h3>Tasks and Objective Landscapes</h3>
-<div class="single-media">
-  <img src="value%20learning%20content/Screenshot%20from%202021-10-26%2017-39-53.png" alt="Objective landscape">
-</div>
-<ul>
-  <li>Generally, objective landscapes are flat.</li>
-  <li>Not suitable for optimisation.</li>
-</ul>
+        <h3>Problem statement</h3>
+        <p>Numerical optimal control solvers efficiently compute locally optimal trajectories given smooth and differentiable objective functions. Conversely, RL approximates general policies while leveraging sampling to impose minimal constraints on the objective.</p>
+        <p><strong>Aim.</strong> Formulate a global method that leverages sampling to enable <strong>flexibility</strong> inspired by RL while maintaining <strong>efficiency</strong> and <strong>generalisation</strong>.</p>
 
-<h3>General Approaches</h3>
-<ul>
-  <li><strong>OC</strong>: DDP, iLQR, collocation; efficient near optima under strict objective constraints.</li>
-  <li><strong>Sampling OC</strong>: MPPI, CEM, RS; flexible objective with sampling cost.</li>
-  <li><strong>RL</strong>: global and general, flexible objective, inherent exploration, slower convergence.</li>
-</ul>
+        <h3>Continuous stochastic Bellman equation</h3>
+        <p>In this case, we use the stochastic HJB equation.</p>
+        <div class="equation">
+          \[
+          -\frac{\partial v\left(\vec x_t,t\right)}{\partial t}=\min_{\vec u_t}\left[\ell\left(\vec x_t,\vec u_t\right)+\nabla_{\vec x_t}v\left(\vec x_t,t\right)\vec f\left(\vec x_t,\vec u_t\right)+\frac{1}{2}\operatorname{trace}\left(\nabla^2_{\vec x_t\vec x_t}v\left(\vec x_t,t\right)\vec\Sigma\left(\vec x_t\right)\right)\right]
+          \]
+        </div>
+        <p><strong>Optimal controls.</strong> Assuming affine control \(d\vec x_t=\left(\vec h\left(\vec x_t\right)+\vec g\left(\vec x_t\right)\vec u_t\right)\,dt+\vec B\left(\vec x_t\right)\,d\vec w_t\) and quadratic control cost, we can analytically solve for \(\vec u_t\):</p>
+        <div class="equation">
+          \[
+          \vec u^*\left(\vec x_t\right)=-\left(\nabla^2_{\vec u_t}\ell_{\text{ctrl}}\left(\vec u_t\right)\right)^{-1}\left(\nabla_{\vec x_t}v\left(\vec x_t,t\right)\nabla_{\vec u_t}\vec f\left(\vec x_t,\vec u_t\right)\right)
+          \]
+        </div>
+        <p>Our optimal control remains the same, and so does our choice of parameterisation: the value function.</p>
 
-<div class="section">
-  <h2>Segment: Generalisation + Efficiency + Flexibility</h2>
+        <h3>Learning the value function</h3>
+        <p>As in the deterministic case, we define a constraint on the rate of change of the value function.</p>
+        <div class="equation">
+          \[
+          \begin{aligned}
+          \mathbb E_{\mathcal Q}\left[\frac{dv\left(\vec x_t,t\right)}{dt}\right]&=-\ell\left(\vec x_t,\vec u_t^*\right)\\
+          \mathbb E_{\mathcal Q}\left[v\left(\vec x_t,t\right)-v\left(\vec x_{t+\Delta t},t+\Delta t\right)\right]&=\ell\left(\vec x_t,\vec u_t^*\right)\Delta t\\
+          v\left(\vec x_t,t\right)-\mathbb E_{\mathcal Q}\left[v\left(\vec x_{t+\Delta t},t+\Delta t\right)\right]&=\ell\left(\vec x_t,\vec u_t^*\right)\Delta t
+          \end{aligned}
+          \]
+        </div>
+        <p><strong>Intuition.</strong> Under policy \(\vec u_t^*\), the expected change in value decreases at a rate negative to cost.</p>
 
-  <h3>Problem Statement</h3>
-  <p>Numerical optimal control computes locally optimal trajectories efficiently under smooth objectives, while RL can approximate general policies under looser objective assumptions.</p>
-  <p><strong>Aim:</strong> combine RL-inspired flexibility via sampling with OC-inspired efficiency and generalisation.</p>
+        <h3>TD(ish) view</h3>
+        <p>Satisfying this constraint over horizon \(N\) can be viewed through a lens similar to TD.</p>
+        <div class="equation">
+          \[
+          \begin{aligned}
+          \mathbb E_{\mathcal Q}\left[v\left(\vec x_N,N\right)\right]-\mathbb E_{\mathcal Q}\left[\psi\left(\vec x_N\right)\right]&=0\\
+          v\left(\vec x_{N-1},N-1\right)-\mathbb E_{\mathcal Q}\left[v\left(\vec x_N,N\right)\right]-\ell\left(\vec x_{N-1},\vec u^*_{N-1}\right)\Delta t&=0\\
+          v\left(\vec x_{N-2},N-2\right)-\mathbb E_{\mathcal Q}\left[v\left(\vec x_{N-1},N-1\right)\right]-\ell\left(\vec x_{N-2},\vec u^*_{N-2}\right)\Delta t&=0\\
+          &\vdots\\
+          v\left(\vec x_0,0\right)-\mathbb E_{\mathcal Q}\left[v\left(\vec x_1,1\right)\right]-\ell\left(\vec x_0,\vec u^*_0\right)\Delta t&=0
+          \end{aligned}
+          \]
+        </div>
+        <p><strong>Note.</strong> We cannot simply sum costs backwards due to the expectation under \(\mathcal Q\).</p>
 
-  <h3>Continuous Stochastic Bellman Equation</h3>
-  <p>This segment uses the stochastic HJB formulation and keeps the same optimal control structure while parameterising the value function.</p>
+        <h3>Discrete algorithm</h3>
+        <div class="algo-block">
+          <pre><span class="algo-keyword">Initialize:</span> x(0)=x<sub>0</sub>, Δt, N=T/Δt, E<sub>Q</sub>[v(x<sub>N</sub>,N)] = E<sub>Q</sub>[ψ(x<sub>N</sub>)]
+<span class="algo-keyword">For</span> i = 0 ... N−1:
+  u<sub>i</sub> = −(∇²<sub>u_i</sub> l<sub>ctrl</sub>(u<sub>i</sub>))<sup>−1</sup> g(x<sub>i</sub>)<sup>T</sup> ∇<sub>x</sub> ṽ(x<sub>i</sub>, i; θ)<sup>T</sup>
+  x<sub>i+1</sub> = x<sub>i</sub> + ( h(x<sub>i</sub>) + g(x<sub>i</sub>)u<sub>i</sub> ) Δt + B(x<sub>i</sub>) ε<sub>i</sub> √Δt
+<span class="algo-keyword">Optimize:</span> min<sub>θ</sub> Σ<sub>i=0..N</sub> ( ṽ(x<sub>i</sub>, i, θ) − E<sub>Q</sub>[ṽ(x<sub>i+1</sub>, i+1, θ)] − l(x<sub>i</sub>, u<sub>i</sub><sup>*</sup>) Δt )<sup>2</sup></pre>
+        </div>
+        <p><strong>Intuition.</strong> Roll out trajectories under the current optimal policy, then fit the stochastic Bellman difference.</p>
 
-  <h3>Learning the Value Function</h3>
-  <p>The expected rate of value-function change is constrained to match instantaneous cost under the current policy.</p>
+        <h3>Results</h3>
+        <div class="media-grid">
+          <img src="value%20learning%20content/cartpole_balance_trajectory_cost_ieee_stochastic.png" alt="Stochastic cartpole balance trajectory cost"/>
+          <img src="value%20learning%20content/cartpole_swingup_trajectory_cost_ieee_stochastic.png" alt="Stochastic cartpole swingup trajectory cost"/>
+          <img src="value%20learning%20content/reacher_trajectory_cost_ieee_stochastic.png" alt="Stochastic reacher trajectory cost"/>
+          <img src="value%20learning%20content/cartpole_balancing_rewards_ieee_stochastic.png" alt="Stochastic cartpole balancing rewards"/>
+          <img src="value%20learning%20content/cartpole_swingup_rewards_ieee_stochastic.png" alt="Stochastic cartpole swingup rewards"/>
+          <img src="value%20learning%20content/reahcer_rewards_ieee_stochastic.png" alt="Stochastic reacher rewards"/>
+        </div>
+        <p>Overview: significantly faster convergence and lower variance across random seeds, outperforming SAC and PPO by at least factors of 18 and 2, respectively.</p>
 
-  <h3>TD(ish) View</h3>
-  <p>Over a finite horizon, the Bellman-difference constraints are applied recursively in a TD-like structure under stochastic rollouts.</p>
+        <h3>Noise-driven smoothing</h3>
+        <p>Value approximation under stochastic dynamics and discontinuous objectives.</p>
+        <div class="media-grid">
+          <img src="value%20learning%20content/1stnoise.png" alt="Noise smoothing example 1"/>
+          <img src="value%20learning%20content/3rdnoise.png" alt="Noise smoothing example 2"/>
+          <img src="value%20learning%20content/4thnoise.png" alt="Noise smoothing example 3"/>
+        </div>
+        <p>Higher noise smooths the value function through the curvature term \(\operatorname{trace}\left(\nabla^2_{\vec x_t\vec x_t}v\left(\vec x_t,t\right)\vec\Sigma\left(\vec x_t\right)\right)\).</p>
 
-  <h3>Discrete Algorithm</h3>
-  <p>Roll out stochastic trajectories under the current policy and optimize value-function parameters against the stochastic Bellman residual.</p>
-
-  <h3>Results</h3>
-  <div class="media-grid">
-    <img src="value%20learning%20content/cartpole_balance_trajectory_cost_ieee_stochastic.png" alt="Stochastic cartpole balance trajectory cost">
-    <img src="value%20learning%20content/cartpole_swingup_trajectory_cost_ieee_stochastic.png" alt="Stochastic cartpole swingup trajectory cost">
-    <img src="value%20learning%20content/reacher_trajectory_cost_ieee_stochastic.png" alt="Stochastic reacher trajectory cost">
-    <img src="value%20learning%20content/cartpole_balancing_rewards_ieee_stochastic.png" alt="Stochastic cartpole balancing rewards">
-    <img src="value%20learning%20content/cartpole_swingup_rewards_ieee_stochastic.png" alt="Stochastic cartpole swingup rewards">
-    <img src="value%20learning%20content/reahcer_rewards_ieee_stochastic.png" alt="Stochastic reacher rewards">
-  </div>
-
-  <h3>Noise Smoothing Results</h3>
-  <div class="media-grid">
-    <img src="value%20learning%20content/1stnoise.png" alt="Noise result 1">
-    <img src="value%20learning%20content/3rdnoise.png" alt="Noise result 3">
-    <img src="value%20learning%20content/4thnoise.png" alt="Noise result 4">
-  </div>
-  <p>Higher state-dependent noise smooths the value function through the curvature penalty term.</p>
-
-  <h3>Conclusion</h3>
-  <ul>
-    <li>Global policy.</li>
-    <li>Flexibility to discontinuity via noise.</li>
-    <li>Better efficiency.</li>
-  </ul>
-  <ul>
-    <li>Requires full dynamics information.</li>
-    <li>SDE rollouts are considerably more memory-intensive.</li>
-  </ul>
-</div>
+        <h3>Conclusion</h3>
+        <div class="conclusion-grid">
+          <div class="conclusion-block">
+            <h4>Contribution</h4>
+            <ul>
+              <li>Global policy.</li>
+              <li>Flexibility to discontinuity via noise.</li>
+              <li>Better efficiency.</li>
+            </ul>
+          </div>
+          <div class="conclusion-block">
+            <h4>Caveats</h4>
+            <ul>
+              <li>Requires full dynamics information.</li>
+              <li>SDE rollouts are considerably more memory-intensive.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
 </body>
 </html>

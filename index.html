@@ -9,63 +9,174 @@ This nice minimalist style is (C) 2013 Paul Robert Lloyd (http://paulrobertlloyd
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" href="css/styles.css" type="text/css"/>
   <style>
-    header {
-      text-align: center;
-      padding: 10px 0;
-      display: flex;
+    body {
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", serif;
+      background: #f4f3ef;
+      color: #202124;
+    }
+
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 18px 18px 30px;
+    }
+
+    .site-header {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 20px;
       align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      background-color:  #d7dbdd; 
+      padding: 0 0 16px;
+      border-bottom: 1px solid #d9d7cf;
+      margin-bottom: 16px;
+      background: transparent;
+      border-radius: 0;
     }
 
-    .breadcrumb-nav a {
-      margin: 0 8px;
-      text-decoration: none;
-      color: #666;
-      font-weight: 300;
-      transition: color 0.3s;
-    }
-
-    .breadcrumb-nav a:hover {
-      color: #007BFF;
-    }
-
-    img {
-      margin-right: 15px;
-      width: 220px;
-      height: 220px;
-      border-radius: 50%; /* Circular shape */
-    }
-
-    .email {
-      display: block;
-      margin-top: 5px;
-      font-family: FreeMono, monospace;
-      font-size: 16px;
-      color: #777;
+    .profile-photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid #d4d3cd;
+      margin: 0;
     }
 
     .details {
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
+      gap: 4px;
+    }
+
+    .details h1 {
+      margin: 0;
+      font-size: 2.05rem;
+      letter-spacing: -0.02em;
+      line-height: 1.08;
+      color: #171717;
+    }
+
+    .breadcrumb-nav {
+      margin-top: 2px;
+      font-size: 0.9rem;
+      color: #6e6f73;
+    }
+
+    .breadcrumb-nav a {
+      text-decoration: none;
+      color: #4f5560;
+      border-bottom: 1px solid transparent;
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .breadcrumb-nav a:hover {
+      color: #1f4e8c;
+      border-color: #1f4e8c;
+    }
+
+    .intro {
+      margin: 0 0 20px;
+      font-size: 1.03rem;
+      line-height: 1.52;
+      padding: 0;
+      background: transparent;
+      border: 0;
+    }
+
+    h2 {
+      margin: 0 0 8px;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #191919;
+    }
+
+    .papers {
+      border-top: 1px solid #d9d7cf;
+      padding-top: 12px;
+    }
+
+    .paper-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .paper-item {
+      border-bottom: 1px solid #e3e1d9;
+      padding: 12px 0 14px;
+    }
+
+    .paper-item:last-child {
+      border-bottom: 0;
+    }
+
+    .paper-item p {
+      margin: 0 0 5px;
+      line-height: 1.42;
+    }
+
+    .paper-item cite {
+      font-style: italic;
+      font-size: 1.05rem;
+      color: #1e1e1e;
+    }
+
+    .iframe-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      height: 0;
+      margin-top: 8px;
+      border: 1px solid #d8d6ce;
+      border-radius: 6px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .iframe-container iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    @media (max-width: 860px) {
+      .site-header {
+        grid-template-columns: 1fr;
+        justify-items: start;
+        text-align: left;
+      }
+
+      .details {
+        align-items: flex-start;
+      }
+
+      .profile-photo {
+        width: 122px;
+        height: 122px;
+      }
+
+      .details h1 {
+        font-size: 1.72rem;
+      }
     }
   </style>
 </head>
 <body>
   <main role="main">
     <div class="container">
-      <header>
-        <img src="./resource/pics/profile.jpg" alt="Me">
+      <header class="site-header">
+        <img class="profile-photo" src="./resource/pics/profile.jpg" alt="Me">
         <div class="details">
             <h1>Daniel Layeghi</h1>
             <nav role="navigation" class="breadcrumb-nav">
-                <a href="cv.pdf">CV</a> · <a href="https://github.com/Daniellayeghi">Github</a> · <a href="https://scholar.google.com/citations?user=iYLENLcAAAAJ&hl=en&oi=ao">Google Scholar</a> · <a href="https://sites.google.com/site/daniellayeghi/home">Past</a>
+                <a href="blog/index.html">Blog</a> · <a href="cv.pdf">CV</a> · <a href="https://github.com/Daniellayeghi">Github</a> · <a href="https://scholar.google.com/citations?user=iYLENLcAAAAJ&amp;hl=en&amp;oi=ao">Google Scholar</a> · <a href="https://sites.google.com/site/daniellayeghi/home">Past</a>
             </nav>
         </div>
       </header>
-      <p>
+      <p class="intro">
         I am currently co-founder at Z2-labs, building <a href="https://souida.com/">Souida</a>, an API-first discovery layer that turns natural-language book queries into structured real-time retrieval for independent booksellers.
         For an up-to-date CV, see <a href="cv.pdf">here</a>.
         Previously, I was a Postdoctoral Researcher and completed a PhD in Computer Science at the University of Edinburgh.
@@ -73,33 +184,33 @@ This nice minimalist style is (C) 2013 Paul Robert Lloyd (http://paulrobertlloyd
         Before academia, I was an early engineer at Automata Technologies and implemented and deployed a production-grade robotics stack from scratch.
       </p>
       <h2>Papers</h2>
-      <div>
-        <ul>
-          <li>
+      <div class="papers">
+        <ul class="paper-list">
+          <li class="paper-item">
             <p>
               <cite>Optimal Control via Combined Inference and Numerical Optimization</cite>. [<a href="https://arxiv.org/abs/2109.11361">ICRA 2022</a>]<br />
               <strong>Daniel Layeghi</strong>, Steve Tonneau, and Michael Mistry.
             </p>
             <div class="iframe-container">
-              <p align="center"><iframe width="1280" height="720" src="https://www.youtube.com/embed/rSAJ_Fyu-ko" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+              <iframe width="1280" height="720" src="https://www.youtube.com/embed/rSAJ_Fyu-ko" title="Optimal Control video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
           </li>
-          <li>
+          <li class="paper-item">
             <p>
               <cite>Neural Lyapunov and Optimal Control</cite>. [<a href="https://arxiv.org/abs/2305.15244">Under review 2023</a>]<br />
               <strong>Daniel Layeghi</strong>, Steve Tonneau, and Michael Mistry.
             </p>
             <div class="iframe-container">
-              <p align="center"><iframe width="1280" height="720" src="https://www.youtube.com/embed/S8Ud19IRPlI?si=pgbtfvW08C9moLz0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+              <iframe width="1280" height="720" src="https://www.youtube.com/embed/S8Ud19IRPlI?si=pgbtfvW08C9moLz0" title="Neural Lyapunov video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
           </li>
-          <li>
+          <li class="paper-item">
             <p>
               <cite>Learning Long-Horizon Robot Manipulation Skills via Privileged Action</cite>. [<a href="https://openreview.net/pdf?id=yOWUy97hmd">CoRL</a>]<br />
               Xiaofeng Mao, Yucheng XU, Zhaole Sun, Elle Miller, <strong>Daniel Layeghi</strong>, and Michael Mistry.
             </p>
             <div class="iframe-container">
-              <p align="center"><iframe width="1280" height="720" src="https://www.youtube.com/embed/4E74kLgeVas" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+              <iframe width="1280" height="720" src="https://www.youtube.com/embed/4E74kLgeVas" title="Long-Horizon video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
           </li>
         </ul>

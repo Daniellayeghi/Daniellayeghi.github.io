@@ -1,94 +1,388 @@
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Neural Lyapunov and Optimal Control</title>
-<meta name="description" content="Thesis segment blog post" />
-<style type="text/css">
-body{margin:40px auto;max-width:900px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}
-h1,h2,h3{line-height:1.2}
-a{color:#0b57d0}
-.media-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:12px 0}
-.media-grid img,.single-media img{width:100%;height:auto;display:block}
-.single-media{margin:12px 0}
-object{width:100%;height:560px;display:block;margin:12px 0;border:1px solid #ddd}
-.section{margin-top:30px}
+<meta name="description" content="Thesis segment blog post"/>
+<style>
+  body {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", serif;
+    background: #f4f3ef;
+    color: #202124;
+    margin: 0;
+  }
+
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 18px 18px 34px;
+  }
+
+  a {
+    color: #1f4e8c;
+    text-decoration: none;
+    border-bottom: 1px solid #b6c8e3;
+  }
+
+  a:hover {
+    border-bottom-color: #1f4e8c;
+  }
+
+  .back {
+    margin: 0 0 10px;
+    font-size: 0.94rem;
+  }
+
+  .page-header {
+    border-bottom: 1px solid #d9d7cf;
+    padding-bottom: 12px;
+    margin-bottom: 14px;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 2rem;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: #171717;
+  }
+
+  .meta {
+    margin: 6px 0 0;
+    color: #585d64;
+    font-size: 0.95rem;
+  }
+
+  .section {
+    border-bottom: 1px solid #e3e1d9;
+    padding: 12px 0 14px;
+  }
+
+  .section:last-of-type {
+    border-bottom: 0;
+  }
+
+  h2 {
+    margin: 0 0 8px;
+    font-size: 1.4rem;
+    line-height: 1.2;
+    color: #191919;
+  }
+
+  h3 {
+    margin: 16px 0 7px;
+    font-size: 1.12rem;
+    line-height: 1.2;
+    color: #1f1f1f;
+  }
+
+  p {
+    margin: 0 0 8px;
+    line-height: 1.5;
+    font-size: 1rem;
+  }
+
+  ul {
+    margin: 0 0 8px 20px;
+    padding: 0;
+  }
+
+  li {
+    margin: 3px 0;
+  }
+
+  .single-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid #ddd9ce;
+    border-radius: 4px;
+    background: #fff;
+  }
+
+  .single-image {
+    margin: 8px auto;
+    max-width: 80%;
+  }
+
+  .diagram-image {
+    max-width: 66%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .media-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin: 8px auto;
+    max-width: 80%;
+  }
+
+  .media-grid img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid #ddd9ce;
+    border-radius: 4px;
+    background: #fff;
+  }
+
+  .equation {
+    overflow-x: auto;
+    margin: 8px 0;
+    padding: 6px 8px;
+    border-left: 2px solid #d3d0c6;
+  }
+
+  .algo-block {
+    margin: 8px 0;
+    border: 1px solid #dedcd3;
+    background: #faf9f5;
+    border-radius: 4px;
+    padding: 10px 12px;
+    overflow-x: auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  }
+
+  .algo-block pre {
+    margin: 0;
+    white-space: pre-wrap;
+    line-height: 1.45;
+    font-size: 0.98rem;
+    color: #26292d;
+  }
+
+  .algo-keyword {
+    font-weight: 700;
+  }
+
+  .algo-block sub {
+    font-size: 0.72em;
+    vertical-align: -0.22em;
+  }
+
+  .algo-block sup {
+    font-size: 0.72em;
+    line-height: 0;
+  }
+
+  .conclusion-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .conclusion-block {
+    border: 1px solid #dedcd3;
+    background: #faf9f5;
+    border-radius: 4px;
+    padding: 10px 12px;
+  }
+
+  .conclusion-block h4 {
+    margin: 0 0 6px;
+    font-size: 1.02rem;
+    color: #1f1f1f;
+  }
+
+  .conclusion-block ul {
+    margin: 0 0 0 18px;
+  }
+
+  .conclusion-block li {
+    margin: 2px 0;
+  }
+
+  @media (max-width: 860px) {
+    .container {
+      padding: 14px 14px 22px;
+    }
+
+    h1 {
+      font-size: 1.62rem;
+    }
+
+    .media-grid,
+    .conclusion-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .diagram-image {
+      max-width: 100%;
+    }
+
+    .single-image,
+    .media-grid {
+      max-width: 100%;
+    }
+
+  }
 </style>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    macros: {
+      vec: ['\\mathbf{#1}', 1]
+    }
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <body>
-<p><a href="/blog/">← Back to blog index</a></p>
-<h1>Neural Lyapunov and Optimal Control</h1>
+  <main role="main">
+    <div class="container">
+      <p class="back"><a href="/blog/">&larr; Back to blog index</a></p>
+      <header class="page-header">
+        <h1>Neural Lyapunov and Optimal Control</h1>
+        <p class="meta">Generalisation + Efficiency segment</p>
+      </header>
 
-<h2>Opening: Problem Framing</h2>
-<h3>Problem Statement</h3>
-<p>Typical tasks in robotics.</p>
-<div class="media-grid">
-  <img src="value%20learning%20content/Screenshot%20from%202021-10-26%2018-29-19.png" alt="Robot task example 1">
-  <img src="value%20learning%20content/Screenshot%20from%202021-10-26%2018-39-19.png" alt="Robot task example 2">
-  <img src="value%20learning%20content/Screenshot%20from%202021-10-26%2018-31-36.png" alt="Robot task example 3">
-  <img src="value%20learning%20content/hand.jpeg" alt="Robot hand task example">
-</div>
+      <section class="section">
+        <h2>Segment: Generalisation + Efficiency</h2>
 
-<h3>Tasks and Objective Landscapes</h3>
-<div class="single-media">
-  <img src="value%20learning%20content/Screenshot%20from%202021-10-26%2017-39-53.png" alt="Objective landscape">
-</div>
-<ul>
-  <li>Generally, objective landscapes are flat.</li>
-  <li>Not suitable for optimisation.</li>
-</ul>
+        <h3>Problem statement</h3>
+        <p>Numerical optimal control solvers parameterise trajectories to provide <em>locally optimal solutions</em> given smooth and differentiable objective functions. Conversely, RL parameterises function space to synthesise <em>approximate global policies</em>.</p>
+        <p><strong>Aim.</strong> Combine the generalisation capabilities of RL with the efficiency of OC theoretic solutions by leveraging differentiation for <strong>efficiency</strong> and function-space parameterisation for <strong>generalisation</strong>.</p>
 
-<h3>General Approaches</h3>
-<ul>
-  <li><strong>OC</strong>: DDP, iLQR, collocation; efficient near optima under strict objective constraints.</li>
-  <li><strong>Sampling OC</strong>: MPPI, CEM, RS; flexible objective with sampling cost.</li>
-  <li><strong>RL</strong>: global and general, flexible objective, inherent exploration, slower convergence.</li>
-</ul>
+        <h3>Optimisation in RL</h3>
+        <div class="single-image diagram-image">
+          <img src="value%20learning%20content/0thvsfirst.png" alt="Optimisation in RL"/>
+        </div>
 
-<div class="section">
-  <h2>Segment: Generalisation + Efficiency</h2>
+        <h3>Famous RL environments</h3>
+        <p>RL environments tinker with dynamics tuning under the hood.</p>
 
-  <h3>Problem Statement</h3>
-  <p>Numerical optimal control parameterises trajectories to provide locally optimal solutions under smooth differentiable objectives, while RL parameterises function spaces to synthesise approximate global policies.</p>
-  <p><strong>Aim:</strong> combine RL-style generalisation with OC-style efficiency through a formulation that uses differentiation while learning in function space.</p>
+        <h3>Continuous Bellman equation</h3>
+        <p>Our approach relies on the Hamilton-Jacobi-Bellman equation.</p>
+        <div class="equation">
+          \[
+          -\frac{\partial v}{\partial t}\left(\vec{x}_t,t\right)=\operatorname*{min}_{\vec u\in\vec U}\left[\ell\left(\vec{x}_t,\vec{u}_t\right)+\vec f\left(\vec{x}_t,\vec{u}_t\right)^\top\nabla_{\vec x_t}v\left(\vec{x}_t,t\right)^\top\right]
+          \]
+        </div>
+        <p><strong>Optimal controls.</strong> Assuming affine control \(\dot{\vec x}_t=\vec h\left(\vec x_t\right)+\vec g\left(\vec x_t\right)\vec u_t\) and quadratic control cost, we can solve analytically:</p>
+        <div class="equation">
+          \[
+          \vec u^*\left(\vec x_t\right)=-\left(\nabla^2_{\vec u_t}\ell_{\text{ctrl}}\left(\vec u_t\right)\right)^{-1}\left(\nabla_{\vec x_t}v\left(\vec x_t,t\right)\nabla_{\vec u_t}\vec f\left(\vec x_t,\vec u_t\right)\right)
+          \]
+        </div>
+        <p>This computes the optimal greedy control given the optimal value function, motivating value-function parameterisation.</p>
 
-  <h3>Optimisation in RL</h3>
-  <div class="single-media">
-    <img src="value%20learning%20content/0thvsfirst.png" alt="Optimisation in RL">
-  </div>
+        <h3>Local solutions</h3>
+        <p>Pontryagin's minimum principle is the classical local trajectory-space solution and the basis for methods such as DDP and iLQR.</p>
+        <div class="equation">
+          \[
+          \begin{aligned}
+          \dot{\vec x} &= \vec f\left(\vec x_t,\vec u_t\right)\\
+          \dot{\vec p} &= -\nabla_{\vec x_t}\ell\left(\vec x_t,\vec u_t\right)-\nabla_{\vec x_t}\vec f^\top\left(\vec x_t,\vec u_t\right)\vec p\left(t\right)\\
+          \vec u^* &= -\left(\nabla^2_{\vec u_t}\ell_{\text{ctrl}}\left(\vec u_t\right)\right)^{-1}\left(\vec g\left(\vec x_t\right)^\top\vec p\left(t\right)\right)
+          \end{aligned}
+          \]
+        </div>
+        <p>Initial condition: \(\vec x=\vec x_0\in\mathbb{R}^m\). Terminal condition: \(\vec p\left(T\right)=\nabla_{\vec x_T}\psi\left(\vec x_T\right)^\top\).</p>
 
-  <h3>Continuous Bellman Equation and PMP</h3>
-  <p>The segment links the Bellman formulation with PMP structure for deriving efficient control updates.</p>
-  <object data="value%20learning%20content/pmp.pdf" type="application/pdf">
-    <p>Cannot preview PDF. Open <a href="value%20learning%20content/pmp.pdf">pmp.pdf</a>.</p>
-  </object>
+        <h3>PMP</h3>
+        <p>Solve one ODE forward for \(\vec x(t)\) and one backward for \(\vec p(t)\).</p>
+        <div class="single-image diagram-image">
+          <img src="value%20learning%20content/pmp.png" alt="PMP diagram"/>
+        </div>
 
-  <h3>Dynamic Programming View</h3>
-  <object data="value%20learning%20content/value.pdf" type="application/pdf">
-    <p>Cannot preview PDF. Open <a href="value%20learning%20content/value.pdf">value.pdf</a>.</p>
-  </object>
+        <h3>Making PMP global</h3>
+        <p>Rearranging HJB gives a concise constraint on the rate of change of the value function:</p>
+        <div class="equation">
+          \[
+          \begin{aligned}
+          \frac{\partial v}{\partial t}\left(\vec x_t,t\right)+\nabla_{\vec x_t}v\left(\vec x_t,t\right)\frac{d\vec x_t}{dt}&=-\ell\left(\vec x_t,\vec u_t^*\right)\\
+          \frac{dv\left(\vec x_t,t\right)}{dt}&=-\ell\left(\vec x_t,\vec u_t^*\right)
+          \end{aligned}
+          \]
+        </div>
+        <p><strong>Intuition.</strong> Under policy \(\vec u_t^*\), value decreases at a rate negative to cost.</p>
 
-  <h3>Results</h3>
-  <div class="media-grid">
-    <img src="value%20learning%20content/cartpole_balance_trajectory_cost_ieee.png" alt="Cartpole balance trajectory cost">
-    <img src="value%20learning%20content/cartpole_swingup_trajectory_cost_ieee.png" alt="Cartpole swingup trajectory cost">
-    <img src="value%20learning%20content/reacher_trajectory_cost_ieee.png" alt="Reacher trajectory cost">
-    <img src="value%20learning%20content/cartpole_balancing_rewards_ieee.png" alt="Cartpole balancing rewards">
-    <img src="value%20learning%20content/cartpole_swingup_rewards_ieee.png" alt="Cartpole swingup rewards">
-    <img src="value%20learning%20content/reahcer_rewards_ieee.png" alt="Reacher rewards">
-  </div>
+        <h3>Making PMP global (parameterised value function)</h3>
+        <p>Parameterise \(v\left(\vec x_t,t;\theta\right)\) directly to learn an approximate global value function and therefore policy.</p>
+        <div class="equation">
+          \[
+          \begin{aligned}
+          \dot{\vec x} &= \vec f\left(\vec x_t,\vec u_t\right)\\
+          \dot v &= -\ell\left(\vec x_t,\vec u_t\right)\\
+          \vec u^* &= -\left(\nabla^2_{\vec u_t}\ell_{\text{ctrl}}\left(\vec u_t\right)\right)^{-1}\left(\vec g\left(\vec x_t\right)^\top\nabla_{\vec x_t}v\left(\vec x_t,t;\theta\right)\right)
+          \end{aligned}
+          \]
+        </div>
+        <p>Initial: \(\vec x=\vec x_0\in\mathbb{R}^{B\times m}\). Terminal: \(v\left(\vec x_T,T;\theta\right)=\psi\left(\vec x_T\right)\).</p>
 
-  <h3>Conclusion</h3>
-  <ul>
-    <li>Global policy.</li>
-    <li>Efficiency from direct derivatives.</li>
-    <li>No backpropagation through time.</li>
-  </ul>
-  <ul>
-    <li>Requires full dynamics information.</li>
-    <li>No smoothing through noise in this formulation.</li>
-    <li>Quadratic control constraints and no state constraints.</li>
-  </ul>
-</div>
+        <h3>Dynamic programming view</h3>
+        <p>The discrete solution resembles a dynamic programming update:</p>
+        <div class="equation">
+          \[
+          \begin{aligned}
+          v\left(\vec x_N,N\right)&=\psi\left(\vec x_N\right)\\
+          v\left(\vec x_{N-1},N-1\right)&=v\left(\vec x_N,N\right)+\ell\left(\vec x_{N-1},\vec u^*_{N-1}\right)\Delta t\\
+          v\left(\vec x_{N-2},N-2\right)&=v\left(\vec x_{N-1},N-1\right)+\ell\left(\vec x_{N-2},\vec u^*_{N-2}\right)\Delta t\\
+          &\vdots\\
+          v\left(\vec x_0,0\right)&=v\left(\vec x_1,1\right)+\ell\left(\vec x_0,\vec u^*_0\right)\Delta t
+          \end{aligned}
+          \]
+        </div>
+        <p><strong>Intuition.</strong> Essentially a cumulative sum of costs backwards.</p>
+
+        <h3>Global PMP</h3>
+        <p>Solve one ODE forward for \(\vec x\left(t\right)\) and backwards for \(v\left(\vec x\left(t\right),t\right)\).</p>
+        <div class="single-image diagram-image">
+          <img src="value%20learning%20content/value.png" alt="Global PMP value diagram"/>
+        </div>
+
+        <h3>Discrete algorithm</h3>
+        <div class="algo-block">
+          <pre><span class="algo-keyword">Initialize:</span> x(0)=x<sub>0</sub>, Δt, N=T/Δt, v(x<sub>N</sub>, N)=ψ(x<sub>N</sub>)
+<span class="algo-keyword">For</span> i = 0 ... N−1:
+  u<sub>i</sub> = −(∇²<sub>u_i</sub> l<sub>ctrl</sub>(u<sub>i</sub>))<sup>−1</sup> g(x<sub>i</sub>)<sup>T</sup> ∇<sub>x</sub> ṽ(x<sub>i</sub>, i; θ)<sup>T</sup>
+  x<sub>i+1</sub> = x<sub>i</sub> + f(x<sub>i</sub>, u<sub>i</sub>) Δt
+<span class="algo-keyword">For</span> i = N−1 ... 0:
+  v(x<sub>i</sub>, i) = v(x<sub>i+1</sub>, i+1) + l(x<sub>i</sub>, u<sub>i</sub>) Δt
+<span class="algo-keyword">Optimize:</span> min<sub>θ</sub> Σ<sub>i=0..N</sub> ( v(x<sub>i</sub>, i) − ṽ(x<sub>i</sub>, i, θ) )<sup>2</sup></pre>
+        </div>
+        <p><strong>Intuition.</strong> A fitted value iteration pattern: rollout, compute values, fit to targets.</p>
+
+        <h3>Results</h3>
+        <div class="media-grid">
+          <img src="value%20learning%20content/cartpole_balance_trajectory_cost_ieee.png" alt="Cartpole balance trajectory cost"/>
+          <img src="value%20learning%20content/cartpole_swingup_trajectory_cost_ieee.png" alt="Cartpole swingup trajectory cost"/>
+          <img src="value%20learning%20content/reacher_trajectory_cost_ieee.png" alt="Reacher trajectory cost"/>
+          <img src="value%20learning%20content/cartpole_balancing_rewards_ieee.png" alt="Cartpole balancing rewards"/>
+          <img src="value%20learning%20content/cartpole_swingup_rewards_ieee.png" alt="Cartpole swingup rewards"/>
+          <img src="value%20learning%20content/reahcer_rewards_ieee.png" alt="Reacher rewards"/>
+        </div>
+        <p>Overview: significantly faster convergence and lower variance across random seeds, outperforming SAC and PPO by factors of at least 74 and 2, respectively.</p>
+
+        <h3>Conclusion</h3>
+        <div class="conclusion-grid">
+          <div class="conclusion-block">
+            <h4>Contribution</h4>
+            <ul>
+              <li>Global policy.</li>
+              <li>Efficiency from direct derivatives.</li>
+              <li>No backprop through time.</li>
+            </ul>
+          </div>
+          <div class="conclusion-block">
+            <h4>Caveats</h4>
+            <ul>
+              <li>Requires full dynamics information.</li>
+              <li>No ability to introduce smoothing through noise.</li>
+              <li>Only quadratic control constraints and no state constraints.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
 </body>
 </html>
