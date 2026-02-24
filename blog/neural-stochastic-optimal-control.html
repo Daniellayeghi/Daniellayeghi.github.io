@@ -99,7 +99,7 @@ window.MathJax = {
         </div>
         <p>Overview: significantly faster convergence and lower variance across random seeds, outperforming SAC and PPO by at least factors of 18 and 2, respectively.</p>
 
-        <h3>Noise-driven smoothing</h3>
+        <h3>Noise-driven smoothing (Obstacle avoidance with discontinuous objective)</h3>
         <p>Value approximation under stochastic dynamics and discontinuous objectives.</p>
         <div class="media-grid">
           <img src="value%20learning%20content/1stnoise.png" alt="Noise smoothing example 1"/>
@@ -107,6 +107,7 @@ window.MathJax = {
           <img src="value%20learning%20content/4thnoise.png" alt="Noise smoothing example 3"/>
         </div>
         <p>Higher noise smooths the value function through the curvature term \(\operatorname{trace}\left(\nabla^2_{\vec x_t\vec x_t}v\left(\vec x_t,t\right)\vec\Sigma\left(\vec x_t\right)\right)\).</p>
+        <p>As we increase the control noise particles take trajectories further from obstacles. This is confirmation that noise penalises value function curvature, improving robustness.<p>
 
         <h3>Conclusion</h3>
         <div class="conclusion-grid">
