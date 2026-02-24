@@ -5,195 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Optimal Control via Combined Inference and Numerical Optimization</title>
 <meta name="description" content="Thesis segment blog post"/>
-<style>
-  body {
-    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", serif;
-    background: #f4f3ef;
-    color: #202124;
-    margin: 0;
-  }
-
-  .container {
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 18px 18px 34px;
-  }
-
-  a {
-    color: #1f4e8c;
-    text-decoration: none;
-    border-bottom: 1px solid #b6c8e3;
-  }
-
-  a:hover {
-    border-bottom-color: #1f4e8c;
-  }
-
-  .back {
-    margin: 0 0 10px;
-    font-size: 0.94rem;
-  }
-
-  .page-header {
-    border-bottom: 1px solid #d9d7cf;
-    padding-bottom: 12px;
-    margin-bottom: 14px;
-  }
-
-  h1 {
-    margin: 0;
-    font-size: 2rem;
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-    color: #171717;
-  }
-
-  .meta {
-    margin: 6px 0 0;
-    color: #585d64;
-    font-size: 0.95rem;
-  }
-
-  .section {
-    border-bottom: 1px solid #e3e1d9;
-    padding: 12px 0 14px;
-  }
-
-  .section:last-of-type {
-    border-bottom: 0;
-  }
-
-  h2 {
-    margin: 0 0 8px;
-    font-size: 1.4rem;
-    line-height: 1.2;
-    color: #191919;
-  }
-
-  h3 {
-    margin: 16px 0 7px;
-    font-size: 1.12rem;
-    line-height: 1.2;
-    color: #1f1f1f;
-  }
-
-  p {
-    margin: 0 0 8px;
-    line-height: 1.5;
-    font-size: 1rem;
-  }
-
-  ul {
-    margin: 0 0 8px 20px;
-    padding: 0;
-  }
-
-  li {
-    margin: 3px 0;
-  }
-
-  .media-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-    margin: 8px 0;
-  }
-
-  .media-grid img,
-  .single-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border: 1px solid #ddd9ce;
-    border-radius: 4px;
-    background: #fff;
-  }
-
-  .single-image {
-    margin: 8px 0;
-  }
-
-  .approach-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-    margin: 8px 0;
-  }
-
-  .approach-col {
-    border: 1px solid #dedcd3;
-    background: #faf9f5;
-    border-radius: 4px;
-    padding: 8px 10px;
-  }
-
-  .approach-col h4 {
-    margin: 0 0 6px;
-    font-size: 1rem;
-  }
-
-  .equation {
-    overflow-x: auto;
-    margin: 8px 0;
-    padding: 6px 8px;
-    border-left: 2px solid #d3d0c6;
-  }
-
-  .result-video {
-    width: 100%;
-    border: 1px solid #d8d6ce;
-    border-radius: 6px;
-    background: #000;
-    margin-top: 8px;
-  }
-
-  .conclusion-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-    margin-top: 8px;
-  }
-
-  .conclusion-block {
-    border: 1px solid #dedcd3;
-    background: #faf9f5;
-    border-radius: 4px;
-    padding: 10px 12px;
-  }
-
-  .conclusion-block h4 {
-    margin: 0 0 6px;
-    font-size: 1.02rem;
-    color: #1f1f1f;
-  }
-
-  .conclusion-block ul {
-    margin: 0 0 0 18px;
-  }
-
-  .conclusion-block li {
-    margin: 2px 0;
-  }
-
-  @media (max-width: 780px) {
-    .container {
-      padding: 14px 14px 22px;
-    }
-
-    h1 {
-      font-size: 1.62rem;
-    }
-
-    .media-grid,
-    .approach-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .conclusion-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
+<link rel="stylesheet" href="../css/site-common.css" type="text/css"/>
+<link rel="stylesheet" href="../css/blog-post.css" type="text/css"/>
+<link rel="stylesheet" href="../css/blog-post-optimal.css" type="text/css"/>
 <script>
 window.MathJax = {
   tex: {
@@ -214,11 +28,9 @@ window.MathJax = {
       <p class="back"><a href="/blog/">&larr; Back to blog index</a></p>
       <header class="page-header">
         <h1>Optimal Control via Combined Inference and Numerical Optimization</h1>
-        <p class="meta">Flexibility + Efficiency segment (ICRA 2022)</p>
       </header>
 
       <section class="section">
-        <h2>Segment: Flexibility + Efficiency</h2>
 
         <h3>Problem statement</h3>
         <p>Numerical optimisation is efficient at refinement but fails to <strong>discover</strong> control policies or behaviours far from the point of initialisation. Sampling can discover further local optima through exploration with simpler cost functions.</p>
@@ -255,10 +67,10 @@ window.MathJax = {
         <p>The KL control approach is grounded in the stochastic version of the Bellman equation.</p>
         <div class="equation">
           \[
-          \begin{aligned}
-          \underset{\mathbf{u}}{\min}\left[\ell\left(\mathbf{x}\right) + &\,\mathrm{KL}(\mathbb{Q}\|\|\mathbb{P}) + \mathbb{E}_{\mathbb{Q}}\left[v\left(\mathbf{x}'\right)\right]\right]\\
-          \mathrm{KL}(\mathbb{Q}\|\|\mathbb{P}) &= \mathbb{E}_{\mathbb{Q}}\!\left[\log\!\left(\frac{\mathbf{p}\left(\mathbf{x}'|\mathbf{x},\mathbf{u}\right)}{\mathbf{p}\left(\mathbf{x}'|\mathbf{x}\right)}\right)\right]
-          \end{aligned}
+          \begin{gathered}
+          \underset{\mathbf{u}}{\min}\left[\ell\left(\mathbf{x}\right) + \mathrm{KL}(\mathcal{Q}\|\|\mathcal{P}) + \mathbb{E}_{\mathcal{Q}}\left[v\left(\mathbf{x}'\right)\right]\right]\\
+          \mathrm{KL}(\mathcal{Q}\|\|\mathcal{P}) = \mathbb{E}_{\mathcal{Q}}\!\left[\log\!\left(\frac{\mathbf{p}\left(\mathbf{x}'|\mathbf{x},\mathbf{u}\right)}{\mathbf{p}\left(\mathbf{x}'|\mathbf{x}\right)}\right)\right]
+          \end{gathered}
           \]
         </div>
         <p>Where \(\mathbf{p}\left(\mathbf{x}'|\mathbf{x},\mathbf{u}\right)\) and \(\mathbf{p}\left(\mathbf{x}'|\mathbf{x}\right)\) are the controlled and uncontrolled transition probabilities.</p>
@@ -273,10 +85,10 @@ window.MathJax = {
         <p>Reformulate the stochastic Bellman objective and add a secondary divergence term to the tangent-space Bellman solution.</p>
         <div class="equation">
           \[
-          \begin{aligned}
-          \underset{\mathbf{u}}{\min}\left[l\left(\mathbf{x}\right) + (1-k)&\,\mathrm{KL}(\mathbb{Q}\|\|\mathbb{P}) + k\,\mathrm{KL}(\mathbb{Q}\|\|\mathbb{C}) + \mathbb{E}_{\mathbb{Q}}\left[v\left(\mathbf{x}'\right)\right]\right]\\
-          \mathrm{KL}(\mathbb{Q}\|\|\mathbb{C}) &= \mathbb{E}_{\mathbb{Q}}\!\left[\log\!\left(\frac{\mathbf{p}\left(\mathbf{x}'|\mathbf{x},\mathbf{u}\right)}{\mathbf{p}\left(\mathbf{x}'|\mathbf{x},\mathbf{u}_{\mathrm{iLQG}}\right)}\right)\right]
-          \end{aligned}
+          \begin{gathered}
+          \underset{\mathbf{u}}{\min}\left[l\left(\mathbf{x}\right) + (1-k)\,\mathrm{KL}(\mathcal{Q}\|\|\mathcal{P}) + k\,\mathrm{KL}(\mathcal{Q}\|\|\mathcal{C}) + \mathbb{E}_{\mathcal{Q}}\left[v\left(\mathbf{x}'\right)\right]\right]\\
+          \mathrm{KL}(\mathcal{Q}\|\|\mathcal{C}) = \mathbb{E}_{\mathcal{Q}}\!\left[\log\!\left(\frac{\mathbf{p}\left(\mathbf{x}'|\mathbf{x},\mathbf{u}\right)}{\mathbf{p}\left(\mathbf{x}'|\mathbf{x},\mathbf{u}_{\mathrm{iLQG}}\right)}\right)\right]
+          \end{gathered}
           \]
         </div>
         <p>Update law over trajectory distribution:</p>
@@ -308,7 +120,7 @@ window.MathJax = {
           \mathbf{\Sigma}_{\mathrm{iLQG}_t}^{-1}\left(\vec w_t-\mathbf{u}_{\mathrm{iLQG}_t}\right)\right)
           \]
         </div>
-        <p>iLQG distribution is obtained by maximizing \(\ln\exp\left(-\delta Q_t\left(\mathbf{x}_t,\mathbf{u}_t\right)\right)\), with samples from \(\mathbb{C}\) as \(\vec w_t\sim\mathcal{N}\left(\mathbf{u}_{\mathrm{iLQG}_t},Q^{-1}_{\mathbf{uu}_t}\right)\).</p>
+        <p>iLQG distribution is obtained by maximizing \(\ln\exp\left(-\delta Q_t\left(\mathbf{x}_t,\mathbf{u}_t\right)\right)\), with samples from \(\mathcal{C}\) as \(\vec w_t\sim\mathcal{N}\left(\mathbf{u}_{\mathrm{iLQG}_t},Q^{-1}_{\mathbf{uu}_t}\right)\).</p>
 
         <h3>Results</h3>
         <video class="result-video" controls preload="metadata">

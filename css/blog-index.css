@@ -1,0 +1,24 @@
+.post-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-item {
+  border-bottom: 1px solid #e3e1d9;
+  padding: 12px 0 14px;
+}
+
+.post-item:last-child {
+  border-bottom: 0;
+}
+
+.post-item a {
+  font-size: 1.18rem;
+  color: #1f4e8c;
+  border-bottom: 0;
+}
+
+.post-item a:hover {
+  border-bottom: 0;
+}
