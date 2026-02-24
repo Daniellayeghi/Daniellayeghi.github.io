@@ -1,0 +1,96 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neural Stochastic Optimal Control</title>
+<meta name="description" content="Thesis segment blog post" />
+<style type="text/css">
+body{margin:40px auto;max-width:900px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}
+h1,h2,h3{line-height:1.2}
+a{color:#0b57d0}
+.media-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:12px 0}
+.media-grid img,.single-media img{width:100%;height:auto;display:block}
+.single-media{margin:12px 0}
+.section{margin-top:30px}
+</style>
+</head>
+<body>
+<p><a href="/blog/">← Back to blog index</a></p>
+<h1>Neural Stochastic Optimal Control</h1>
+
+<h2>Opening: Problem Framing</h2>
+<h3>Problem Statement</h3>
+<p>Typical tasks in robotics.</p>
+<div class="media-grid">
+  <img src="value%20learning%20content/Screenshot%20from%202021-10-26%2018-29-19.png" alt="Robot task example 1">
+  <img src="value%20learning%20content/Screenshot%20from%202021-10-26%2018-39-19.png" alt="Robot task example 2">
+  <img src="value%20learning%20content/Screenshot%20from%202021-10-26%2018-31-36.png" alt="Robot task example 3">
+  <img src="value%20learning%20content/hand.jpeg" alt="Robot hand task example">
+</div>
+
+<h3>Tasks and Objective Landscapes</h3>
+<div class="single-media">
+  <img src="value%20learning%20content/Screenshot%20from%202021-10-26%2017-39-53.png" alt="Objective landscape">
+</div>
+<ul>
+  <li>Generally, objective landscapes are flat.</li>
+  <li>Not suitable for optimisation.</li>
+</ul>
+
+<h3>General Approaches</h3>
+<ul>
+  <li><strong>OC</strong>: DDP, iLQR, collocation; efficient near optima under strict objective constraints.</li>
+  <li><strong>Sampling OC</strong>: MPPI, CEM, RS; flexible objective with sampling cost.</li>
+  <li><strong>RL</strong>: global and general, flexible objective, inherent exploration, slower convergence.</li>
+</ul>
+
+<div class="section">
+  <h2>Segment: Generalisation + Efficiency + Flexibility</h2>
+
+  <h3>Problem Statement</h3>
+  <p>Numerical optimal control computes locally optimal trajectories efficiently under smooth objectives, while RL can approximate general policies under looser objective assumptions.</p>
+  <p><strong>Aim:</strong> combine RL-inspired flexibility via sampling with OC-inspired efficiency and generalisation.</p>
+
+  <h3>Continuous Stochastic Bellman Equation</h3>
+  <p>This segment uses the stochastic HJB formulation and keeps the same optimal control structure while parameterising the value function.</p>
+
+  <h3>Learning the Value Function</h3>
+  <p>The expected rate of value-function change is constrained to match instantaneous cost under the current policy.</p>
+
+  <h3>TD(ish) View</h3>
+  <p>Over a finite horizon, the Bellman-difference constraints are applied recursively in a TD-like structure under stochastic rollouts.</p>
+
+  <h3>Discrete Algorithm</h3>
+  <p>Roll out stochastic trajectories under the current policy and optimize value-function parameters against the stochastic Bellman residual.</p>
+
+  <h3>Results</h3>
+  <div class="media-grid">
+    <img src="value%20learning%20content/cartpole_balance_trajectory_cost_ieee_stochastic.png" alt="Stochastic cartpole balance trajectory cost">
+    <img src="value%20learning%20content/cartpole_swingup_trajectory_cost_ieee_stochastic.png" alt="Stochastic cartpole swingup trajectory cost">
+    <img src="value%20learning%20content/reacher_trajectory_cost_ieee_stochastic.png" alt="Stochastic reacher trajectory cost">
+    <img src="value%20learning%20content/cartpole_balancing_rewards_ieee_stochastic.png" alt="Stochastic cartpole balancing rewards">
+    <img src="value%20learning%20content/cartpole_swingup_rewards_ieee_stochastic.png" alt="Stochastic cartpole swingup rewards">
+    <img src="value%20learning%20content/reahcer_rewards_ieee_stochastic.png" alt="Stochastic reacher rewards">
+  </div>
+
+  <h3>Noise Smoothing Results</h3>
+  <div class="media-grid">
+    <img src="value%20learning%20content/1stnoise.png" alt="Noise result 1">
+    <img src="value%20learning%20content/3rdnoise.png" alt="Noise result 3">
+    <img src="value%20learning%20content/4thnoise.png" alt="Noise result 4">
+  </div>
+  <p>Higher state-dependent noise smooths the value function through the curvature penalty term.</p>
+
+  <h3>Conclusion</h3>
+  <ul>
+    <li>Global policy.</li>
+    <li>Flexibility to discontinuity via noise.</li>
+    <li>Better efficiency.</li>
+  </ul>
+  <ul>
+    <li>Requires full dynamics information.</li>
+    <li>SDE rollouts are considerably more memory-intensive.</li>
+  </ul>
+</div>
+</body>
+</html>

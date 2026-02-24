@@ -1,0 +1,85 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Optimal Control via Combined Inference and Numerical Optimization</title>
+<meta name="description" content="Thesis segment blog post" />
+<style type="text/css">
+body{margin:40px auto;max-width:900px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}
+h1,h2,h3{line-height:1.2}
+a{color:#0b57d0}
+.media-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:12px 0}
+.media-grid img,.single-media img{width:100%;height:auto;display:block}
+.single-media{margin:12px 0}
+video{width:100%;height:auto;display:block;margin:12px 0}
+.section{margin-top:30px}
+</style>
+</head>
+<body>
+<p><a href="/blog/">← Back to blog index</a></p>
+<h1>Optimal Control via Combined Inference and Numerical Optimization</h1>
+
+<h2>Opening: Problem Framing</h2>
+<h3>Problem Statement</h3>
+<p>Typical tasks in robotics.</p>
+<div class="media-grid">
+  <img src="value%20learning%20content/Screenshot%20from%202021-10-26%2018-29-19.png" alt="Robot task example 1">
+  <img src="value%20learning%20content/Screenshot%20from%202021-10-26%2018-39-19.png" alt="Robot task example 2">
+  <img src="value%20learning%20content/Screenshot%20from%202021-10-26%2018-31-36.png" alt="Robot task example 3">
+  <img src="value%20learning%20content/hand.jpeg" alt="Robot hand task example">
+</div>
+
+<h3>Tasks and Objective Landscapes</h3>
+<div class="single-media">
+  <img src="value%20learning%20content/Screenshot%20from%202021-10-26%2017-39-53.png" alt="Objective landscape">
+</div>
+<ul>
+  <li>Generally, objective landscapes are flat.</li>
+  <li>Not suitable for optimisation.</li>
+</ul>
+
+<h3>General Approaches</h3>
+<ul>
+  <li><strong>OC</strong>: DDP, iLQR, collocation; efficient near optima under strict objective constraints.</li>
+  <li><strong>Sampling OC</strong>: MPPI, CEM, RS; flexible objective with sampling cost.</li>
+  <li><strong>RL</strong>: global and general, flexible objective, inherent exploration, slower convergence.</li>
+</ul>
+
+<div class="section">
+  <h2>Segment: Flexibility + Efficiency</h2>
+  <h3>Problem Statement</h3>
+  <p>Numerical optimisation is efficient at refinement but struggles to discover control policies far from initialization, while sampling can discover additional local optima through exploration with simpler costs.</p>
+  <p><strong>Aim:</strong> combine inference and second-order trajectory optimization so sampling remains efficient without derivative information and follows optimized trajectories when derivatives are available.</p>
+
+  <h3>Numerical Solution</h3>
+  <p>The method follows the Bellman equation and tangent-space solution used by differential dynamic programming, resulting in a Newton-like control update.</p>
+
+  <h3>Inference Solution</h3>
+  <p>The KL-control formulation uses the stochastic Bellman equation and an information-theoretic objective, producing an optimal control distribution over trajectories.</p>
+
+  <h3>Combining Inference with Second-Order Method</h3>
+  <p>The stochastic Bellman objective is reformulated with a secondary divergence to the iLQG-guided distribution, mixing exploratory sampling and local second-order guidance.</p>
+
+  <h3>Importance Sampling</h3>
+  <p>Controls are estimated by importance sampling from trajectory distributions, with weights combining trajectory cost and the iLQG confidence term.</p>
+
+  <h3>Results</h3>
+  <video controls preload="metadata">
+    <source src="value%20learning%20content/ICRA.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <h3>Conclusion</h3>
+  <ul>
+    <li>Natural combination of inference and numerical optimisation.</li>
+    <li>Inherent ability to explore.</li>
+    <li>Supports convex and non-convex costs.</li>
+  </ul>
+  <ul>
+    <li>Requires tuning of lambda, beta, and k.</li>
+    <li>Q<sub>uu</sub><sup>-1</sup> is not always a reliable confidence measure.</li>
+    <li>Constant control noise can affect convergence.</li>
+  </ul>
+</div>
+</body>
+</html>

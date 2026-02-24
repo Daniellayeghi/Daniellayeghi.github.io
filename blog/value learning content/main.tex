@@ -1,0 +1,845 @@
+\documentclass{beamer}
+\usefonttheme{professionalfonts}
+\usepackage[utf8]{inputenc}
+\usepackage{fourier} %font utopia imported
+\usepackage[normalem]{ulem}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{animate}
+\usepackage{ragged2e}
+\usepackage[english]{babel}
+\usepackage{amsmath,bm}
+\usepackage{upgreek}
+\usepackage{multicol}
+\usepackage{textcomp}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{bbm}
+\usepackage{bigints}
+\usepackage{hyperref}
+\usepackage{multimedia}
+\usepackage{dsfont}
+\usepackage[export]{adjustbox}
+\usepackage[backend=biber,style=numeric,sortcites,sorting=none,backref,natbib,hyperref]{biblatex}
+\bibliography{references}
+\usetheme{Madrid}
+\usecolortheme{default}
+
+\DeclareMathOperator{\E}{\mathbb{E}}
+\setbeamertemplate{footline}[frame number]
+\newcommand{\bigCI}{\mathrel{\text{\scalebox{1.07}{$\perp\mkern-10mu\perp$}}}}
+
+\newcommand{\R}{{\mathbb R}}
+\def\vec#1{\mathbf{#1}}
+\def\dt#1{\dot{#1}}
+
+%------------------------------------------------------------
+%This block of code defines the information to appear in the
+%Title page
+\title %optional
+{Optimal Control Theoretic Value Function Learning}
+
+
+% \logo{\includegraphics[height=1.5cm]{lion-logo.jpg}}
+
+%End of title page configuration block
+%------------------------------------------------------------
+
+
+
+%------------------------------------------------------------
+%The next block of commands puts the table of contents at the 
+%beginning of each section and highlights the current section:
+
+% \AtBeginSection[]
+% {
+%   \begin{frame}
+%     \frametitle{Table of Contents}
+%     \tableofcontents[currentsection]
+%   \end{frame}
+% }
+%------------------------------------------------------------
+
+
+\begin{document}
+
+%The next statement creates the title page.
+\frame{\titlepage}
+
+
+%---------------------------------------------------------
+%This block of code is for the table of contents after
+%the title page
+
+%---------------------------------------------------------
+
+
+\section{Problem Statement}
+
+%---------------------------------------------------------
+
+\begin{frame}
+\frametitle{Problem Statement}
+Typical tasks in robotics
+% \begin{figure}
+%     \includegraphics[width=.5\textwidth,center]{Screenshot from 2021-10-26 18-29-19.png}
+% \end{figure}
+
+\begin{columns}[T] % align columns
+    \begin{column}{.5\textwidth}
+        \begin{figure}
+            \centering
+            \includegraphics[width=.6\textwidth]{Screenshot from 2021-10-26 18-29-19.png}
+        \end{figure}
+    \end{column}%
+    \hfill%
+    \begin{column}{.5\textwidth}
+        \begin{figure}
+            \centering
+            \includegraphics[width=.7\textwidth]{Screenshot from 2021-10-26 18-39-19.png}
+        \end{figure}
+    \end{column}%
+\end{columns}
+
+\begin{columns}[T] % align columns
+    \begin{column}{.5\textwidth}
+        \begin{figure}
+            \centering
+            \includegraphics[width=.6\textwidth]{Screenshot from 2021-10-26 18-31-36.png}
+        \end{figure}
+    \end{column}%
+    \hfill%
+    \begin{column}{.5\textwidth}
+        \begin{figure}
+            \centering
+            \includegraphics[width=.6\textwidth]{hand.jpeg}
+        \end{figure}
+    \end{column}%
+\end{columns}
+\end{frame}
+
+
+%---------------------------------------------------------
+\begin{frame}
+\frametitle{Tasks and Objective Landscapes}
+What is the commonality between them?
+\begin{figure}%[2]
+    \centering
+    \includegraphics[scale=0.12]{Screenshot from 2021-10-26 17-39-53.png}
+\end{figure}
+\begin{itemize}
+    \item Generally, objective landscapes are flat.
+    \item Not suitable for optimisation 
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{General Approaches}
+  \begin{equation}
+    \text{Approaches to decision making ~}
+    \begin{cases}
+      \textbf{OC} \\
+      \textbf{RL}
+    \end{cases}
+    \nonumber
+  \end{equation}
+  \\~\\
+  
+\begin{columns}[T] % align columns
+\begin{column}{.48\textwidth}
+\color{red} OC\\ \rule{\linewidth}{4pt}
+\color{black}
+\begin{itemize}
+    \item DDP, ILQR, Collocation\\
+        \begin{itemize}
+            \item local
+            \item \textbf{efficient} near optima
+            \item strict objective constraints
+        \end{itemize}
+    \item \text{MPPI, CEM, RS}\\
+    \begin{itemize}
+        \item local
+        \item cost of sampling
+        \item \textbf{flexible} objective
+    \end{itemize}
+\end{itemize}
+\end{column}%
+\hfill%
+\begin{column}{.48\textwidth}
+\color{blue} RL \\\rule{\linewidth}{4pt}
+\color{black}
+\begin{itemize}
+    \item global and \textbf{general}\\
+    \item \textbf{flexible} objective \\
+    \item Inherent exploration \\
+    \item slow convergence
+\end{itemize}
+\end{column}%
+\end{columns}
+  
+% The numerical approach to optimal control is highly efficient in solving for locally optimal controls in \textbf{well defined} scenarios. 
+
+% \begin{alertblock}{Requirements}
+% \begin{itemize}
+%     \item Continuous~dynamics\\
+%     \item Cost~is~not~sparse\\
+%     \item Differentiable
+% \end{itemize}
+% \end{alertblock}
+\end{frame}
+
+% \begin{frame}{Problem Statement}
+
+% Inference approach to optimal control have some benefits:
+
+% \begin{exampleblock}{For example}
+% \begin{itemize}
+%     \item Tolerance to non-convexity\\
+%     \item Tolerance  to  non-existent derivatives (i.e., discontinuities)\\
+%     \item Ability to explore due to the assumption of input noise
+% \end{itemize}
+% \end{exampleblock}
+
+% However, inferring the unknown distribution is computationally costly.
+    
+% \end{frame}
+
+%---------------------------------------------------------
+
+\begin{frame}
+  \centering % Centers everything on the page
+  \vfill % Adds vertical space before the content
+  \begin{beamercolorbox}[sep=8pt,center]{title}
+    \usebeamerfont{title}Flexibility + Efficiency
+  \end{beamercolorbox}
+  \vfill % Adds vertical space after the content
+  \vfill \tiny {Optimal Control via Combined Inference and Numerical Optimization (ICRA22)}
+\end{frame}
+
+\begin{frame}
+\frametitle{Problem statement}
+Numerical optimisation is efficient at refinement but fails to \textbf{discover} control policies or behaviours far away from the point of initialisation. Sampling is able to discover further local optima through exploration with simpler cost functions.
+\\~\\
+\begin{exampleblock}{Aim}
+Combine the strength of both inference and second-order trajectory optimization.  We aim to formulate a natural combination that can  \textbf{efficiently sample}  when  \textit{no derivative information}  is available and follow  \textbf{optimized trajectories} when \textit{derivatives arise}.
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+\frametitle{Numerical solution}
+The method relies on the Bellman equation and its tangent space solution \cite{tassa2012synthesis}.
+\begin{equation}\label{eq: bellman}
+v(\mathbf{x}, t) = \min_{\mathbf{u}} {\underbrace{\left[\ell(\mathbf{x}, \mathbf{u}, t) + v\left({\mathbf{f}(\mathbf{x}, \mathbf{u}, t)}\right) \right]}_{Q(\mathbf{x}, \mathbf{u}, t)}}  \nonumber
+\end{equation}
+
+Solving in tangent space
+\begin{equation}
+\begin{aligned}
+Q(\delta{\mathbf{x}}, \delta{\mathbf{u}}) &\approx \frac{1}{2}{\begin{bmatrix}1 \\ \delta{\mathbf{x}} \\ \delta{\mathbf{u}} \end{bmatrix}}^{\top}\begin{bmatrix} 0 & Q_{\mathbf{x}}^{\top} & Q_{\mathbf{u}}^{\top} \\
+Q_{\mathbf{x}} & Q_{\mathbf{xx}} & Q_{\mathbf{xu}} \\ 
+Q_\mathbf{u} & Q_{\mathbf{ux}} & Q_{\mathbf{uu}} \end{bmatrix} \begin{bmatrix} 1 \\\delta{\mathbf{x}} \\ \delta{\mathbf{u}} \end{bmatrix} \nonumber
+\end{aligned}
+\end{equation}
+
+\begin{exampleblock}{Update Law}
+This leads to an updated law similar to Newton's method:
+\begin{equation}
+\hat{\mathbf{u}} = \mathbf{u} - ({Q_\mathbf{u}} - Q_{\mathbf{ux}}\delta{\mathbf{x}})Q^{-1}_{\mathbf{uu}}
+\nonumber
+\end{equation}
+\end{exampleblock}
+\vfill \tiny {Differential Dynamic Programming–A Unified Approach to the Optimization of Dynamic Systems. Mayne}
+\end{frame}
+
+% %---------------------------------------------------------
+
+\begin{frame}
+\frametitle{Inference solution}
+
+The KL control approach is grounded in the stochastic version of the Bellman equation \cite{theodorou2012relative}.
+
+\begin{equation}
+\begin{aligned}
+\underset{\mathbf{u}}{\text{min}}[\ell(\mathbf{x}) + &\text{KL}(\mathbb{Q}||\mathbb{P}) + \E_{\mathbb{Q}}[v(\mathbf{x}')]]\\
+\text{KL}(\mathbb{Q}||\mathbb{P}) &= \E_{\mathbb{Q}}\left[\log\left[\frac{\mathbf{p}(\mathbf{x}'|\mathbf{x}, \mathbf{u})}{\mathbf{p}(\mathbf{x}'|\mathbf{x})}\right]\right]
+\nonumber
+\end{aligned}
+\end{equation}
+Where $\mathbf p(\mathbf{x}'|\mathbf{x}, \mathbf{u})$ and $\mathbf p(\mathbf{x}'|\mathbf{x})$ represent the controlled and uncontrolled probabilities
+
+\begin{exampleblock}{Optimal controls}
+Leads to an optimal control distribution:
+\begin{equation}
+\mathbf{p}^*(\mathbf{x}'|\mathbf{x}, \mathbf{u}) = \mathbf{p}(\mathbf{x}'|\mathbf{x})\text{exp}\left(-v(\mathbf{x}')\right)\eta^{-1}
+\nonumber
+\end{equation}
+\end{exampleblock}
+\vfill \tiny {Information-theoretic model predictive control: Theory and applications to autonomous driving. Williams et al.}
+\end{frame}
+
+%------------------------------------------------------------
+\begin{frame}
+\frametitle{Combining inference with second order method}
+Reformulate the stochastic Bellman equation and add a secondary divergence term with the solution of the Bellman equation in the tangent space.
+
+\begin{equation}
+\begin{aligned}\label{eq: combined Bellman}
+\underset{\mathbf{u}}{\text{min}}[l(\mathbf{x}) + (1-k)&\text{KL}(\mathbb{Q}||\mathbb{P}) + k \text{KL}(\mathbb{Q}||\mathbb{C}) + \E_{\mathbb{Q}}[v(\mathbf{x}')]]\\
+\text{KL}(\mathbb{Q}||\mathbb{C})& = \E_{\mathbb{Q}}\left[\log\left[\frac{\mathbf{p}(\mathbf{x}'|\mathbf{x}, \mathbf{u})}{\mathbf{p}(\mathbf{x}'|\mathbf{x}, \mathbf{u}_{\text{iLQG}})}\right]\right]
+\nonumber
+\end{aligned}
+\end{equation}
+
+\begin{exampleblock}{Update Law}
+Using a sequence of control trajectories $\mathbf W = [\mathbf{u}_{0}, ..., \mathbf{u}_{T-1}]$ sampled from either controlled or uncontrolled distributions, we can represent the optimal distribution over control trajectories:
+\begin{equation}
+\mathbf{q}^*(\mathbf W) = \mathbf{p}(\mathbf W)^{1-k}\mathbf{c}(\mathbf W)^{k}\text{exp}\big(-\frac{1}{\lambda}S(\mathbf W)\big)\eta^{-1}
+\nonumber
+\end{equation}
+\begin{center}
+$\mathbf{p}(\mathbf W) := \mathbf{w}_t \sim \mathcal{N}(0, \mathbf{\Sigma}),~\mathbf{q}(\mathbf W) := \mathbf{w}_t \sim \mathcal{N}(\mathbf{u}_t, \mathbf{\Sigma}),~\mathbf{c}(\mathbf W) := \mathbf{w}_t \sim \mathcal{N}(\mathbf{u}_{\text{iLQG}_t},\mathbf{\Sigma}_{\text{iLQG}})$
+\end{center}
+\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Importance sampling}
+We cannot directly sample from $\mathbf{q}^*(\vec W)$ we importance sample:
+
+\begin{equation}\label{eq: importance sampling}
+\mathbf{u}^* = \bigintsss\mathbf{q}(\vec W){w(\vec W)} v_t \mathrm{d} W
+\nonumber
+\end{equation}
+
+Where the sample weights become:
+
+\begin{equation}
+\begin{aligned}\label{eq: sample weights}
+w(\vec W) = \frac{1}{\eta}\exp\Big(-\frac{1}{2}\frac{1}{\lambda}S(\vec W)+\sum_{t=0}^{T} k\big({(\mathbf{\vec w}_{t}-\mathbf{u}_{\text{iLQG}_t})}^\top\mathbf{\Sigma}_{\text{iLQG}_t}^{-1}(\mathbf{\vec w}_{t}-\mathbf{u}_{\text{iLQG}_t})...\big)\Big)
+\end{aligned}
+\nonumber
+\end{equation}
+
+\begin{exampleblock}{Update Law}
+iLQG distribution found by maximising $\ln \exp (-\delta Q_t(\mathbf{x}_t, \mathbf{u}_t))$. Samples from $\mathbb{C}$ take the form $\vec w_t \sim \mathcal{N}(\mathbf{u}_{\text{iLQG}_t}, Q_{\mathbf{uu}_t}^{-1})$
+\end{exampleblock}
+\end{frame}
+
+% \begin{frame}
+% \frametitle{Final Algorithm}
+% \fontsize{10pt}{10}\selectfont
+% \begin{center}
+% \begin{algorithm}[H]
+% \SetAlgoLined
+% $K$: \text{Number of samples} and $T$: \text{Number of time-steps}\\
+% $q_{\text{iLQG}_r}(\textbf{x}_t)$ and $q_{r}(\textbf{x}_t)$: \text{Running costs}\\
+% $q_{\text{iLQG}_t}(\textbf{x}_T)$ and $q_{t}(\textbf{x}_T)$: \text{Terminal costs}\\
+% $\textbf{u}_{0:T-1}$ and $\textbf{u}_{\text{iLQG}_{0:T-1}}$: Initial trajectories\\
+% $\lambda,~k,~\beta,~\mathbf{\Sigma}$: Hyper parameters for eq. \ref{eq: sample weights}\\
+% \While{not done}
+% {
+%     $\mathbf{x}_0$ = EstimateState()\\
+%     $[\textbf{u}_{\text{iLQG}~0:T-1}, ~Q_{\mathbf{uu}~0:T-1}]$ = iLQG($\textbf{x}_0$)\\
+%     $\mathbf{\Sigma}_{\text{iLQG}~0:T-1} = \beta ~Q^{-1}_{\mathbf{uu}~0:T-1}$\\
+%     $\textbf{u}_{0:T-1}$ = KLControl($\textbf{u}_{\text{iLQG}~0:T-1},~\mathbf{\Sigma}_{\text{iLQG}~0:T-1},~\textbf{x}_0$) MPPI with updated weights\\
+%     apply $\textbf{u}_0$\\
+%     $\textbf{u}_{0:T-1} = \textbf{u}_{1:T-1}$\\
+%     $\textbf{u}_{\text{iLQG}~0:T-1} =\textbf{u}_{0:T-1}$
+% }
+% \caption{Inference with Trajectory Optimization (Ours)}
+% \label{alg: InTO}
+% \end{algorithm}
+% \end{center}
+% \end{frame}
+
+
+\begin{frame}
+\frametitle{Results}
+\fontsize{8pt}{10}\selectfont
+\begin{center}
+\movie[width=7cm,height=5.5cm,poster,showcontrols]{Click to view}{ICRA.mp4}    
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Conclusion}
+
+\begin{exampleblock}{Contribution}
+\begin{itemize}
+    \item Natural combination inference and numerical optimisation.
+    \item Inherent ability to explore. 
+    \item Combine convex and non-convex costs.
+\end{itemize}
+\end{exampleblock}
+
+\begin{alertblock}{Caveats}
+\begin{itemize}
+    \item Search across hyperparamets: $\lambda$, $\beta$ and $k$.
+    \item Is $Q_{uu}^{-1}$ not necessarily a good measure of confidence.  
+    \item Constant control input noise affects convergence.
+    \item In the worst case, it can perform just as badly as the other methods.
+\end{itemize}
+\end{alertblock}
+\vfill \tiny {Optimal Control via Combined Inference and Numerical Optimization (ICRA22)}
+\end{frame}
+
+\begin{frame}
+  \centering % Centers everything on the page
+  \vfill % Adds vertical space before the content
+  \begin{beamercolorbox}[sep=8pt,center]{title}
+    \usebeamerfont{title} Generalisation + Efficiency 
+  \end{beamercolorbox}
+  \vfill % Adds vertical space after the content
+  \vfill \tiny {Neural Lyapunov and Optimal Control (in submission)}
+\end{frame}
+
+\begin{frame}
+\frametitle{Problem statement}
+Numerical optimal control solvers parameterise trajectories to provide \textit{locally optimal solutions} given smooth and differentiable objective functions. Conversely, RL parameterises the function space to synthesise \textit{approximate global policies}.
+\\~\\
+\begin{exampleblock}{Aim}
+Combine the generalisation capabilities of RL with the efficiency of OC theoretic solutions. We aim to formulate an appropriate global method that leverages the differentiation operation to enable \textbf{efficiency} inspired by OC and parameterises function spaces in order to achieve \textbf{generalisation}. 
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+\frametitle{Optimisation in RL}
+\begin{center}
+\includegraphics[scale=0.25]{0thvsfirst.png}
+\end{center}
+\vfill \tiny {The many faces of integration by parts ii: Randomized smoothing and score functions. Bach}
+\end{frame}
+
+\begin{frame}
+\frametitle{Famous RL environments}
+RL environments tinker with dynamics tuning under the hood. 
+\begin{center}
+\movie[width=9cm,height=7.5cm,poster,showcontrols]{Click to view}{rl_hacks.mp4}    
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Continuous Bellman equation}
+Our approach relies on the Hamilton-Jacobi-Bellman equation.
+\begin{equation}
+\label{eq: hjb policy}
+-\frac{\partial v}{\partial t}\left(\vec{x}_t, t\right) = \operatorname*{min}_{\vec u \in \vec U} \left [\ell\left(\vec{x}_t, \vec{u}_t\right) + \vec{f}\left(\vec{x}_t, \vec{u}_t\right)^\top \nabla_{\vec x_t}v\left(\vec{x}_t, t\right)^\top\right ]
+\nonumber
+\end{equation}
+
+\begin{exampleblock}{Optimal controls}
+Assuming affine control $\dot {\vec x}_t = \vec h(\vec x_t) + \vec g(\vec x_t) \vec u_t$ and quadratic control cost, we can analytically solve for $\vec u_t$
+\begin{equation}
+\label{eq: det opt u general}
+    \vec u^*(\vec x_t) = -(\nabla^2_{{\vec u}_t} \ell_{\text{ctrl}}(\vec u_t))^{-1}\left( \nabla_{{\vec x}_t} v(\vec x_t, t)\nabla_{{\vec u}_t} \vec f(\vec x_t, u_t)\right)
+\nonumber
+\end{equation}
+\end{exampleblock}
+
+We can compute the optimal greedy control given the optimal value function $v$. This makes our choice of parameterisation clear. \textbf{The value function}.
+\end{frame}
+
+\begin{frame}{Local solutions}
+\textbf{Pontryagin's minimum principle} is the age-old solution to this problem and the building block to methods like \textit{DDP} and \textit{iLQR} \cite{aceituno2017simultaneous}.
+\begin{exampleblock}{Approach}
+Move to trajectories space and treat $\nabla_{\vec x_t}v(\vec x_t, t)^\top = \vec p(t)$. The value function is no longer a function of state but is defined by the trajectory the system follows.     
+\end{exampleblock}
+
+\begin{block}{Minimum principle}
+\begin{columns}
+    \begin{column}{0.7\textwidth}
+        \begin{equation*}
+        \begin{aligned}
+            \dot{\vec{x}} &= \vec{f}(\vec{x}_t, \vec{u}_t) \\
+            \dot{\vec{p}} &= -\nabla_{\vec{x}_t} \ell(\vec{x}_t, \vec{u}_t) - \nabla_{\vec{x}_t} \vec{f}^\top (\vec{x}_t, \vec{u}_t) \vec{p}(t) \\
+            \vec{u}^* &= -(\nabla^2_{{\vec{u}_t}} \ell_{\text{ctrl}}(\vec{u}_t))^{-1}\left(\vec{g}(\vec{x}_t)^\top  \vec p(t)\right)
+        \end{aligned}
+        \end{equation*}
+    \end{column}
+    \begin{column}{0.3\textwidth}
+        \textbf{Initial} \\
+        \(\vec{x} = \vec{x}_0 \in \mathbf{R}^{m}\) \\
+        \textbf{Terminal} \\
+        \(\vec{p}(T) = \nabla_{\vec{x}_T} \psi(\vec{x}_T)^\top\)
+    \end{column}
+\end{columns}
+\end{block}
+\vfill \tiny {Calculus of variations and optimal control theory: a concise introduction. Liberzon}
+\end{frame}
+
+\begin{frame}{PMP}
+Solve one ODE forward for $\vec{x}$(t) and one backward for ${\vec{p}}$(t) 
+\begin{figure}%[2]
+    \centering
+    \includegraphics[scale=1]{pmp.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Making PMP global}
+Rearranging the HJB gives us a concise \textbf{constraint on the rate of change of the value function}.
+\begin{equation}
+\begin{aligned}
+\frac{\partial v}{\partial t}\left(\vec{x}_t, t\right)  \vec{f}\left(\vec{x}_t, \vec{u}_t\right)^\top \nabla_{\vec x_t}v\left(\vec{x}_t, t\right) &=-\ell(\vec x_t, \vec u^*_t)\\
+    \frac{\partial v(\vec x_t, t)}{\partial t} + \frac{\partial v(\vec x_t, t)}{\partial \vec x_t}\frac{d\vec x_t}{dt} &= -\ell(\vec x_t, \vec u^*_t)\\
+    \frac{dv(\vec x_t, t)}{dt} &= -\ell(\vec x_t, \vec u^*_t)\nonumber
+\end{aligned}
+\end{equation}
+
+\begin{exampleblock}{Intuition}
+Under the policy $\vec u^*_t$, the value function decreases at a rate negative to the cost function. 
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+\frametitle{Making PMP global}
+We can directly \textbf{parameterise the value function} and learn an approximate global value function and, therefore, policy.
+
+\begin{block}{Maximum principle}
+\begin{columns}
+    \begin{column}{0.7\textwidth}
+        \begin{equation*}
+        \begin{aligned}
+            \dot{\vec{x}} &= \vec{f}(\vec{x}_t, \vec{u}_t) \\
+            \dot{v} &= -\ell(\vec{x}_t, \vec{u}_t) \\
+            \vec{u}^* &= -(\nabla^2_{{\vec{u}_t}} \ell_{\text{ctrl}}(\vec{u}_t))^{-1}\left(\vec{g}(\vec{x}_t)^\top  \nabla_{{\vec{x}_t}}v(\vec{x}_t, t; \theta)\right)
+        \end{aligned}
+        \end{equation*}
+    \end{column}
+    \begin{column}{0.3\textwidth}
+        \textbf{Initial} \\
+        \(\vec{x} = \vec{x}_0 \in \mathbb{R}^{B\times m}\) \\
+        \textbf{Terminal} \\
+        \(v(\vec{x}_T, T; \theta) = \psi(\vec{x}_T)\)
+    \end{column}
+\end{columns}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Dynamic programming view}
+The discrete solution of the previous ODE resembles the dynamic programming update.
+\begin{align*}
+    v(\vec x_{N}, N) &= \psi(\vec x_{N}) \\
+    v(\vec x_{N-1}, N-1) &= v(\vec x_{N}, N) + \ell(\vec x_{N-1}, \vec u^*_{N-1}) \times \Delta t \\
+    v(\vec x_{N-2}, N-2) &= v(\vec x_{N-1}, N-1) + \ell(\vec x_{N-2}, \vec u^*_{N-2}) \times \Delta t \\
+    &\vdots \\
+    v(\vec x_{0}, 0) &= v(\vec x_{1}, 1) + \ell(\vec x_{0}, \vec u^*_{0}) \times \Delta t
+\end{align*}
+
+\begin{exampleblock}{Intuition}
+This is essentially a cumulative sum of costs backwards. 
+\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}{Global PMP}
+Solve one ODE forward for $\vec x(t)$ and backwards for $v(\vec x(t), t)$
+\begin{figure}%[2]
+    \centering
+    \includegraphics[scale=1]{value.pdf}
+\end{figure}\end{frame}
+
+\begin{frame}
+\frametitle{Discrete algorithm}
+\begin{algorithm}[H]
+\SetAlgoLined
+\textbf{Initialize:} $\vec{x}(0) = \vec{x}_0$, $\Delta t$, $N = \frac{T}{\Delta t}$, $v(\vec x_N, N) = \psi(\vec{x}_N)$\;
+\For{$i = 0$ \KwTo $N-1$}{
+    $\vec{u}_i = -(\nabla^2_{\vec{u}_i} \ell_{\text{ctrl}}(\vec{u}_i))^{-1} \vec{g}(\vec{x}_i)^\top\nabla_{\vec{x}} \tilde v(\vec{x}_i, i; \theta)^\top$\;
+    $\vec{x}_{i+1} = \vec{x}_i + \vec{f}(\vec{x}_i, \vec{u}_i) \times \Delta t$\;
+}
+\For{$i = N-1$ \KwTo $0$}{
+    $v(\vec x_{i}, i) = v(\vec x_{i+1}, i+1) + \ell(\vec{x}_{i}, \vec{u}_{i}) \times \Delta t$\;
+}
+
+\textbf{Optimize:} $\min_\theta \sum_{i=0}^{N} \left(v(\vec x_{i}, i) - \tilde{v}(\vec{x}_i, i, \theta)\right)^2$\;
+\caption{Neural OC}
+\end{algorithm}
+\begin{exampleblock}{Intuition}
+    This can be viewed as a form of \textbf{fitted value iteration}. E.g. rollout, compute the values, fit to targets.
+\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Results}
+
+  % First row of images
+  \begin{columns}
+    \column{0.33\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{cartpole_balance_trajectory_cost_ieee.png}
+    \column{0.33\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{cartpole_swingup_trajectory_cost_ieee.png}
+    \column{0.33\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{reacher_trajectory_cost_ieee.png}
+  \end{columns}
+  \vspace{0.025cm} % Space between the rows
+
+  % Second row of images
+  \begin{columns}
+    \column{0.33\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{cartpole_balancing_rewards_ieee.png}
+    \column{0.33\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{cartpole_swingup_rewards_ieee.png}
+    \column{0.33\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{reahcer_rewards_ieee.png}
+  \end{columns}
+
+  \begin{exampleblock}{Overview}
+    Significantly faster convergence and variance in
+    random seeds. Outperforming SAC and PPO by at least
+    a factor of 74 and 2, respectively.
+  \end{exampleblock}
+\end{frame}
+\begin{frame}{Conclusion}
+\begin{exampleblock}{Contribution}
+\begin{itemize}
+    \item Global policy.
+    \item Efficiency from direct derivatives
+    \item No backprop through time
+\end{itemize}
+\end{exampleblock}
+
+\begin{alertblock}{Caveats}
+\begin{itemize}
+    \item Requires full dynamics information.  
+    \item No ability to introduce smoothing through noise.
+    \item Only quadratic control constraints and no state constraints
+\end{itemize}
+\end{alertblock}
+\vfill \tiny {Neural Lyapunov and Optimal Control (in submission)}
+\end{frame}
+
+\begin{frame}
+  \centering % Centers everything on the page
+  \vfill % Adds vertical space before the content
+  \begin{beamercolorbox}[sep=8pt,center]{title}
+    \usebeamerfont{title} Generalisation + Efficiency + Flexibility 
+  \end{beamercolorbox}
+  \vfill % Adds vertical space after the content
+  \vfill \tiny {Neural Stochastic Optimal Control (in submission)}
+\end{frame}
+\begin{frame}
+\frametitle{Problem statement}
+Numerical optimal control solvers efficiently compute locally optimal trajectories given smooth and differentiable objective functions. Conversely, RL approximates general policies while leveraging sampling to impose minimal constraints on the objective.
+\\~\\
+\begin{exampleblock}{Aim} 
+We aim to formulate an appropriate global method that leverages sampling to enable \textbf{flexibilty} inspired by RL while maintaining \textbf{efficiency} and \textbf{generalisation}. 
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+\frametitle{Continuous stochastic bellman equation}
+In this case, we use the stochastic HJB equation.
+\begin{equation}
+\label{eq: stochastic hjb intro}
+-\frac{\partial v(\vec x_t, t)}{\partial t}  = \min_{\vec u_t}\left[\ell(\vec x_t, \vec u_t) + \nabla_{\vec{x}_t} v(\vec x_t, t) \vec f(\vec x_t, \vec u_t) + \frac{1}{2} \mathrm{trace}\left(\nabla^2_{\vec{x}_t \vec{x}_t} v(\vec x_t, t)\vec \Sigma(\vec x_t)\right)\right] \nonumber
+\end{equation}
+
+\begin{exampleblock}{Optimal controls}
+Assuming affine control $d\vec x_t = \left(\vec{h}\left(\vec{x}_t\right) + \vec g(\vec x_t) \vec u_t\right){d}t + \vec{B}\left(\vec{x}_t\right) {d}\vec{w}_t$ and quadratic control cost, we can analytically solve for $\vec u_t$
+\begin{equation}
+\label{eq: det opt u general}
+    \vec u^*(\vec x_t) = -(\nabla^2_{{\vec u}_t} \ell_{\text{ctrl}}(\vec u_t))^{-1}\left( \nabla_{{\vec x}_t} v(\vec x_t, t)\nabla_{{\vec u}_t} \vec f(\vec x_t, u_t)\right)\nonumber
+\nonumber
+\end{equation}
+\end{exampleblock}
+
+Our optimal control remains the same, and so does our choice of parameterisation, \textbf{the value function}.
+\end{frame}
+
+\begin{frame}
+\frametitle{Learning the value function}
+Similar to the deterministic case, we need to define \textbf{constraint on the rate of change of the value function}.
+\begin{equation}
+\begin{aligned}
+\label{eq: expected derivative value with trace}
+    \mathbb E_\mathcal Q \left[\frac{dv(\vec x_{t}, t)}{dt}\right] &= -\ell(\vec x_t, \vec u^*_t)\\
+    \mathbb E_\mathcal Q \left[v(\vec x_{t}, t) - v(\vec x_{t+\Delta t}, t+\Delta t)\right] &= \ell(\vec x_t, \vec u^*_t) \times \Delta t \\
+    v(\vec x_{t}, t) - \mathbb E_\mathcal Q \left[v(\vec x_{t+\Delta t}, t+\Delta t)\right] &= \ell(\vec x_t, \vec u^*_t) \times \Delta t
+\end{aligned}
+\end{equation}
+
+\begin{exampleblock}{Intuition}
+Under the policy $\vec u^*_t$, the expected change of the value function decreases at a rate negative to the cost function. 
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+\frametitle{TD(ish) view}
+Satisfying the previous constraint over horizon N can be viewed through a lens similar to TD.
+\begin{align*}
+    \mathbb E_\mathcal Q \left[v(\vec x_{N}, N)\right] -  \mathbb E_\mathcal Q \left[\psi(\vec x_{N})\right] &= 0  \\
+    v(\vec x_{N-1}, N-1) - \mathbb E_\mathcal Q \left[v(\vec x_{N}, N)\right] - \ell(\vec x_{N-1}, \vec u^*_{N-1}) \times \Delta t &= 0 \\
+    v(\vec x_{N-2}, N-2) - \mathbb E_\mathcal Q \left[v(\vec x_{N-1}, N-1)\right] - \ell(\vec x_{N-2}, \vec u^*_{N-2}) \times \Delta t &= 0 \\
+    &\vdots \\
+    v(\vec x_{0}, 0) - \mathbb E_\mathcal Q \left[v(\vec x_{1}, 1)\right] - \ell(\vec x_{0}, \vec u^*_{0}) \times \Delta t &= 0
+\end{align*}
+
+\begin{exampleblock}{Note}
+We cannot simply sum the costs backwards due to the presence of expectation under $\mathcal Q$ 
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+\frametitle{Discrete algorithm}
+\begin{algorithm}[H]
+\SetAlgoLined
+\textbf{Initialize:} $\vec{x}(0) = \vec{x}_0$, $\Delta t$, $N = \frac{T}{\Delta t}$, $E_\mathcal Q \left[v(\vec x_N, N)\right] = E_\mathcal Q \left[\psi(\vec{x}_N)\right]$\;
+\For{$i = 0$ \KwTo $N-1$}{
+    $\vec{u}_i = -(\nabla^2_{\vec{u}_i} \ell_{\text{ctrl}}(\vec{u}_i))^{-1} \vec{g}(\vec{x}_i)^\top\nabla_{\vec{x}} \tilde{v}(\vec{x}_i, i; \theta)^\top$\;
+    $\vec{x}_{i+1} = \vec x_t + \left( \vec h(\vec{x}_t) + \mathbf{g}(\vec{x}_t, t)\vec{u}_t \right) \Delta t + \mathbf{B}(\vec{x}_t, t)\vec{\epsilon}\sqrt{\Delta t}$\;
+}
+\textbf{Optimize:} $\min_\theta \sum_{i=0}^{N} \left(\tilde{v}(\vec x_{i}, i, \theta) - E_\mathcal Q \left[\tilde{v}(\vec{x}_i, i, \theta)\right] - \ell(\vec x_i, \vec u^*_i) \times \Delta t\right)^2$\;
+\caption{Neural SOC}
+\end{algorithm}
+\begin{exampleblock}{Intuition}
+Rollout trajectories under the current optimal policy then fit the stochastic Bellman difference. 
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Results}
+
+  % First row of images
+  \begin{columns}
+    \column{0.33\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{cartpole_balance_trajectory_cost_ieee_stochastic.png}
+    \column{0.33\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{cartpole_swingup_trajectory_cost_ieee_stochastic.png}
+    \column{0.33\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{reacher_trajectory_cost_ieee_stochastic.png}
+  \end{columns}
+  \vspace{0.025cm} % Space between the rows
+
+  % Second row of images
+  \begin{columns}
+    \column{0.33\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{cartpole_balancing_rewards_ieee_stochastic.png}
+    \column{0.33\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{cartpole_swingup_rewards_ieee_stochastic.png}
+    \column{0.33\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{reahcer_rewards_ieee_stochastic.png}
+  \end{columns}
+
+  \begin{exampleblock}{Overview}
+    Significantly faster convergence and variance in
+    random seeds. Outperforming SAC and PPO by at least
+    a factor of 18 and 2, respectively.
+  \end{exampleblock}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Results}
+    Value approximation given stochastic dynamics and discontinuous objective. 
+
+  % First row of images
+  \begin{columns}
+    \column{0.33\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{1stnoise.png}
+    \column{0.33\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{3rdnoise.png}
+    \column{0.33\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{4thnoise.png}
+  \end{columns}
+  \vspace{0.025cm} % Space between the rows
+  \begin{exampleblock}{Overview}
+  $\Sigma(\vec x_t)$ penalises the curvature of the value function. The higher the noise, the smoother the value function, i.e. $\mathrm{trace}\left(\nabla^2_{\vec{x}_t \vec{x}_t} v(\vec x_t, t)\vec \Sigma(\vec x_t)\right)$.  
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Results}
+  Using value function as terminal costs for MPPI on hardware with learnt dynamics enables comparable to a \textbf{15x} longer planning horizon.
+\fontsize{8pt}{10}\selectfont
+\begin{center}
+\movie[width=7cm,height=5.5cm,poster,showcontrols]{Click to view}{socsr.mp4}    
+\end{center}
+\end{frame}
+
+\begin{frame}{Conclusion}
+\begin{exampleblock}{Contribution}
+\begin{itemize}
+    \item Global policy
+    \item Flexibility to discontinuity via noise
+    \item Better efficiency
+\end{itemize}
+\end{exampleblock}
+
+\begin{alertblock}{Caveats}
+\begin{itemize}
+    \item Requires full dynamics information  
+    \item SDE rollouts are considerably more memory-intensive
+\end{itemize}
+\end{alertblock}
+\vfill \tiny {Neural Stochastic Optimal Control (in submission)}
+\end{frame}
+
+
+\begin{frame}{Overall conclusion and future work}
+    
+\begin{exampleblock}{Conclusions}
+\begin{itemize}
+    \item Parametrise function spaces for generalisation
+    \item Use available gradients to enable efficiency
+    \item Use stochastic formulation to enable smoothing
+\end{itemize}
+\end{exampleblock}
+
+\begin{alertblock}{Future work}
+\begin{itemize}
+    \item Integration with modular differentiable simulators
+    \item Implementation of more complex dynamics  
+    \item Extensible implementation to be released to the community
+    \item Evaluating performance at scale
+\end{itemize}
+\end{alertblock}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Acknowledgements}
+\begin{center}
+    Joint work with my supervisors at\\
+    The University of Edinburgh
+\end{center}
+\begin{columns}
+    \begin{column}{0.5\textwidth}
+        \begin{center}
+            \includegraphics[width=0.5\linewidth]{mmist.jpg} % Ensure the image is in the same directory or provide the full path
+            \linebreak
+            Michael Mistry
+        \end{center}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+        \begin{center}
+            \includegraphics[width=0.5\linewidth]{ston.png} % Ensure the image is in the same directory or provide the full path
+            \linebreak
+            Steve Tonneau
+        \end{center}
+    \end{column}
+\end{columns}
+\end{frame}
+
+\end{document}

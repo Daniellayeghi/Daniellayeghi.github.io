@@ -1,0 +1,94 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neural Lyapunov and Optimal Control</title>
+<meta name="description" content="Thesis segment blog post" />
+<style type="text/css">
+body{margin:40px auto;max-width:900px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}
+h1,h2,h3{line-height:1.2}
+a{color:#0b57d0}
+.media-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:12px 0}
+.media-grid img,.single-media img{width:100%;height:auto;display:block}
+.single-media{margin:12px 0}
+object{width:100%;height:560px;display:block;margin:12px 0;border:1px solid #ddd}
+.section{margin-top:30px}
+</style>
+</head>
+<body>
+<p><a href="/blog/">← Back to blog index</a></p>
+<h1>Neural Lyapunov and Optimal Control</h1>
+
+<h2>Opening: Problem Framing</h2>
+<h3>Problem Statement</h3>
+<p>Typical tasks in robotics.</p>
+<div class="media-grid">
+  <img src="value%20learning%20content/Screenshot%20from%202021-10-26%2018-29-19.png" alt="Robot task example 1">
+  <img src="value%20learning%20content/Screenshot%20from%202021-10-26%2018-39-19.png" alt="Robot task example 2">
+  <img src="value%20learning%20content/Screenshot%20from%202021-10-26%2018-31-36.png" alt="Robot task example 3">
+  <img src="value%20learning%20content/hand.jpeg" alt="Robot hand task example">
+</div>
+
+<h3>Tasks and Objective Landscapes</h3>
+<div class="single-media">
+  <img src="value%20learning%20content/Screenshot%20from%202021-10-26%2017-39-53.png" alt="Objective landscape">
+</div>
+<ul>
+  <li>Generally, objective landscapes are flat.</li>
+  <li>Not suitable for optimisation.</li>
+</ul>
+
+<h3>General Approaches</h3>
+<ul>
+  <li><strong>OC</strong>: DDP, iLQR, collocation; efficient near optima under strict objective constraints.</li>
+  <li><strong>Sampling OC</strong>: MPPI, CEM, RS; flexible objective with sampling cost.</li>
+  <li><strong>RL</strong>: global and general, flexible objective, inherent exploration, slower convergence.</li>
+</ul>
+
+<div class="section">
+  <h2>Segment: Generalisation + Efficiency</h2>
+
+  <h3>Problem Statement</h3>
+  <p>Numerical optimal control parameterises trajectories to provide locally optimal solutions under smooth differentiable objectives, while RL parameterises function spaces to synthesise approximate global policies.</p>
+  <p><strong>Aim:</strong> combine RL-style generalisation with OC-style efficiency through a formulation that uses differentiation while learning in function space.</p>
+
+  <h3>Optimisation in RL</h3>
+  <div class="single-media">
+    <img src="value%20learning%20content/0thvsfirst.png" alt="Optimisation in RL">
+  </div>
+
+  <h3>Continuous Bellman Equation and PMP</h3>
+  <p>The segment links the Bellman formulation with PMP structure for deriving efficient control updates.</p>
+  <object data="value%20learning%20content/pmp.pdf" type="application/pdf">
+    <p>Cannot preview PDF. Open <a href="value%20learning%20content/pmp.pdf">pmp.pdf</a>.</p>
+  </object>
+
+  <h3>Dynamic Programming View</h3>
+  <object data="value%20learning%20content/value.pdf" type="application/pdf">
+    <p>Cannot preview PDF. Open <a href="value%20learning%20content/value.pdf">value.pdf</a>.</p>
+  </object>
+
+  <h3>Results</h3>
+  <div class="media-grid">
+    <img src="value%20learning%20content/cartpole_balance_trajectory_cost_ieee.png" alt="Cartpole balance trajectory cost">
+    <img src="value%20learning%20content/cartpole_swingup_trajectory_cost_ieee.png" alt="Cartpole swingup trajectory cost">
+    <img src="value%20learning%20content/reacher_trajectory_cost_ieee.png" alt="Reacher trajectory cost">
+    <img src="value%20learning%20content/cartpole_balancing_rewards_ieee.png" alt="Cartpole balancing rewards">
+    <img src="value%20learning%20content/cartpole_swingup_rewards_ieee.png" alt="Cartpole swingup rewards">
+    <img src="value%20learning%20content/reahcer_rewards_ieee.png" alt="Reacher rewards">
+  </div>
+
+  <h3>Conclusion</h3>
+  <ul>
+    <li>Global policy.</li>
+    <li>Efficiency from direct derivatives.</li>
+    <li>No backpropagation through time.</li>
+  </ul>
+  <ul>
+    <li>Requires full dynamics information.</li>
+    <li>No smoothing through noise in this formulation.</li>
+    <li>Quadratic control constraints and no state constraints.</li>
+  </ul>
+</div>
+</body>
+</html>
