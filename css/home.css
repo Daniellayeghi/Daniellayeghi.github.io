@@ -8,10 +8,11 @@
   gap: 20px;
   align-items: center;
   padding: 0 0 16px;
-  border-bottom: 1px solid #d9d7cf;
+  border-bottom: 1px solid var(--border);
   margin-bottom: 16px;
   background: transparent;
   border-radius: 0;
+  transition: border-color 0.28s ease;
 }
 
 .profile-photo {
@@ -19,8 +20,9 @@
   height: 150px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1px solid #d4d3cd;
+  border: 1px solid var(--border);
   margin: 0;
+  transition: border-color 0.28s ease, box-shadow 0.28s ease;
 }
 
 .details {
@@ -35,25 +37,25 @@
   font-size: 2.05rem;
   letter-spacing: -0.02em;
   line-height: 1.08;
-  color: #171717;
+  color: var(--heading);
 }
 
 .breadcrumb-nav {
   margin-top: 2px;
   font-size: 0.9rem;
-  color: #6e6f73;
+  color: var(--muted);
 }
 
 .breadcrumb-nav a {
   text-decoration: none;
-  color: #4f5560;
+  color: var(--muted-strong);
   border-bottom: 1px solid transparent;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: color 0.28s ease, border-color 0.28s ease;
 }
 
 .breadcrumb-nav a:hover {
-  color: #1f4e8c;
-  border-color: #1f4e8c;
+  color: var(--link);
+  border-color: var(--link);
 }
 
 .intro {
@@ -69,12 +71,13 @@ h2 {
   margin: 0 0 8px;
   font-size: 1.5rem;
   font-weight: 600;
-  color: #191919;
+  color: var(--heading);
 }
 
 .papers {
-  border-top: 1px solid #d9d7cf;
+  border-top: 1px solid var(--border);
   padding-top: 12px;
+  transition: border-color 0.28s ease;
 }
 
 .paper-list {
@@ -84,8 +87,9 @@ h2 {
 }
 
 .paper-item {
-  border-bottom: 1px solid #e3e1d9;
+  border-bottom: 1px solid var(--border-soft);
   padding: 12px 0 14px;
+  transition: border-color 0.28s ease;
 }
 
 .paper-item:last-child {
@@ -100,7 +104,7 @@ h2 {
 .paper-item cite {
   font-style: italic;
   font-size: 1.05rem;
-  color: #1e1e1e;
+  color: var(--heading-soft);
 }
 
 .iframe-container {
@@ -109,10 +113,11 @@ h2 {
   padding-bottom: 56.25%;
   height: 0;
   margin-top: 8px;
-  border: 1px solid #d8d6ce;
+  border: 1px solid var(--border);
   border-radius: 6px;
   overflow: hidden;
-  background: #000;
+  background: var(--media-bg);
+  transition: border-color 0.28s ease, background-color 0.28s ease;
 }
 
 .iframe-container iframe {

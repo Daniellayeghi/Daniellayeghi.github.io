@@ -2,9 +2,10 @@
   width: 100%;
   height: auto;
   display: block;
-  border: 1px solid #ddd9ce;
+  border: 1px solid var(--border);
   border-radius: 4px;
-  background: #fff;
+  background: var(--image-bg);
+  transition: border-color 0.28s ease, background-color 0.28s ease;
 }
 
 .single-image {
@@ -30,26 +31,49 @@
   width: 100%;
   height: auto;
   display: block;
-  border: 1px solid #ddd9ce;
+  border: 1px solid var(--border);
   border-radius: 4px;
-  background: #fff;
+  background: var(--image-bg);
+  transition: border-color 0.28s ease, background-color 0.28s ease;
 }
 
 .equation {
   overflow-x: auto;
   margin: 8px 0;
   padding: 6px 8px;
-  border-left: 2px solid #d3d0c6;
+  border-left: 2px solid var(--border-accent);
+  transition: border-color 0.28s ease;
+}
+
+.code-block {
+  margin: 8px 0;
+  padding: 6px 8px;
+  border-left: 2px solid var(--border-accent);
+  overflow-x: auto;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+  transition: border-color 0.28s ease;
+}
+
+.code-block pre {
+  margin: 0;
+  white-space: pre;
+  min-width: max-content;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  line-height: 1.45;
+  font-size: 0.95rem;
+  color: var(--text);
 }
 
 .algo-block {
   margin: 8px 0;
-  border: 1px solid #dedcd3;
-  background: #faf9f5;
+  border: 1px solid var(--border);
+  background: var(--surface);
   border-radius: 4px;
   padding: 10px 12px;
   overflow-x: auto;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  transition: border-color 0.28s ease, background-color 0.28s ease;
 }
 
 .algo-block pre {
@@ -57,7 +81,7 @@
   white-space: pre-wrap;
   line-height: 1.45;
   font-size: 0.98rem;
-  color: #26292d;
+  color: var(--text);
 }
 
 .algo-keyword {
@@ -82,16 +106,17 @@
 }
 
 .conclusion-block {
-  border: 1px solid #dedcd3;
-  background: #faf9f5;
+  border: 1px solid var(--border);
+  background: var(--surface);
   border-radius: 4px;
   padding: 10px 12px;
+  transition: border-color 0.28s ease, background-color 0.28s ease;
 }
 
 .conclusion-block h4 {
   margin: 0 0 6px;
   font-size: 1.02rem;
-  color: #1f1f1f;
+  color: var(--heading-soft);
 }
 
 .conclusion-block ul {

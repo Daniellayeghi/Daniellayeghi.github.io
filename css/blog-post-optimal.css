@@ -17,10 +17,11 @@
 }
 
 .approach-col {
-  border: 1px solid #dedcd3;
-  background: #faf9f5;
+  border: 1px solid var(--border);
+  background: var(--surface);
   border-radius: 4px;
   padding: 8px 10px;
+  transition: border-color 0.28s ease, background-color 0.28s ease;
 }
 
 .approach-col h4 {
@@ -30,10 +31,11 @@
 
 .result-video {
   width: 100%;
-  border: 1px solid #d8d6ce;
+  border: 1px solid var(--border);
   border-radius: 6px;
-  background: #000;
+  background: var(--media-bg);
   margin-top: 8px;
+  transition: border-color 0.28s ease, background-color 0.28s ease;
 }
 
 @media (max-width: 860px) and (min-width: 781px) {

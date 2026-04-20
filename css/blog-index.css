@@ -5,8 +5,9 @@
 }
 
 .post-item {
-  border-bottom: 1px solid #e3e1d9;
+  border-bottom: 1px solid var(--border-soft);
   padding: 12px 0 14px;
+  transition: border-color 0.28s ease;
 }
 
 .post-item:last-child {
@@ -15,7 +16,7 @@
 
 .post-item a {
   font-size: 1.18rem;
-  color: #1f4e8c;
+  color: var(--link);
   border-bottom: 0;
 }
 

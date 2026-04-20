@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Neural Stochastic Optimal Control</title>
 <meta name="description" content="Thesis segment blog post"/>
+<script src="../js/theme-toggle.js"></script>
 <link rel="stylesheet" href="../css/site-common.css" type="text/css"/>
 <link rel="stylesheet" href="../css/blog-post.css" type="text/css"/>
 <script>
@@ -32,8 +33,8 @@ window.MathJax = {
       <section class="section">
         
         <h3>Problem statement</h3>
-        <p>Numerical optimal control solvers efficiently compute locally optimal trajectories given smooth and differentiable objective functions. Conversely, RL approximates general policies while leveraging sampling to impose minimal constraints on the objective.</p>
-        <p><strong>Aim.</strong> Formulate a global method that leverages sampling to enable <strong>flexibility</strong> inspired by RL while maintaining <strong>efficiency</strong> and <strong>generalisation</strong>.</p>
+        <p>Numerical optimal control solvers efficiently compute locally optimal trajectories given smooth and differentiable objective functions. Conversely, RL approximates general policies while using sampling to relax differentiability requirements on the objective.</p>
+        <p><strong>Aim.</strong> Formulate a global method that uses sampling to handle discontinuities inspired by RL while preserving <strong>efficiency</strong> and <strong>generalisation</strong>.</p>
 
         <h3>Continuous stochastic Bellman equation</h3>
         <p>In this case, we use the stochastic HJB equation.</p>
@@ -51,7 +52,7 @@ window.MathJax = {
         <p>Our optimal control remains the same, and so does our choice of parameterisation: the value function.</p>
 
         <h3>Learning the value function</h3>
-        <p>As in the deterministic case, we define a constraint on the rate of change of the value function.</p>
+        <p>As in the deterministic case, we define a constraint on the expected rate of change of value function.</p>
         <div class="equation">
           \[
           \begin{aligned}
@@ -61,10 +62,10 @@ window.MathJax = {
           \end{aligned}
           \]
         </div>
-        <p><strong>Intuition.</strong> Under policy \(\vec u_t^*\), the expected change in value decreases at a rate negative to cost.</p>
+        <p><strong>Intuition.</strong> Under policy \(\vec u_t^*\), the expected change in value equals the negative cost rate in expectation.</p>
 
         <h3>TD(ish) view</h3>
-        <p>Satisfying this constraint over horizon \(N\) can be viewed through a lens similar to TD.</p>
+        <p>Satisfying this constraint over horizon \(N\) can be viewed through an update analogous to TD.</p>
         <div class="equation">
           \[
           \begin{aligned}
@@ -76,7 +77,19 @@ window.MathJax = {
           \end{aligned}
           \]
         </div>
-        <p><strong>Note.</strong> We cannot simply sum costs backwards due to the expectation under \(\mathcal Q\).</p>
+        <p><strong>Note.</strong> We cannot simply sum costs backwards because of the expectation under \(\mathcal Q\).</p>
+
+        <h3>Gradient computation</h3>
+        <p>Stochastic adjoints are costly here, so we reparameterise the Euler-Maruyama step with Gaussian noise, approximate the expectation by Monte Carlo, and backpropagate through the sampled rollout.</p>
+        <div class="equation">
+          \[
+          \begin{aligned}
+          \vec x_{i+1}\left(\theta,\vec \epsilon_i\right)&=\vec x_i+\left(\vec h\left(\vec x_i\right)+\vec g\left(\vec x_i\right)\vec u_i^*\right)\Delta t+\vec B\left(\vec x_i\right)\vec \epsilon_i\sqrt{\Delta t},\qquad \vec \epsilon_i\sim\mathcal N\left(0,\vec I\right)\\
+          \nabla_\theta \mathbb E_{\mathcal Q}\left[v\left(\vec x_{i+1},i+1;\theta\right)\right]&\approx\mathbb E_{\vec \epsilon}\left[\nabla_\theta v\left(\vec x_{i+1}\left(\theta,\vec \epsilon_i\right),i+1;\theta\right)\right]
+          \end{aligned}
+          \]
+        </div>
+        <p><strong>Intuition.</strong> Noise is sampled, not differentiated; gradients flow through the sampled next state and the Bellman residual.</p>
 
         <h3>Discrete algorithm</h3>
         <div class="algo-block">
@@ -86,7 +99,7 @@ window.MathJax = {
   x<sub>i+1</sub> = x<sub>i</sub> + ( h(x<sub>i</sub>) + g(x<sub>i</sub>)u<sub>i</sub> ) Δt + B(x<sub>i</sub>) ε<sub>i</sub> √Δt
 <span class="algo-keyword">Optimize:</span> min<sub>θ</sub> Σ<sub>i=0..N</sub> ( ṽ(x<sub>i</sub>, i, θ) − E<sub>Q</sub>[ṽ(x<sub>i+1</sub>, i+1, θ)] − l(x<sub>i</sub>, u<sub>i</sub><sup>*</sup>) Δt )<sup>2</sup></pre>
         </div>
-        <p><strong>Intuition.</strong> Roll out trajectories under the current optimal policy, then fit the stochastic Bellman difference.</p>
+        <p><strong>Intuition.</strong> Roll out trajectories under the current optimal policy, then fit the stochastic Bellman residual.</p>
 
         <h3>Results</h3>
         <div class="media-grid">
@@ -100,14 +113,14 @@ window.MathJax = {
         <p>Overview: significantly faster convergence and lower variance across random seeds, outperforming SAC and PPO by at least factors of 18 and 2, respectively.</p>
 
         <h3>Noise-driven smoothing (Obstacle avoidance with discontinuous objective)</h3>
-        <p>Value approximation under stochastic dynamics and discontinuous objectives.</p>
+        <p>Value learning under stochastic dynamics and discontinuous objectives.</p>
         <div class="media-grid">
           <img src="value%20learning%20content/1stnoise.png" alt="Noise smoothing example 1"/>
           <img src="value%20learning%20content/3rdnoise.png" alt="Noise smoothing example 2"/>
           <img src="value%20learning%20content/4thnoise.png" alt="Noise smoothing example 3"/>
         </div>
-        <p>Higher noise smooths the value function through the curvature term \(\operatorname{trace}\left(\nabla^2_{\vec x_t\vec x_t}v\left(\vec x_t,t\right)\vec\Sigma\left(\vec x_t\right)\right)\).</p>
-        <p>As we increase the control noise particles take trajectories further from obstacles. This is confirmation that noise penalises value function curvature, improving robustness.<p>
+        <p>Higher noise regularises the value function through the curvature term \(\operatorname{trace}\left(\nabla^2_{\vec x_t\vec x_t}v\left(\vec x_t,t\right)\vec\Sigma\left(\vec x_t\right)\right)\).</p>
+        <p>As we increase the control noise samples move trajectories farther from obstacles. This is evidence that noise regularises value function curvature, improving robustness.<p>
 
         <h3>Conclusion</h3>
         <div class="conclusion-grid">
@@ -115,15 +128,15 @@ window.MathJax = {
             <h4>Contribution</h4>
             <ul>
               <li>Global policy.</li>
-              <li>Flexibility to discontinuity via noise.</li>
-              <li>Better efficiency.</li>
+              <li>Robustness to discontinuities via noise.</li>
+              <li>Faster convergence.</li>
             </ul>
           </div>
           <div class="conclusion-block">
             <h4>Caveats</h4>
             <ul>
               <li>Requires full dynamics information.</li>
-              <li>SDE rollouts are considerably more memory-intensive.</li>
+              <li>SDE rollouts are substantially more memory-intensive.</li>
             </ul>
           </div>
         </div>
