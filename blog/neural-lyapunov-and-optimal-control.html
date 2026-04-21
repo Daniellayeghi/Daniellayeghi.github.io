@@ -124,6 +124,18 @@ window.MathJax = {
           <img src="value%20learning%20content/value.png" alt="Global PMP value diagram"/>
         </div>
 
+        <h3>Gradient computation</h3>
+        <p>Naively, learning would require backpropagating the running cost through the full rollout. Instead, we summarize future cost sensitivity with a continuous adjoint and avoid explicit discrete BPTT.</p>
+        <div class="equation">
+          \[
+          \begin{aligned}
+          \mathcal L\left(\theta\right)&=\psi\left(\vec x_T\right)+\int_0^T\ell\left(\vec x\left(t\right),\vec u\left(t\right)\right)\,dt\\
+          \dot{\vec a}\left(t\right)&=-\vec a\left(t\right)^\top\nabla_{\vec x}\vec f\left(\vec x\left(t\right),\vec u\left(t\right)\right)-\nabla_{\vec x}\ell\left(\vec x\left(t\right),\vec u\left(t\right)\right),\qquad \vec a\left(T\right)=\nabla_{\vec x_T}\psi\left(\vec x_T\right)
+          \end{aligned}
+          \]
+        </div>
+        <p><strong>Intuition.</strong> Rather than backpropagating through every timestep, the adjoint carries the effect of future running costs backward through the dynamics.</p>
+
         <h3>Discrete algorithm</h3>
         <div class="algo-block">
           <pre><span class="algo-keyword">Initialize:</span> x(0)=x<sub>0</sub>, Δt, N=T/Δt, v(x<sub>N</sub>, N)=ψ(x<sub>N</sub>)
