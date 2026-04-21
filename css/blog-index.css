@@ -16,10 +16,16 @@
 
 .post-item a {
   font-size: 1.18rem;
-  color: var(--link);
+  color: var(--heading);
   border-bottom: 0;
+  transition: color 0.28s ease;
 }
 
 .post-item a:hover {
   border-bottom: 0;
+  color: var(--link);
+}
+
+html[data-theme="dark"] .post-item {
+  border-bottom-color: var(--border);
 }

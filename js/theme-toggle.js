@@ -1,8 +1,21 @@
 (function () {
   var storageKey = 'theme';
+  var windowNameKey = '__theme=';
   var root = document.documentElement;
   var media = window.matchMedia('(prefers-color-scheme: dark)');
   var toggleButton = null;
+
+  function readWindowNameTheme() {
+    var match = (window.name || '').match(/(?:^|;)__theme=(light|dark)(?:;|$)/);
+    return match ? match[1] : null;
+  }
+
+  function writeWindowNameTheme(theme) {
+    var other = (window.name || '')
+      .replace(/(?:^|;)__theme=(light|dark)(?=;|$)/, '')
+      .replace(/^;+|;+$/g, '');
+    window.name = (other ? other + ';' : '') + windowNameKey + theme;
+  }
 
   function storedTheme() {
     try {
@@ -11,6 +24,16 @@
         return stored;
       }
     } catch (error) {}
+    try {
+      var sessionTheme = sessionStorage.getItem(storageKey);
+      if (sessionTheme === 'light' || sessionTheme === 'dark') {
+        return sessionTheme;
+      }
+    } catch (error) {}
+    var windowTheme = readWindowNameTheme();
+    if (windowTheme) {
+      return windowTheme;
+    }
     return null;
   }
 
@@ -47,6 +70,10 @@
       try {
         localStorage.setItem(storageKey, nextTheme);
       } catch (error) {}
+      try {
+        sessionStorage.setItem(storageKey, nextTheme);
+      } catch (error) {}
+      writeWindowNameTheme(nextTheme);
       applyTheme(nextTheme);
     });
     document.body.appendChild(toggleButton);
