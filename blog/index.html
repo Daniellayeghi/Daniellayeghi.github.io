@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Blog Posts</title>
-<meta name="description" content="Blog posts"/>
+<title>Blog</title>
+<meta name="description" content="Technical notes on optimal control, reinforcement learning, and applied mathematics."/>
 <script src="../js/theme-toggle.js"></script>
 <link rel="stylesheet" href="../css/site-common.css" type="text/css"/>
 <link rel="stylesheet" href="../css/blog-index.css" type="text/css"/>
@@ -13,19 +13,39 @@
   <main role="main">
     <div class="container">
       <p class="back"><a href="/">&#8592; Back to home</a></p>
-      <header class="page-header">
+      <header class="page-header index-header">
+        <p class="index-eyebrow">Research notebook</p>
         <h1>Posts</h1>
+        <p class="index-intro">Compact technical notes on optimal control, reinforcement learning, and applied mathematics. The aim is to keep the useful structure and intuition of a paper without the full paper length.</p>
       </header>
 
       <ul class="post-list">
         <li class="post-item">
-          <a href="/blog/optimal-control-via-combined-inference-and-numerical-optimization.html">Combining Sampling and Gradient Based Optimization for Control</a>
+          <a class="post-link" href="/blog/optimal-control-via-combined-inference-and-numerical-optimization.html">
+            <span class="post-body">
+              <span class="post-meta">Optimal control · inference · sampling</span>
+              <span class="post-title">Combining Sampling and Gradient Based Optimization for Control</span>
+              <span class="post-summary">A short walkthrough of control as inference, with an emphasis on how sampling and direct optimization can reinforce each other in practice.</span>
+            </span>
+          </a>
         </li>
         <li class="post-item">
-          <a href="/blog/neural-lyapunov-and-optimal-control.html">Neural Lyapunov and Optimal Control</a>
+          <a class="post-link" href="/blog/neural-lyapunov-and-optimal-control.html">
+            <span class="post-body">
+              <span class="post-meta">Value functions · Lyapunov analysis · control</span>
+              <span class="post-title">Neural Lyapunov and Optimal Control</span>
+              <span class="post-summary">Notes on learning global value functions with optimal control structure, connecting Lyapunov reasoning, HJB, and practical policy synthesis.</span>
+            </span>
+          </a>
         </li>
         <li class="post-item">
-          <a href="/blog/neural-stochastic-optimal-control.html">Neural Stochastic Optimal Control</a>
+          <a class="post-link" href="/blog/neural-stochastic-optimal-control.html">
+            <span class="post-body">
+              <span class="post-meta">Stochastic control · Bellman methods · learning</span>
+              <span class="post-title">Neural Stochastic Optimal Control</span>
+              <span class="post-summary">A compact treatment of the stochastic setting, focusing on the Bellman view, expectation operators, and the resulting learning procedure.</span>
+            </span>
+          </a>
         </li>
       </ul>
     </div>
