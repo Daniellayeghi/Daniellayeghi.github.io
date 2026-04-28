@@ -1,10 +1,7 @@
 .index-header {
   margin-bottom: 20px;
-  padding: 16px 18px 18px;
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--border-accent);
-  background: var(--surface);
-  transition: border-color 0.28s ease, background-color 0.28s ease;
+  padding: 4px 0 14px;
+  transition: border-color 0.28s ease;
 }
 
 .index-eyebrow {
@@ -27,11 +24,9 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  counter-reset: post-count;
 }
 
 .post-item {
-  counter-increment: post-count;
   border-bottom: 1px solid var(--border-soft);
   transition: border-color 0.28s ease;
 }
@@ -41,29 +36,19 @@
 }
 
 .post-link {
-  display: grid;
-  grid-template-columns: 56px minmax(0, 1fr);
-  gap: 16px;
-  align-items: start;
-  margin: 0 -10px;
-  padding: 16px 10px 18px;
+  display: block;
+  margin: 0;
+  padding: 14px 0 16px;
   border-bottom: 0;
-  border-radius: 8px;
-  transition: background-color 0.28s ease, transform 0.18s ease;
+  transition: color 0.28s ease;
 }
 
 .post-link::before {
-  content: counter(post-count, decimal-leading-zero);
-  padding-top: 0.45rem;
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
-  color: var(--muted);
+  content: none;
 }
 
 .post-link:hover {
   border-bottom: 0;
-  background: var(--surface);
-  transform: translateX(3px);
 }
 
 .post-link:focus-visible {
@@ -75,38 +60,25 @@
   display: block;
 }
 
-.post-meta {
-  display: block;
-  margin-bottom: 6px;
-  font-size: 0.74rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
 .post-title {
   display: block;
-  font-size: 1.2rem;
-  line-height: 1.28;
+  font-size: 1.18rem;
+  line-height: 1.24;
   color: var(--heading);
   transition: color 0.28s ease;
 }
 
 .post-summary {
   display: block;
-  margin-top: 8px;
-  max-width: 46rem;
-  color: var(--muted-strong);
-  font-size: 0.98rem;
-  line-height: 1.58;
+  margin-top: 5px;
+  max-width: 42rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.45;
 }
 
 .post-link:hover .post-title {
   color: var(--link);
-}
-
-html[data-theme="dark"] .index-header {
-  border-left-color: var(--link-border);
 }
 
 html[data-theme="dark"] .post-item {
@@ -115,7 +87,7 @@ html[data-theme="dark"] .post-item {
 
 @media (max-width: 860px) {
   .index-header {
-    padding: 14px 14px 16px;
+    padding: 2px 0 12px;
   }
 
   .index-intro {
@@ -123,14 +95,7 @@ html[data-theme="dark"] .post-item {
   }
 
   .post-link {
-    grid-template-columns: 1fr;
-    gap: 8px;
-    margin: 0;
     padding: 14px 0 16px;
-  }
-
-  .post-link::before {
-    padding-top: 0;
   }
 
   .post-title {
