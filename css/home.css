@@ -59,7 +59,7 @@
 }
 
 .intro {
-  margin: 0 0 24px;
+  margin: 0 0 20px;
   font-size: 1.03rem;
   line-height: 1.52;
   padding: 0;
@@ -67,87 +67,26 @@
   border: 0;
 }
 
-.home-section {
-  margin: 0 0 26px;
+.intro p {
+  margin: 0 0 10px;
+  font-size: inherit;
+  line-height: inherit;
 }
 
-.home-section:last-child {
+.intro p:last-child {
   margin-bottom: 0;
 }
 
-.home-section > h2 {
-  margin: 0;
-  padding-bottom: 8px;
+h2 {
+  margin: 0 0 8px;
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--heading);
-  border-bottom: 1px solid var(--border);
-  transition: border-color 0.28s ease;
-}
-
-.experience-list {
-  margin: 0;
-}
-
-.experience-item {
-  padding: 14px 0 15px;
-  border-bottom: 1px solid var(--border-soft);
-  transition: border-color 0.28s ease;
-}
-
-.experience-item:last-child {
-  border-bottom: 0;
-  padding-bottom: 0;
-}
-
-.experience-heading,
-.research-summary {
-  display: flex;
-  justify-content: space-between;
-  gap: 18px;
-  align-items: flex-start;
-}
-
-.experience-heading h3,
-.research-summary h3 {
-  margin: 0;
-  font-size: 1.12rem;
-  line-height: 1.25;
-}
-
-.role {
-  margin: 2px 0 0;
-  color: var(--muted);
-  font-style: italic;
-  font-size: 0.96rem;
-  line-height: 1.3;
-}
-
-.experience-meta {
-  margin: 1px 0 0;
-  color: var(--muted);
-  font-size: 0.94rem;
-  line-height: 1.3;
-  text-align: right;
-  white-space: nowrap;
-}
-
-.experience-item > p {
-  margin: 8px 0 0;
-  line-height: 1.5;
-}
-
-.research-summary {
-  padding-top: 14px;
-}
-
-.section-intro {
-  margin: 8px 0 12px;
-  line-height: 1.5;
 }
 
 .papers {
-  border-top: 1px solid var(--border-soft);
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
   transition: border-color 0.28s ease;
 }
 
@@ -203,26 +142,6 @@
   border: 0;
 }
 
-.education-list {
-  padding-top: 12px;
-}
-
-.education-list p {
-  display: flex;
-  justify-content: space-between;
-  gap: 18px;
-  margin: 0 0 6px;
-}
-
-.education-list p:last-child {
-  margin-bottom: 0;
-}
-
-.education-list span {
-  color: var(--muted);
-  white-space: nowrap;
-}
-
 @media (max-width: 860px) {
   .site-header {
     grid-template-columns: 1fr;
@@ -241,24 +160,5 @@
 
   .details h1 {
     font-size: 1.72rem;
-  }
-
-  .experience-heading,
-  .research-summary {
-    display: block;
-  }
-
-  .experience-meta {
-    margin-top: 3px;
-    text-align: left;
-  }
-
-  .education-list p {
-    display: block;
-  }
-
-  .education-list span {
-    display: block;
-    margin-top: 2px;
   }
 }

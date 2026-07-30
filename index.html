@@ -28,88 +28,54 @@ This nice minimalist style is (C) 2013 Paul Robert Lloyd (http://paulrobertlloyd
           </nav>
         </div>
       </header>
-      <p class="intro">
-        My work spans robotics, machine learning and production systems. I joined
-        <a href="https://www.automata.tech/">Automata</a> as employee #8, built its robot
-        software from motion planning through embedded control, and technically led its
-        three-person robotics team. The software later ran on robots deployed in NHS
-        pathology laboratories; Automata subsequently raised a $50M Series B. I later
-        completed a PhD in Computer Science at the University of Edinburgh and published
-        in reinforcement learning, optimal control and robot manipulation. Most recently,
-        I co-founded <a href="https://www.z2-labs.com/">Z2 Labs</a> and developed
-        <a href="https://app.souida.com/">Souida</a>'s machine-learning, retrieval and
-        production systems.
-      </p>
-
-      <section class="home-section" aria-labelledby="experience-heading">
-        <h2 id="experience-heading">Experience</h2>
-        <div class="experience-list">
-          <article class="experience-item">
-            <div class="experience-heading">
-              <div>
-                <h3><a href="https://www.z2-labs.com/">Z2 Labs</a></h3>
-                <p class="role">Co-founder</p>
-              </div>
-              <p class="experience-meta">London · 2025–2026</p>
-            </div>
-            <p>
-              Released and marketed <a href="https://app.souida.com/">Souida</a>, a
-              natural-language book-discovery product. Owned its machine-learning,
-              retrieval, backend and production infrastructure, including LLM annotation
-              and embedding pipelines over one million documents, FAISS-based retrieval
-              and production releases. The consumer product reached 2.27k monthly unique
-              visitors.
-            </p>
-          </article>
-
-          <article class="experience-item">
-            <div class="experience-heading">
-              <div>
-                <h3><a href="https://www.automata.tech/">Automata</a></h3>
-                <p class="role">Robotics Engineer</p>
-              </div>
-              <p class="experience-meta">London · 2017–2019</p>
-            </div>
-            <p>
-              Joined as employee #8 and owned the robot software stack as the company grew
-              from eight to 40 employees. Wrote motion planning, trajectory optimisation
-              and kinematics in C++, and control, rigid-body dynamics and collision
-              detection in C for constrained microcontrollers. Worked with customers on
-              the first commercial deployments, hired two robotics engineers and
-              technically led the three-person robotics team.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section class="home-section" aria-labelledby="research-heading">
-        <h2 id="research-heading">Research</h2>
-        <div class="research-summary">
-          <div>
-            <h3>University of Edinburgh</h3>
-            <p class="role">PhD Researcher and Postdoctoral Researcher</p>
-          </div>
-          <p class="experience-meta">2019–2025</p>
-        </div>
-        <p class="section-intro">
-          Research in optimal control, reinforcement learning, robot manipulation and
-          differentiable simulation. My PhD thesis was
-          <cite><a href="https://era.ed.ac.uk/items/57d71804-6769-434f-b6b9-11462c45fb08">Optimal
-          Control Theoretic Value Function Learning</a></cite>. I also taught Advanced
-          Robotics and supervised three MSc/BSc students.
+      <div class="intro">
+        <p>
+          My work has moved between robotics, research in control and learning, and
+          starting a product company. Most recently, I co-founded
+          <a href="https://www.z2-labs.com/">Z2 Labs</a> because I wanted serious
+          engineering and careful product design to sit together. Its first product,
+          <a href="https://app.souida.com/">Souida</a>, is a natural-language
+          book-discovery platform. I developed the high-performance machine-learning,
+          retrieval and production systems behind it. I also worked on distribution and
+          scoped technical projects for consulting clients.
         </p>
+        <p>
+          Before Z2, I completed a PhD and postdoc at the University of Edinburgh and
+          published in reinforcement learning, optimal control and robot manipulation. I
+          am particularly interested in connecting model-based control with learning,
+          including through differentiable simulation. My PhD thesis was
+          <cite><a href="https://era.ed.ac.uk/items/57d71804-6769-434f-b6b9-11462c45fb08">Optimal
+          Control Theoretic Value Function Learning</a></cite>.
+        </p>
+        <p>
+          Earlier, I joined <a href="https://www.automata.tech/">Automata</a> as an early
+          employee and built much of its robotics stack from scratch. The software was
+          later used in NHS pathology laboratories; Automata subsequently raised a $50M
+          Series B.
+        </p>
+      </div>
 
+      <h2>Papers</h2>
       <div class="papers">
         <ul class="paper-list">
           <li class="paper-item">
             <p>
-              <cite>Optimal Control via Combined Inference and Numerical Optimization</cite>.
-              <span class="paper-links">[<a href="https://arxiv.org/abs/2109.11361">ICRA 2022</a> ·
-              <a href="https://github.com/Daniellayeghi/OptimisationBasedControl">Code</a>]</span><br>
-              <strong>Daniel Layeghi</strong>, Steve Tonneau, and Michael Mistry.
+              <cite>Amortising Trajectory Optimisation for Residual MPC via Implicit
+              Contact Differentiation</cite>.
+              <span class="paper-links">[<a href="https://arxiv.org/abs/2607.24959">RA-L submission</a> ·
+              <a href="https://github.com/calumarnott/mujoco/tree/3.9.0-derivatives">Code</a>]</span><br>
+              <strong>Daniel Layeghi</strong>, Thomas Corbères, Calum Arnott, Aditya
+              Kamireddypalli, Hashim Al-Obaidi, Steve Tonneau, and Michael Mistry.
+            </p>
+          </li>
+          <li class="paper-item">
+            <p>
+              <cite>Learning Long-Horizon Robot Manipulation Skills via Privileged Action</cite>.
+              <span class="paper-links">[<a href="https://arxiv.org/abs/2502.15442">CoRL 2025</a>]</span><br>
+              Xiaofeng Mao, Yucheng Xu, Zhaole Sun, Elle Miller, <strong>Daniel Layeghi</strong>, and Michael Mistry.
             </p>
             <div class="iframe-container">
-              <iframe width="1280" height="720" src="https://www.youtube.com/embed/rSAJ_Fyu-ko" title="Optimal Control video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe width="1280" height="720" src="https://www.youtube.com/embed/4E74kLgeVas" title="Long-Horizon video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
           </li>
           <li class="paper-item">
@@ -125,35 +91,17 @@ This nice minimalist style is (C) 2013 Paul Robert Lloyd (http://paulrobertlloyd
           </li>
           <li class="paper-item">
             <p>
-              <cite>Learning Long-Horizon Robot Manipulation Skills via Privileged Action</cite>.
-              <span class="paper-links">[<a href="https://arxiv.org/abs/2502.15442">CoRL 2025</a>]</span><br>
-              Xiaofeng Mao, Yucheng Xu, Zhaole Sun, Elle Miller, <strong>Daniel Layeghi</strong>, and Michael Mistry.
+              <cite>Optimal Control via Combined Inference and Numerical Optimization</cite>.
+              <span class="paper-links">[<a href="https://arxiv.org/abs/2109.11361">ICRA 2022</a> ·
+              <a href="https://github.com/Daniellayeghi/OptimisationBasedControl">Code</a>]</span><br>
+              <strong>Daniel Layeghi</strong>, Steve Tonneau, and Michael Mistry.
             </p>
             <div class="iframe-container">
-              <iframe width="1280" height="720" src="https://www.youtube.com/embed/4E74kLgeVas" title="Long-Horizon video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe width="1280" height="720" src="https://www.youtube.com/embed/rSAJ_Fyu-ko" title="Optimal Control video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-          </li>
-          <li class="paper-item">
-            <p>
-              <cite>Amortising Trajectory Optimisation for Residual MPC via Implicit
-              Contact Differentiation</cite>.
-              <span class="paper-links">[<a href="https://arxiv.org/abs/2607.24959">RA-L submission</a> ·
-              <a href="https://github.com/calumarnott/mujoco/tree/3.9.0-derivatives">Code</a>]</span><br>
-              <strong>Daniel Layeghi</strong>, Thomas Corbères, Calum Arnott, Aditya
-              Kamireddypalli, Hashim Al-Obaidi, Steve Tonneau, and Michael Mistry.
-            </p>
           </li>
         </ul>
       </div>
-      </section>
-
-      <section class="home-section education" aria-labelledby="education-heading">
-        <h2 id="education-heading">Education</h2>
-        <div class="education-list">
-          <p><strong>PhD, Computer Science</strong>, University of Edinburgh <span>2024</span></p>
-          <p><strong>MEng, Mechanical Engineering, First Class Honours</strong>, Queen Mary University of London <span>2017</span></p>
-        </div>
-      </section>
     </div>
   </main><!--@main-->
 </body>
