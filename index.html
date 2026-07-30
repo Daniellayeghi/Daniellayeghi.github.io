@@ -1,67 +1,159 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <!--
 This nice minimalist style is (C) 2013 Paul Robert Lloyd (http://paulrobertlloyd.com/)
 -->
 <head>
-  <title>Daniel Layeghi</title>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Daniel Layeghi &mdash; robotics and machine-learning engineer, founder and researcher.">
+  <title>Daniel Layeghi | Robotics and Machine Learning</title>
   <script src="js/theme-toggle.js"></script>
-  <link rel="stylesheet" href="css/site-common.css" type="text/css"/>
-  <link rel="stylesheet" href="css/home.css" type="text/css"/>
+  <link rel="stylesheet" href="css/site-common.css" type="text/css">
+  <link rel="stylesheet" href="css/home.css" type="text/css">
 </head>
 <body>
-  <main role="main">
+  <main>
     <div class="container">
       <header class="site-header">
-        <img class="profile-photo" src="./resource/pics/profile.jpg" alt="Me">
+        <img class="profile-photo" src="./resource/pics/profile.jpg" alt="Portrait of Daniel Layeghi">
         <div class="details">
-            <h1>Daniel Layeghi</h1>
-            <nav role="navigation" class="breadcrumb-nav">
-                <a href="blog/index.html">Blog</a> · <a href="cv.pdf">CV</a> · <a href="https://github.com/Daniellayeghi">Github</a> · <a href="https://scholar.google.com/citations?user=iYLENLcAAAAJ&amp;hl=en&amp;oi=ao">Google Scholar</a> · <a href="https://sites.google.com/site/daniellayeghi/home">Past</a>
-            </nav>
+          <h1>Daniel Layeghi</h1>
+          <nav class="breadcrumb-nav" aria-label="Primary">
+            <a href="blog/index.html">Blog</a> ·
+            <a href="cv.pdf">CV</a> ·
+            <a href="https://www.linkedin.com/in/daniellayeghi/">LinkedIn</a> ·
+            <a href="https://github.com/Daniellayeghi">GitHub</a> ·
+            <a href="https://scholar.google.com/citations?user=iYLENLcAAAAJ&amp;hl=en&amp;oi=ao">Google Scholar</a>
+          </nav>
         </div>
       </header>
       <p class="intro">
-        I am currently co-founder at Z2-labs, building <a href="https://souida.com/">Souida</a>, an API-first discovery layer that turns natural-language book queries into structured real-time retrieval for independent booksellers.
-        For an up-to-date CV, see <a href="cv.pdf">here</a>.
-        Previously, I was a Postdoctoral Researcher and completed a PhD in Computer Science at the University of Edinburgh.
-        My PhD thesis was titled "<a href="https://era.ed.ac.uk/items/57d71804-6769-434f-b6b9-11462c45fb08">Optimal Control Theoretic Value Function Learning</a>."
-        Before academia, I was an early engineer at Automata Technologies and implemented and deployed a production-grade robotics stack from scratch.
+        My work spans robotics, machine learning and production systems. I joined
+        <a href="https://www.automata.tech/">Automata</a> as employee #8, built its robot
+        software from motion planning through embedded control, and technically led its
+        three-person robotics team. The software later ran on robots deployed in NHS
+        pathology laboratories; Automata subsequently raised a $50M Series B. I later
+        completed a PhD in Computer Science at the University of Edinburgh and published
+        in reinforcement learning, optimal control and robot manipulation. Most recently,
+        I co-founded <a href="https://www.z2-labs.com/">Z2 Labs</a> and developed
+        <a href="https://app.souida.com/">Souida</a>'s machine-learning, retrieval and
+        production systems.
       </p>
-      <h2>Papers</h2>
+
+      <section class="home-section" aria-labelledby="experience-heading">
+        <h2 id="experience-heading">Experience</h2>
+        <div class="experience-list">
+          <article class="experience-item">
+            <div class="experience-heading">
+              <div>
+                <h3><a href="https://www.z2-labs.com/">Z2 Labs</a></h3>
+                <p class="role">Co-founder</p>
+              </div>
+              <p class="experience-meta">London · 2025–2026</p>
+            </div>
+            <p>
+              Released and marketed <a href="https://app.souida.com/">Souida</a>, a
+              natural-language book-discovery product. Owned its machine-learning,
+              retrieval, backend and production infrastructure, including LLM annotation
+              and embedding pipelines over one million documents, FAISS-based retrieval
+              and production releases. The consumer product reached 2.27k monthly unique
+              visitors.
+            </p>
+          </article>
+
+          <article class="experience-item">
+            <div class="experience-heading">
+              <div>
+                <h3><a href="https://www.automata.tech/">Automata</a></h3>
+                <p class="role">Robotics Engineer</p>
+              </div>
+              <p class="experience-meta">London · 2017–2019</p>
+            </div>
+            <p>
+              Joined as employee #8 and owned the robot software stack as the company grew
+              from eight to 40 employees. Wrote motion planning, trajectory optimisation
+              and kinematics in C++, and control, rigid-body dynamics and collision
+              detection in C for constrained microcontrollers. Worked with customers on
+              the first commercial deployments, hired two robotics engineers and
+              technically led the three-person robotics team.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="home-section" aria-labelledby="research-heading">
+        <h2 id="research-heading">Research</h2>
+        <div class="research-summary">
+          <div>
+            <h3>University of Edinburgh</h3>
+            <p class="role">PhD Researcher and Postdoctoral Researcher</p>
+          </div>
+          <p class="experience-meta">2019–2025</p>
+        </div>
+        <p class="section-intro">
+          Research in optimal control, reinforcement learning, robot manipulation and
+          differentiable simulation. My PhD thesis was
+          <cite><a href="https://era.ed.ac.uk/items/57d71804-6769-434f-b6b9-11462c45fb08">Optimal
+          Control Theoretic Value Function Learning</a></cite>. I also taught Advanced
+          Robotics and supervised three MSc/BSc students.
+        </p>
+
       <div class="papers">
         <ul class="paper-list">
           <li class="paper-item">
             <p>
-              <cite>Optimal Control via Combined Inference and Numerical Optimization</cite>. [<a href="https://arxiv.org/abs/2109.11361">ICRA 2022</a>]<br />
+              <cite>Optimal Control via Combined Inference and Numerical Optimization</cite>.
+              <span class="paper-links">[<a href="https://arxiv.org/abs/2109.11361">ICRA 2022</a> ·
+              <a href="https://github.com/Daniellayeghi/OptimisationBasedControl">Code</a>]</span><br>
               <strong>Daniel Layeghi</strong>, Steve Tonneau, and Michael Mistry.
             </p>
             <div class="iframe-container">
-              <iframe width="1280" height="720" src="https://www.youtube.com/embed/rSAJ_Fyu-ko" title="Optimal Control video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe width="1280" height="720" src="https://www.youtube.com/embed/rSAJ_Fyu-ko" title="Optimal Control video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
           </li>
           <li class="paper-item">
             <p>
-              <cite>Neural Lyapunov and Optimal Control</cite>. [<a href="https://arxiv.org/abs/2305.15244">Under review 2023</a>]<br />
+              <cite>Neural Lyapunov and Optimal Control</cite>.
+              <span class="paper-links">[<a href="https://arxiv.org/abs/2305.15244">arXiv</a> ·
+              <a href="https://github.com/Daniellayeghi/Neural_Lyapunov_and_Optimal_Control">Code</a>]</span><br>
               <strong>Daniel Layeghi</strong>, Steve Tonneau, and Michael Mistry.
             </p>
             <div class="iframe-container">
-              <iframe width="1280" height="720" src="https://www.youtube.com/embed/S8Ud19IRPlI?si=pgbtfvW08C9moLz0" title="Neural Lyapunov video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe width="1280" height="720" src="https://www.youtube.com/embed/S8Ud19IRPlI?si=pgbtfvW08C9moLz0" title="Neural Lyapunov video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
           </li>
           <li class="paper-item">
             <p>
-              <cite>Learning Long-Horizon Robot Manipulation Skills via Privileged Action</cite>. [<a href="https://openreview.net/pdf?id=yOWUy97hmd">CoRL</a>]<br />
-              Xiaofeng Mao, Yucheng XU, Zhaole Sun, Elle Miller, <strong>Daniel Layeghi</strong>, and Michael Mistry.
+              <cite>Learning Long-Horizon Robot Manipulation Skills via Privileged Action</cite>.
+              <span class="paper-links">[<a href="https://arxiv.org/abs/2502.15442">CoRL 2025</a>]</span><br>
+              Xiaofeng Mao, Yucheng Xu, Zhaole Sun, Elle Miller, <strong>Daniel Layeghi</strong>, and Michael Mistry.
             </p>
             <div class="iframe-container">
-              <iframe width="1280" height="720" src="https://www.youtube.com/embed/4E74kLgeVas" title="Long-Horizon video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe width="1280" height="720" src="https://www.youtube.com/embed/4E74kLgeVas" title="Long-Horizon video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
+          </li>
+          <li class="paper-item">
+            <p>
+              <cite>Amortising Trajectory Optimisation for Residual MPC via Implicit
+              Contact Differentiation</cite>.
+              <span class="paper-links">[<a href="https://arxiv.org/abs/2607.24959">RA-L submission</a> ·
+              <a href="https://github.com/calumarnott/mujoco/tree/3.9.0-derivatives">Code</a>]</span><br>
+              <strong>Daniel Layeghi</strong>, Thomas Corbères, Calum Arnott, Aditya
+              Kamireddypalli, Hashim Al-Obaidi, Steve Tonneau, and Michael Mistry.
+            </p>
           </li>
         </ul>
       </div>
+      </section>
+
+      <section class="home-section education" aria-labelledby="education-heading">
+        <h2 id="education-heading">Education</h2>
+        <div class="education-list">
+          <p><strong>PhD, Computer Science</strong>, University of Edinburgh <span>2024</span></p>
+          <p><strong>MEng, Mechanical Engineering, First Class Honours</strong>, Queen Mary University of London <span>2017</span></p>
+        </div>
+      </section>
     </div>
   </main><!--@main-->
 </body>
