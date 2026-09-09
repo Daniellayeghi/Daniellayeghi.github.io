@@ -77,6 +77,18 @@
   margin-bottom: 0;
 }
 
+.project-feature {
+  border-block: 1px solid var(--border);
+  padding-block: 16px;
+  margin-bottom: 24px;
+}
+
+.project-feature p {
+  margin: 0;
+  font-size: 1.03rem;
+  line-height: 1.52;
+}
+
 h2 {
   margin: 0 0 8px;
   font-size: 1.5rem;
