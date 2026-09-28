@@ -8,6 +8,7 @@ const safeURL = value => {try {const url = new URL(value); return ['https:', 'ht
 const aliases = {RACK:'Lenovo NVIDIA GB300 NVL72',R01:'GB300 compute tray',R02:'NVLink switch tray',R03:'33 kW power shelf',R04:'Management switch',R05:'Cable cartridge',R06:'DC busbar',R07:'Supply manifold',R08:'Return manifold',R09:'1.5 m power whip',R10:'3.5 m power whip',R11:'Leakage drip pan','L2-019':'5.5 kW power converter','L2-020':'Power management controller'};
 const short = n => aliases[n.id] || n.name;
 const scopeAliases = {'A-R02':'FSP · converter production, 2015–2016','B-R02':'FSP · additional 2015 observations','A-R03':'Keysun · wound transformers','A-R04':'PULS · burn-in','A-R05':'Delta · dispensing preparation','A-R06':'XP Power · traceability and testing','A-R07':'SANYO DENKI · production controls','B-R04':'Infineon · planar magnetics construction','C-R02':'Seasonic · historical production comparison','C-R04':'Delta · line planning and vision','C-R05':'MEAN WELL · regenerative burn-in'};
+const studyIncludes = (study, componentId) => study.component_id === componentId || study.component_ids?.includes(componentId);
 let data, nodes, study = null, scope = null, layout, selectedOp = null, renderVersion = 0, detailTab = 'overview';
 let state = {component:'RACK',view:'components',scope:null,step:null}, camera = {x:0,y:0,k:1};
 const cameraCache = new Map(), studyCache = new Map(), processChoices = new Map();
@@ -70,7 +71,7 @@ async function renderFromURL() {
   $('route-bar').hidden=true; $('empty-state').hidden=true;
   $('search-results').hidden=true;$('search').value='';$('search').setAttribute('aria-expanded','false');
   if(state.view==='manufacturing') {
-    const entry=data.studies.find(s=>s.component_id===n.id);
+    const entry=data.studies.find(s=>studyIncludes(s,n.id));
     if(entry) {
       $('inspector').innerHTML='<div class="loading">Loading the manufacturing study…</div>';
       if(!studyCache.has(entry.id)) {
@@ -85,7 +86,7 @@ async function renderFromURL() {
       // Only named endpoints recorded by the study may enter this process graph.
       for(const endpoint of study.boundary_nodes) {
         if(!endpoint.id||valid.has(endpoint.id)||!edges.some(e=>e.from===endpoint.id||e.to===endpoint.id))continue;
-        operations.push({...endpoint,name:endpoint.name||endpoint.label||endpoint.role||endpoint.id,kind:'boundary',sources:[],gaps:[]});valid.add(endpoint.id);
+        operations.push({...endpoint,name:endpoint.name||endpoint.label||endpoint.role||endpoint.id,kind:'boundary',sources:endpoint.sources||[],gaps:endpoint.gaps||[]});valid.add(endpoint.id);
       }
       layout=processLayout(operations,edges);
       selectedOp=operations.find(o=>o.id===state.step)||operations.find(o=>edges.some(e=>e.from===o.id)&&!edges.some(e=>e.to===o.id))||operations[0]||null;
@@ -121,7 +122,7 @@ function draw() {
   const uncertain=new Set(data.edges.filter(e=>e.from===state.component&&e.type==='unresolved').map(e=>e.to));
   $('nodes').innerHTML=layout.nodes.map(n=>{
     const count=data.edges.filter(e=>e.from===n.id).length;
-    const researched=data.studies.some(s=>s.component_id===n.id);
+    const researched=data.studies.some(s=>studyIncludes(s,n.id));
     const cls=['graph-node',n.id===selected?'selected':'',!isProcess&&incoming.has(n.id)?'parent':'',!isProcess&&uncertain.has(n.id)?'uncertain':'',isProcess&&n.detail_state==='evidence_gap'?'gap':''].filter(Boolean).join(' ');
     const bottom=isProcess?(n.detail_state==='evidence_gap'?'Method unresolved':n.kind==='reference'?'Reference operation':n.kind==='boundary'?'Outside boundary':'Conditional method'):
       incoming.has(n.id)?'↑ Parent assembly':count?count+' mapped parts':n.boundary==='evidence_gap'?'Component detail unresolved':'Component boundary';
@@ -195,7 +196,7 @@ function renderInspector() {
     if(component.quantity_note)out+='<p class="subtle">'+esc(component.quantity_note)+'</p>';
     if(state.view==='components')out+='<button class="primary-button" data-view="manufacturing">View manufacturing process →</button>';
     else out+='<button class="secondary-button" data-view="components">← Back to component graph</button>';
-    const entry=data.studies.find(s=>s.component_id===component.id);
+    const entry=data.studies.find(s=>studyIncludes(s,component.id));
     out+=field('Manufacturing research',entry?'Study available · reviewed with gaps':'Not yet researched');
     if(scope&&!selectedOp)out+=field('Process boundary',scope.boundary||scope.route_variant);
     const childCount=data.edges.filter(e=>e.from===component.id).length;
@@ -232,7 +233,7 @@ $('search').addEventListener('input',e=>{
   if(!data)return;const q=e.target.value.trim().toLowerCase(),box=$('search-results');
   box.hidden=!q;$('search').setAttribute('aria-expanded',String(!!q));if(!q)return;
   const found=data.nodes.filter(n=>(n.id+' '+n.name+' '+short(n)).toLowerCase().includes(q)).slice(0,12);
-  box.innerHTML=found.length?found.map(n=>'<button data-component="'+esc(n.id)+'">'+esc(n.name)+'<small>'+esc(n.id)+' · '+(data.studies.some(s=>s.component_id===n.id)?'Manufacturing study available':'Components mapped')+'</small></button>').join(''):'<div class="field">No matching component</div>';
+  box.innerHTML=found.length?found.map(n=>'<button data-component="'+esc(n.id)+'">'+esc(n.name)+'<small>'+esc(n.id)+' · '+(data.studies.some(s=>studyIncludes(s,n.id))?'Manufacturing study available':'Components mapped')+'</small></button>').join(''):'<div class="field">No matching component</div>';
 });
 $('search').addEventListener('keydown',e=>{if(e.key==='ArrowDown'){e.preventDefault();$('search-results').querySelector('button')?.focus();}if(e.key==='Escape'){$('search-results').hidden=true;e.target.blur();}});
 $('search-results').addEventListener('keydown',e=>{const list=[...e.currentTarget.querySelectorAll('button')],i=list.indexOf(document.activeElement);if(e.key==='ArrowDown'){e.preventDefault();list[Math.min(list.length-1,i+1)]?.focus();}if(e.key==='ArrowUp'){e.preventDefault();if(i===0)$('search').focus();else list[i-1]?.focus();}if(e.key==='Escape'){$('search-results').hidden=true;$('search').focus();}});
