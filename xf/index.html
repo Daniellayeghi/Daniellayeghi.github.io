@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f6f7f3">
+  <meta name="xf-api-base" content="https://xf-explorer.daniellayeghi.workers.dev">
+  <title>XF — Product graph</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <div id="app">
+    <header class="app-header">
+      <a class="brand" href="#component=RACK&view=components" aria-label="XF whole product"><span>XF</span> Product graph</a>
+      <div class="product-title">Lenovo NVIDIA GB300 NVL72</div>
+      <div class="search"><label><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Find a component…" aria-label="Search all components" autocomplete="off" aria-controls="search-results" aria-expanded="false"><kbd>/</kbd></label><div id="search-results" hidden></div></div>
+    </header>
+    <nav class="context-bar" aria-label="Component path"><button id="back" class="icon-button" aria-label="Back to previous selection">←</button><div id="breadcrumbs"></div><button id="reset" class="quiet">Whole product</button></nav>
+    <section class="workspace">
+      <main class="graph-area">
+        <div class="graph-toolbar">
+          <div><div class="eyebrow" id="selection-id">PRODUCT</div><h1 id="selection-title">Loading the graph…</h1></div>
+          <div class="view-toggle" role="group" aria-label="Graph view"><button data-view="components" aria-pressed="true">Components</button><button data-view="manufacturing" aria-pressed="false">Manufacturing</button></div>
+          <button id="details-toggle" class="quiet" aria-expanded="true" aria-controls="inspector">Details</button>
+        </div>
+        <div id="route-bar" hidden></div>
+        <div id="canvas" tabindex="0" aria-label="Interactive component graph. Drag to pan, use zoom buttons to zoom, and select a node to explore." role="region">
+          <div id="world"><svg id="edges" aria-hidden="true"></svg><div id="nodes"></div><div id="graph-labels" aria-hidden="true"></div></div>
+          <div id="empty-state" hidden></div>
+          <div class="canvas-help" id="canvas-help">Select a component to open its branch · Drag to pan</div>
+          <div class="canvas-controls"><button id="zoom-out" aria-label="Zoom out">−</button><button id="zoom-level" aria-label="Reset to actual size">100%</button><button id="zoom-in" aria-label="Zoom in">+</button><span></span><button id="fit" aria-label="Fit whole graph">Fit</button><button id="center" aria-label="Center selected node">Center</button></div>
+          <svg id="minimap" viewBox="0 0 180 100" role="img" aria-label="Graph overview. Click to move around the graph."></svg>
+        </div>
+        <footer class="graph-footer"><div id="legend"></div><span id="graph-count"></span></footer>
+      </main>
+      <aside id="inspector" aria-label="Selected node details"><div class="loading">Reading accepted research…</div></aside>
+    </section>
+    <div id="announcer" class="sr-only" aria-live="polite"></div>
+  </div>
+</body>
+</html>
