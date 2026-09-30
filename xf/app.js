@@ -124,7 +124,7 @@ function draw() {
     const count=data.edges.filter(e=>e.from===n.id).length;
     const researched=data.studies.some(s=>studyIncludes(s,n.id));
     const cls=['graph-node',n.id===selected?'selected':'',!isProcess&&incoming.has(n.id)?'parent':'',!isProcess&&uncertain.has(n.id)?'uncertain':'',isProcess&&n.detail_state==='evidence_gap'?'gap':''].filter(Boolean).join(' ');
-    const bottom=isProcess?(n.detail_state==='evidence_gap'?'Method unresolved':n.kind==='reference'?'Reference operation':n.kind==='boundary'?'Outside boundary':'Conditional method'):
+    const bottom=isProcess?(n.detail_state==='expanded'?'Stage summary':n.detail_state==='evidence_gap'?'Method unresolved':n.kind==='reference'?'Reference operation':n.kind==='boundary'?'Outside boundary':'Conditional method'):
       incoming.has(n.id)?'↑ Parent assembly':count?count+' mapped parts':n.boundary==='evidence_gap'?'Component detail unresolved':'Component boundary';
     return '<button class="'+cls+'" data-node="'+esc(n.id)+'" style="left:'+n.x+'px;top:'+n.y+'px" aria-label="'+esc(n.name)+'. '+esc(bottom)+(isProcess?'. Show step details':'. Open component branch')+'" aria-pressed="'+(n.id===selected)+'" title="'+esc(n.name)+'"><span class="node-top"><span>'+esc(n.id)+'</span>'+(researched&&!isProcess?'<span class="research-dot">● Process study</span>':'')+'</span><span class="node-name">'+esc(isProcess?n.name:short(n))+'</span><span class="node-bottom"><span>'+esc(bottom)+'</span><span aria-hidden="true">'+(isProcess?'↗':count?'→':'◇')+'</span></span></button>';
   }).join('');
@@ -187,6 +187,11 @@ function renderInspector() {
     const related=layout.edges.filter(e=>e.from===op.id||e.to===op.id);
     if(related.length)out+='<section class="field"><span class="field-label">Connected steps</span>'+related.map(e=>{const id=e.from===op.id?e.to:e.from,n=layout.nodes.find(n=>n.id===id);return n?'<button class="connected-step" data-step="'+esc(id)+'"><small>'+esc(e.from===op.id?'Outgoing':'Incoming')+' · '+esc(human(e.type))+'</small>'+esc(n.name)+'</button>'+(e.condition?'<p class="subtle">'+esc(e.condition)+'</p>':''):'';}).join('')+'</section>';
     out+='<details><summary>Handling, settings and exceptions</summary>'+field('Handling',op.handling)+field('Settings',op.settings)+field('Digital work',op.digital_work)+field('Timing',op.timing)+field('Exceptions',op.exceptions)+'</details>';
+    const children=study.operations.filter(o=>o.parent_stage===op.id&&o.display_scope===scope.id);
+    if(children.length)out+='<section class="field"><span class="field-label">Actions within this stage</span>'+children.map(o=>'<button class="connected-step" data-step="'+esc(o.id)+'">'+esc(o.name)+'</button>').join('')+'</section>';
+    const annotations=(study.relationship_annotations||[]).filter(e=>e.display_scope===scope.id&&(e.from_step_id===op.id||e.to_step_id===op.id));
+    if(annotations.length)out+='<details><summary>Relationship notes</summary>'+annotations.map(e=>'<div class="field">'+stringify(e.condition||e.relationship_scope||e.name||e.id)+'</div>').join('')+'</details>';
+    if(op.detail_state==='expanded')out+='<div class="notice">This stage summarizes its detailed actions; it is not an additional manufacturing pass.</div>';
     if(op.detail_state==='evidence_gap')out+='<div class="notice">This is a researched gap, not a confirmed factory operation.</div>';
     if(scope.kind==='reference')out+='<div class="notice">This operation belongs to the selected reference workflow. Its use for this exact component has not been established.</div>';
   }else {
