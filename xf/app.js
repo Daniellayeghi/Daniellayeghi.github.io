@@ -1,4 +1,4 @@
-import {componentLayout, processLayout, edgePath, NODE_W, NODE_H} from './graph.js';
+import {componentLayout, processLayout, edgePath, studiesForComponent, selectStudy, selectOperation, NODE_W, NODE_H} from './graph.js';
 
 const $ = id => document.getElementById(id);
 const apiBase = document.querySelector('meta[name="xf-api-base"]')?.content || location.origin;
@@ -9,8 +9,9 @@ const aliases = {RACK:'Lenovo NVIDIA GB300 NVL72',R01:'GB300 compute tray',R02:'
 const short = n => aliases[n.id] || n.name;
 const scopeAliases = {'A-R02':'FSP · converter production, 2015–2016','B-R02':'FSP · additional 2015 observations','A-R03':'Keysun · wound transformers','A-R04':'PULS · burn-in','A-R05':'Delta · dispensing preparation','A-R06':'XP Power · traceability and testing','A-R07':'SANYO DENKI · production controls','B-R04':'Infineon · planar magnetics construction','C-R02':'Seasonic · historical production comparison','C-R04':'Delta · line planning and vision','C-R05':'MEAN WELL · regenerative burn-in'};
 const studyIncludes = (study, componentId) => study.component_id === componentId || study.component_ids?.includes(componentId);
+const studyAliases = {'M-L4-006-B300-PACKAGE-01':'GPU package assembly', 'M-L4-006-LOGIC-WAFER-01':'Logic wafer fabrication'};
 let data, nodes, study = null, scope = null, layout, selectedOp = null, renderVersion = 0, detailTab = 'overview';
-let state = {component:'RACK',view:'components',scope:null,step:null}, camera = {x:0,y:0,k:1};
+let state = {component:'RACK',view:'components',study:null,scope:null,step:null}, camera = {x:0,y:0,k:1};
 const cameraCache = new Map(), studyCache = new Map(), processChoices = new Map();
 let navigationCount = 0, drag = null, moved = false;
 const pointers = new Map(); let pinch = null;
@@ -39,8 +40,8 @@ function badge(n) {
   if (n.status==='documented_class_with_reconstructed_technical_role') return 'Class documented · role inferred';
   return n.boundary==='evidence_gap'?'Detail unresolved':'Documented component';
 }
-function stateKey(s=state) {return [s.component,s.view,s.scope||''].join('|');}
-function href(changes) {const next={...state,...changes}; const p=new URLSearchParams(); for(const key of ['component','view','scope','step'])if(next[key])p.set(key,next[key]);return '#'+p.toString();}
+function stateKey(s=state) {return [s.component,s.view,s.study||'',s.scope||''].join('|');}
+function href(changes) {const next={...state,...changes}; const p=new URLSearchParams(); for(const key of ['component','view','study','scope','step'])if(next[key])p.set(key,next[key]);return '#'+p.toString();}
 function navigate(changes) {
   cameraCache.set(stateKey(),{...camera});
   if(changes.view==='manufacturing'&&!changes.scope&&processChoices.has(changes.component||state.component)) {
@@ -60,7 +61,7 @@ async function fetchJSON(path) {const r=await fetch(new URL(path,apiBase),{crede
 async function renderFromURL() {
   const version=++renderVersion, p=new URLSearchParams(location.hash.slice(1));
   const previous=state;
-  state={component:nodes.has(p.get('component'))?p.get('component'):data.root,view:p.get('view')==='manufacturing'?'manufacturing':'components',scope:p.get('scope'),step:p.get('step')};
+  state={component:nodes.has(p.get('component'))?p.get('component'):data.root,view:p.get('view')==='manufacturing'?'manufacturing':'components',study:p.get('study'),scope:p.get('scope'),step:p.get('step')};
   if(previous.component!==state.component||previous.view!==state.view)detailTab='overview';
   const n=nodes.get(state.component);study=null;scope=null;selectedOp=null;
   $('selection-id').textContent=n.id+' / '+(state.view==='components'?'Product structure':'Manufacturing process');
@@ -71,8 +72,9 @@ async function renderFromURL() {
   $('route-bar').hidden=true; $('empty-state').hidden=true;
   $('search-results').hidden=true;$('search').value='';$('search').setAttribute('aria-expanded','false');
   if(state.view==='manufacturing') {
-    const entry=data.studies.find(s=>studyIncludes(s,n.id));
+    const entry=selectStudy(data.studies,n.id,state.study);
     if(entry) {
+      state.study=entry.id;
       $('inspector').innerHTML='<div class="loading">Loading the manufacturing study…</div>';
       if(!studyCache.has(entry.id)) {
         try {const result=await fetchJSON('/api/study/'+encodeURIComponent(entry.id));studyCache.set(entry.id,result);}catch(error){if(version===renderVersion)showError(error);return;}
@@ -89,9 +91,9 @@ async function renderFromURL() {
         operations.push({...endpoint,name:endpoint.name||endpoint.label||endpoint.role||endpoint.id,kind:'boundary',sources:endpoint.sources||[],gaps:endpoint.gaps||[]});valid.add(endpoint.id);
       }
       layout=processLayout(operations,edges);
-      selectedOp=operations.find(o=>o.id===state.step)||operations.find(o=>edges.some(e=>e.from===o.id)&&!edges.some(e=>e.to===o.id))||operations[0]||null;
+      selectedOp=selectOperation(operations,edges,state.component,state.step);
       state.step=selectedOp?.id||null;
-      processChoices.set(state.component,{scope:state.scope,step:state.step});
+      processChoices.set(state.component,{study:state.study,scope:state.scope,step:state.step});
       renderScopeBar();
       if(!operations.length)empty('The product’s factory route is not mapped yet','This study has separately scoped manufacturing examples. Choose one to explore its recorded steps.',study.scopes.filter(s=>s.kind==='reference').map(s=>'<button class="secondary-button" data-scope="'+esc(s.id)+'">'+esc(scopeAliases[s.id]||s.name)+'</button>').slice(0,2).join(''));
     }else {
@@ -101,7 +103,7 @@ async function renderFromURL() {
   }else layout=componentLayout(n.id,nodes,data.edges);
   draw();renderInspector();
   const remembered=cameraCache.get(stateKey());
-  if(previous.component===state.component&&previous.scope===state.scope&&previous.view===state.view&&previous.step!==state.step&&selectedOp)centerOn(selectedOp.id);
+  if(previous.component===state.component&&previous.study===state.study&&previous.scope===state.scope&&previous.view===state.view&&previous.step!==state.step&&selectedOp)centerOn(selectedOp.id);
   else if(remembered){camera={...remembered};applyCamera();}
   else if(state.view==='manufacturing'&&layout.nodes.length) {camera.k=.9;centerOn(selectedOp?.id||layout.nodes[0].id);}
   else fit(true);
@@ -112,8 +114,11 @@ async function renderFromURL() {
 function empty(title,description,buttons='') {$('empty-state').hidden=false;$('empty-state').innerHTML='<div class="empty-symbol" aria-hidden="true">◇</div><h2>'+esc(title)+'</h2><p>'+esc(description)+'</p>'+buttons;}
 function renderScopeBar() {
   const bar=$('route-bar');bar.hidden=false;
+  const choices=studiesForComponent(data.studies,state.component);
+  const studyPicker=choices.length>1?'<label for="study-select">Study</label><select id="study-select">'+choices.map(s=>'<option value="'+esc(s.id)+'"'+(s.id===study.entry.id?' selected':'')+'>'+esc(studyAliases[s.id]||s.name||s.id)+'</option>').join('')+'</select>':'';
   const note=scope.kind==='reference'?'Reference workflow · '+(scope.applicability==='exact_product'||String(scope.scope).includes('service')?'outside the factory route':'separate producer or product'):'Product route · '+(study.entry.component_id==='RACK'?'conditional methods and unresolved factory steps':'factory steps unresolved');
-  bar.innerHTML='<label for="scope-select">Process</label><select id="scope-select">'+study.scopes.map(s=>'<option value="'+esc(s.id)+'"'+(s.id===scope.id?' selected':'')+'>'+esc(s.kind==='target'?'This product · '+(study.operations.some(o=>o.display_scope===s.id&&o.detail_state==='operation')?'researched route':'route unresolved'):scopeAliases[s.id]||s.name)+'</option>').join('')+'</select><span class="scope-note">'+esc(note)+'. Connections show recorded relationships; unconnected records have no established order.</span>';
+  bar.innerHTML=studyPicker+'<label for="scope-select">Process</label><select id="scope-select">'+study.scopes.map(s=>'<option value="'+esc(s.id)+'"'+(s.id===scope.id?' selected':'')+'>'+esc(s.kind==='target'?'This product · '+(study.operations.some(o=>o.display_scope===s.id&&o.detail_state==='operation')?'researched route':'route unresolved'):scopeAliases[s.id]||s.name)+'</option>').join('')+'</select><span class="scope-note">'+esc(note)+'. Connections show recorded relationships; unconnected records have no established order.</span>';
+  if($('study-select'))$('study-select').onchange=e=>navigate({study:e.target.value,scope:null,step:null});
   $('scope-select').onchange=e=>navigate({scope:e.target.value,step:null});
 }
 function draw() {

@@ -1,6 +1,23 @@
 // Layout only: positions never create, remove or imply research relationships.
 export const NODE_W = 244, NODE_H = 94, COL = 336, ROW = 120;
 
+export function studiesForComponent(studies, componentId) {
+  return studies.filter(s => s.component_id === componentId || s.component_ids?.includes(componentId));
+}
+
+export function selectStudy(studies, componentId, requestedId) {
+  const choices = studiesForComponent(studies, componentId);
+  return choices.find(s => s.id === requestedId) || choices[0];
+}
+
+export function selectOperation(operations, edges, componentId, requestedId) {
+  const requested = operations.find(o => o.id === requestedId);
+  if (requested) return requested;
+  const matching = operations.filter(o => o.component_id === componentId || o.component_ids?.includes(componentId));
+  const choices = matching.length ? matching : operations;
+  return choices.find(o => edges.some(e => e.from === o.id) && !edges.some(e => e.to === o.id)) || choices[0] || null;
+}
+
 export function componentLayout(focus, nodes, edges) {
   const parents = edges.filter(e => e.to === focus);
   const children = edges.filter(e => e.from === focus);
