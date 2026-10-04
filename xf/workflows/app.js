@@ -7,13 +7,7 @@ const number = n => String(n + 1).padStart(2, '0');
 const list = items => '<ul class="plain-list">' + items.map(x => '<li>' + e(x) + '</li>').join('') + '</ul>';
 const section = (label, text, className = '') => '<section class="info-block ' + className + '"><h3>' + e(label) + '</h3><p>' + e(text) + '</p></section>';
 const sourceLabels = {'ROOT-S13':'OCP qualification','ROOT-S06':'Purdue experiment','ROOT-S07':'OCP roadmap','ROOT-S04':'Corintis','ROOT-S12':'CoolIT','ROOT-S14':'Infineon','ROOT-S09':'IBM','ROOT-S03':'ficonTEC','ROOT-S01':'SK hynix','ROOT-S08':'Samtec','A-S-FAN':'SANYO DENKI'};
-const sourceLinks = ids => '<div class="source-links">' + ids.map(id => {
-  const w = workflows.find(x => x.id === state.workflow);
-  const n = w.sourceIds.indexOf(id) + 1;
-  return '<a title="' + e(sources.get(id)?.title) + '" href="' + link(state, { view:'evidence', source:id }) + '"><span class="citation-number">[' + n + ']</span> ' + e(sourceLabels[id] || sources.get(id)?.publisher || id) + '</a>';
-}).join('') + '</div>';
-
-function renderSidebar() {
+function renderWorkflowMenu() {
   const found = searchWorkflows(workflows, $('search').value);
   $('result-count').textContent = found.length;
   $('workflow-list').innerHTML = found.length ? found.map(w => {
@@ -23,20 +17,28 @@ function renderSidebar() {
 }
 
 function workflowHeader(w) {
-  return '<div class="workflow-header"><div class="kicker"><span>' + number(workflows.indexOf(w)) + ' / ' + e(w.domain) + '</span><span class="pill">' + e(w.position) + '</span></div><h1>' + e(w.title) + '</h1><p class="intro">' + e(w.summary) + '</p><p class="owner"><span>Engineering owner</span> ' + e(w.owner) + '</p></div>' +
-    '<div class="evidence-line"><span class="eyebrow">Evidence</span><div><p>' + e(w.evidenceSummary) + '</p>' + sourceLinks(w.sourceIds) + '</div></div>' +
-    '<div class="outcome-strip">' + section('Change', w.change) + section('Measure', w.measure) + section('Deliver', w.deliver) + '</div>' +
-    '<nav class="view-tabs" aria-label="Workflow views">' + [['loop','Iteration loop'],['bench','The bench'],['evidence','Evidence & limits']].map(([v,label]) => '<a href="' + link(state,{view:v,source:null}) + '"' + (state.view === v ? ' aria-current="page"' : '') + '>' + label + '</a>').join('') + '</nav>';
+  return '<header class="workflow-header"><h1>' + e(w.title) + '</h1><p class="intro">' + e(w.summary) + '</p></header>' +
+    '<nav class="view-tabs" aria-label="Workflow views">' + [['loop','The loop'],['evidence','Supporting material']].map(([v,label]) => '<a href="' + link(state,{view:v,source:null}) + '"' + (state.view === v ? ' aria-current="page"' : '') + '>' + label + '</a>').join('') + '</nav>';
+}
+
+function sourceEntry(w, id, compact = false) {
+  const s = sources.get(id), index = w.sourceIds.indexOf(id) + 1;
+  const title = compact ? sourceLabels[id] || s.publisher : s.title;
+  return '<article id="source-' + e(id) + '" class="source-entry' + (state.source === id ? ' highlighted' : '') + '"><div class="source-meta">[' + index + '] ' + e(s.publisher) + (s.published_at ? ' · ' + e(s.published_at) : '') + '</div><h3><a href="' + e(s.url) + '" target="_blank" rel="noopener noreferrer">' + e(title) + ' ' + arrow + '</a></h3><p>' + e(s.claim || 'Manufacturer account of simulation, prototyping, acoustic/flow measurement and development feedback.') + '</p><details><summary>Source details & limits</summary>' + (compact ? '<p>' + e(s.title) + '</p>' : '') + '<p>' + e(s.reading_extent || s.actual_reading_extent) + '</p><p>' + e(s.limit || s.limitations) + '</p></details></article>';
+}
+
+function contextDetails(w) {
+  return '<details class="secondary-detail"><summary>Engineering context & verification</summary><div class="expanded-detail">' + section('Engineering owner',w.owner) + section('Problem',w.problem) + section('Required result',w.deliver) + '<section class="info-block"><h3>Verify</h3>' + list(w.verification) + '</section>' + section('Why it could matter',w.value) + section('Next test of the idea',w.nextTest) + '</div></details>';
 }
 
 function loopView(w) {
   const step = w.steps[state.step];
-  return '<section class="loop-section" aria-labelledby="loop-heading"><div class="section-title"><h2 id="loop-heading">The experiment, end to end</h2><span class="subtle">Proposed integrated workflow</span></div>' +
-    '<div class="loop-track" aria-label="Experiment stages">' + w.steps.map((s,i) => '<a class="step' + (i === state.step ? ' selected' : '') + '" href="' + link(state,{step:i}) + '"' + (i === state.step ? ' aria-current="step"' : '') + '><span class="step-number">' + number(i) + '</span><strong>' + e(s.title) + '</strong><span class="step-subtitle">' + e(s.subtitle) + '</span></a>').join('') + '</div>' +
-    '<div class="return-path"><span aria-hidden="true">↶</span><span>Result misses the requirement → revise the hypothesis or physical build → test again</span></div>' +
-    '<article class="step-detail" aria-labelledby="step-heading"><div class="step-detail-header"><div><span class="eyebrow">Stage ' + number(state.step) + ' / ' + number(w.steps.length - 1) + '</span><h3 id="step-heading">' + e(step.title) + '</h3></div><div class="step-controls"><button aria-label="Previous stage" data-step="' + (state.step - 1) + '"' + (state.step === 0 ? ' disabled' : '') + '>←</button><button aria-label="Next stage" data-step="' + (state.step + 1) + '"' + (state.step === w.steps.length - 1 ? ' disabled' : '') + '>→</button></div></div><p class="step-action">' + e(step.action) + '</p><div class="step-facts">' + section('Physical change',step.change) + section('Read the measurements',step.measure) + section('Make the decision',step.decision,'decision') + '</div><div class="step-evidence"><span>' + e(step.basis) + '</span>' + sourceLinks(step.sourceIds) + '</div></article></section>' +
-    '<div class="two-column lower-summary">' + section('The problem to solve',w.problem) + section('Why this could be valuable',w.value) + '</div>' +
-    '<section class="pilot-callout"><span class="eyebrow">The next test of the idea</span><p>' + e(w.nextTest) + '</p><a href="' + link(state,{view:'bench'}) + '">See what the bench needs ' + arrow + '</a></section>';
+  return '<section class="loop-section" aria-label="Experimental loop"><div class="loop-caption">Proposed experiment · select a stage</div>' +
+    '<div class="loop-track" aria-label="Experiment stages">' + w.steps.map((s,i) => '<a class="step' + (i === state.step ? ' selected' : '') + '" href="' + link(state,{step:i,source:null}) + '"' + (i === state.step ? ' aria-current="step"' : '') + '><span class="step-number">' + number(i) + '</span><strong>' + e(s.title) + '</strong></a>').join('') + '</div>' +
+    '<div class="return-path"><span aria-hidden="true">↶</span> Revise the build or hypothesis, then test again.</div>' +
+    '<div class="loop-body"><article class="step-detail" aria-labelledby="step-heading"><div class="step-detail-header"><h2 id="step-heading">' + e(step.title) + '</h2><div class="step-controls"><button aria-label="Previous stage" data-step="' + (state.step - 1) + '"' + (state.step === 0 ? ' disabled' : '') + '>←</button><button aria-label="Next stage" data-step="' + (state.step + 1) + '"' + (state.step === w.steps.length - 1 ? ' disabled' : '') + '>→</button></div></div><p class="step-action">' + e(step.action) + '</p><div class="step-facts">' + section('Change',step.change) + section('Measure',step.measure) + section('Decide',step.decision,'decision') + '</div></article>' +
+    '<aside class="support-panel" aria-label="Supporting material for this stage"><h2>Supporting material</h2><p class="evidence-basis">' + e(step.basis) + '.</p>' + step.sourceIds.map(id => sourceEntry(w,id,true)).join('') + '<a class="all-sources" href="' + link(state,{view:'evidence',source:null}) + '">All supporting material (' + w.sourceIds.length + ') →</a></aside></div></section>' +
+    '<div class="secondary-details"><details class="secondary-detail"><summary>Bench & LLM role</summary><div class="expanded-detail">' + benchView(w) + '</div></details>' + contextDetails(w) + '</div>';
 }
 
 function benchView(w) {
@@ -49,13 +51,9 @@ function benchView(w) {
 }
 
 function evidenceView(w) {
-  return '<section><div class="section-title"><h2>What the evidence supports</h2><span class="subtle">Recorded evidence ≠ a proven business</span></div><div class="evidence-summary"><span class="evidence-dot" aria-hidden="true"></span><div><h3>' + e(w.evidenceLabel) + '</h3><p>' + e(w.evidenceSummary) + '</p><p class="scope-note">' + e(w.scope) + '</p></div></div>' +
-    '<div class="two-column evidence-assessment">' + section('The baseline we must beat',w.baseline) + section('Access required',w.access) + '</div><div class="unknowns"><h3>Still to establish</h3>' + list(w.unknowns) + '</div>' +
-    '<div class="section-title sources-heading"><h2>Original sources</h2><span class="subtle">' + w.sourceIds.length + ' source' + (w.sourceIds.length === 1 ? '' : 's') + '</span></div><div class="source-list">' + w.sourceIds.map((id,i) => {
-      const s = sources.get(id);
-      return '<article id="source-' + e(id) + '" class="source-card' + (state.source === id ? ' highlighted' : '') + '"><div class="source-number">' + number(i) + '</div><div><div class="source-meta">' + e(s.publisher) + (s.published_at ? ' · ' + e(s.published_at) : '') + '</div><h3><a href="' + e(s.url) + '" target="_blank" rel="noopener noreferrer">' + e(s.title) + ' ' + arrow + '</a></h3><p>' + e(s.claim || 'Manufacturer account of simulation, prototyping, loaded acoustic/flow measurement and development feedback.') + '</p><details><summary>Reading scope & limitations</summary><p>' + e(s.reading_extent || s.actual_reading_extent) + '</p><p>' + e(s.limit || s.limitations) + '</p></details></div></article>';
-    }).join('') + '</div>' +
-    '<details class="research-trace"><summary>Trace to the saved research</summary><p>Stable reviewer record: <code>' + e(w.record) + '</code>. The final review accepts a qualified opportunity assessment; the proposed bench is not an accepted factory route.</p>' + (w.anchors.length ? w.anchors.map(a => '<div class="trace-row"><a href="' + e(a.url) + '" target="_blank" rel="noopener">' + e(a.label) + ' ' + arrow + '</a><p>' + e(a.study) + ' · ' + a.ids.map(id => '<code>' + e(id) + '</code>').join(' ') + '</p></div>').join('') : '<p>This follow-up is outside the accepted rack-route inventory. No component or manufacturing relationship has been added.</p>') + '<div class="source-links"><a href="./data/review.md" target="_blank" rel="noopener">Full written assessment ' + arrow + '</a><a href="./data/provenance.json" target="_blank" rel="noopener">Snapshot and provenance ' + arrow + '</a></div></details></section>';
+  return '<section class="evidence-view"><p class="evidence-intro">' + e(w.evidenceSummary) + '</p><p class="scope-note">' + e(w.scope) + '</p><div class="source-list">' + w.sourceIds.map(id => sourceEntry(w,id)).join('') + '</div>' +
+    '<details class="secondary-detail"><summary>Open questions & access</summary><div class="expanded-detail">' + section('Existing baseline',w.baseline) + section('Access required',w.access) + '<section class="info-block"><h3>Still to establish</h3>' + list(w.unknowns) + '</section></div></details>' +
+    '<details class="secondary-detail"><summary>Trace to the saved research</summary><div class="expanded-detail"><p>Reviewer record <code>' + e(w.record) + '</code>. This review accepts a qualified opportunity assessment, not a confirmed factory route.</p>' + (w.anchors.length ? w.anchors.map(a => '<div class="trace-row"><a href="' + e(a.url) + '" target="_blank" rel="noopener">' + e(a.label) + ' ' + arrow + '</a><p>' + a.ids.map(id => '<code>' + e(id) + '</code>').join(' ') + '</p></div>').join('') : '<p>This follow-up is outside the accepted rack-route inventory.</p>') + '<div class="source-links"><a href="./data/review.md" target="_blank" rel="noopener">Full written assessment ' + arrow + '</a><a href="./data/provenance.json" target="_blank" rel="noopener">Snapshot and provenance ' + arrow + '</a></div></div></details></section>';
 }
 
 function compareView() {
@@ -78,9 +76,11 @@ function render() {
   $('workflows-link').toggleAttribute('aria-current',['loop','bench','evidence'].includes(state.view));
   if (['loop','bench','evidence'].includes(state.view)) $('workflows-link').setAttribute('aria-current','page');
   document.title = 'XF — ' + (state.view === 'compare' ? 'Compare workflows' : state.view === 'about' ? 'Research scope' : w.name);
-  renderSidebar();
+  renderWorkflowMenu();
+  $('workflow-name').textContent = w.name;
+  if (previous) { $('workflow-menu').open = false; $('more-menu').open = false; }
   $('main').innerHTML = state.view === 'compare' ? compareView() : state.view === 'about' ? aboutView() : workflowHeader(w) + (state.view === 'bench' ? benchView(w) : state.view === 'evidence' ? evidenceView(w) : loopView(w));
-  $('main').insertAdjacentHTML('beforeend','<footer class="content-footer"><span>XF / Manufacturing research</span><span><a href="#view=about">Research scope</a> · <a href="https://daniellayeghi.github.io/xf/" target="_blank" rel="noopener">Product graph ↗</a></span><span>Reviewed 4 Oct 2026 · Proposed benches</span></footer>');
+  $('main').insertAdjacentHTML('beforeend','<footer class="content-footer"><span>Research reviewed 4 October 2026</span><a href="#view=about">Scope & provenance</a></footer>');
   $('announcer').textContent = state.view === 'compare' ? 'Comparing six experimental workflows' : state.view === 'about' ? 'Research scope and evidence standards' : w.name + ', ' + state.view + (state.view === 'loop' ? ', stage ' + (state.step + 1) : '');
   if (state.source) requestAnimationFrame(() => $('source-' + state.source)?.scrollIntoView({block:'center',behavior:'instant'}));
   else if (previous && (previous.workflow !== state.workflow || ['compare','about'].includes(state.view) && previous.view !== state.view)) window.scrollTo({top:0,behavior:'instant'});
@@ -88,21 +88,23 @@ function render() {
   if (previous?.view === 'loop' && state.view === 'loop' && previous.workflow === state.workflow && previous.step !== state.step) {
     const selected = document.querySelector('.step.selected');
     selected?.focus({preventScroll:true});
-    document.querySelector('.loop-section')?.scrollIntoView({block:'start',behavior:'instant'});
+    if (matchMedia('(max-width: 700px)').matches) document.querySelector('.loop-section')?.scrollIntoView({block:'start',behavior:'instant'});
     if (matchMedia('(max-width: 700px)').matches) selected?.scrollIntoView({block:'nearest',inline:'center',behavior:'instant'});
   }
 }
 
 document.addEventListener('click',event => {
+  if (!event.target.closest('.workflow-switcher') || event.target.closest('.workflow-item')) $('workflow-menu').open = false;
+  if (!event.target.closest('.more-menu') || event.target.closest('.more-menu a')) $('more-menu').open = false;
   if (event.target.closest('.skip-link')) { event.preventDefault(); $('main').focus(); return; }
   const step = event.target.closest('[data-step]');
   if (step && !step.disabled) location.hash = link(state,{step:Number(step.dataset.step)});
-  if (event.target.closest('[data-clear-search]')) { $('search').value = ''; renderSidebar(); $('search').focus(); }
+  if (event.target.closest('[data-clear-search]')) { $('search').value = ''; renderWorkflowMenu(); $('search').focus(); }
 });
-$('search').addEventListener('input',() => { if (workflows) { renderSidebar(); $('announcer').textContent = $('result-count').textContent + ' matching workflows'; } });
+$('search').addEventListener('input',() => { if (workflows) { renderWorkflowMenu(); $('announcer').textContent = $('result-count').textContent + ' matching workflows'; } });
 document.addEventListener('keydown',event => {
-  if (event.key === '/' && !['INPUT','TEXTAREA','SELECT'].includes(event.target.tagName)) { event.preventDefault(); $('search').focus(); }
-  if (event.key === 'Escape' && event.target === $('search')) { $('search').value = ''; renderSidebar(); }
+  if (event.key === '/' && !['INPUT','TEXTAREA','SELECT'].includes(event.target.tagName)) { event.preventDefault(); $('workflow-menu').open = true; $('search').focus(); }
+  if (event.key === 'Escape' && event.target === $('search')) { $('search').value = ''; renderWorkflowMenu(); $('workflow-menu').open = false; }
   if (event.target.matches('.step') && ['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) {
     event.preventDefault(); const w = workflows.find(x => x.id === state.workflow);
     const next = event.key === 'Home' ? 0 : event.key === 'End' ? w.steps.length - 1 : Math.max(0,Math.min(w.steps.length - 1,state.step + (event.key === 'ArrowRight' ? 1 : -1)));

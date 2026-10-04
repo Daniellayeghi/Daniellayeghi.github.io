@@ -14,17 +14,27 @@
   <a class="skip-link" href="#main">Skip to workflow</a>
   <header class="topbar">
     <a class="brand" href="#workflow=thermal&view=loop"><span class="brand-mark">XF</span><span>Engineering loops</span></a>
-    <nav aria-label="Main navigation"><a id="workflows-link" href="#workflow=thermal&view=loop">Workflows</a><a id="compare-link" href="#view=compare">Compare</a><a class="graph-link" href="https://daniellayeghi.github.io/xf/" target="_blank" rel="noopener">Product graph <span aria-hidden="true">↗</span></a></nav>
+    <div class="header-controls">
+      <details class="workflow-switcher" id="workflow-menu">
+        <summary><span id="workflow-name">Choose a workflow</span><span aria-hidden="true">⌄</span></summary>
+        <div class="workflow-menu-content">
+          <label class="search-box"><input type="search" id="search" placeholder="Search workflows or measurements…" aria-label="Search workflows, measurements and equipment" autocomplete="off"></label>
+          <div class="menu-caption"><span>Workflows</span><span id="result-count">6</span></div>
+          <nav id="workflow-list" class="workflow-list" aria-label="Choose a workflow"></nav>
+        </div>
+      </details>
+      <details class="more-menu" id="more-menu">
+        <summary>More <span aria-hidden="true">⌄</span></summary>
+        <nav aria-label="More research views">
+          <a id="workflows-link" href="#workflow=thermal&view=loop">Current loop</a>
+          <a id="compare-link" href="#view=compare">Compare workflows</a>
+          <a href="#view=about">Research scope</a>
+          <a href="https://daniellayeghi.github.io/xf/" target="_blank" rel="noopener">Product graph ↗</a>
+        </nav>
+      </details>
+    </div>
   </header>
-  <div class="shell">
-    <aside class="sidebar" aria-label="Experimental workflows">
-      <div class="sidebar-heading"><span class="eyebrow">Explore the work</span><span id="result-count">6</span></div>
-      <label class="search-box"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input type="search" id="search" placeholder="Search the evidence…" aria-label="Search workflows, measurements and equipment" autocomplete="off"><kbd>/</kbd></label>
-      <div id="workflow-list" class="workflow-list"></div>
-      <div class="sidebar-foot"><span class="eyebrow">Research snapshot</span><p>4 October 2026</p><p>Six candidates drawn from the manufacturing research and follow-up review.</p><a href="#view=about">Scope &amp; evidence standards <span aria-hidden="true">↗</span></a></div>
-    </aside>
-    <main id="main" tabindex="-1"><div class="loading" role="status">Loading the research…</div></main>
-  </div>
+  <main id="main" tabindex="-1"><div class="loading" role="status">Loading the research…</div></main>
   <div id="announcer" class="sr-only" aria-live="polite"></div>
   <noscript><p class="error">Enable JavaScript to explore the workflows. The <a href="./data/review.md">written evidence review</a> is also available.</p></noscript>
 </body>
