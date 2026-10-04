@@ -1,0 +1,786 @@
+{
+  "status": "closed_with_researched_gaps",
+  "not_a_merged_answer": true,
+  "items": [
+    {
+      "id": "D01",
+      "type": "ranking_and_scope",
+      "question": "Thermal contact/hydraulic ambiguity versus internal converter transient margin versus other first-pilot candidates: what concrete evidence justifies preference, under what owner-access assumptions, and what reverses it?",
+      "origins": [
+        "A-C1",
+        "A-C3",
+        "CB01",
+        "CB02",
+        "C1",
+        "C2"
+      ],
+      "status": "resolved_with_researched_gaps",
+      "required_disposition": "Address independently in full revised answer; retain/revise/reject/research gap with evidence and change rationale.",
+      "observed_positions": {
+        "A": "thermal first; fan observed-loop comparator; shelf transient conditional",
+        "B": "internal AC/DC converter bulk-capacitance/load-feed-forward first; thermal second",
+        "C": "thermal first; AC recovery/re-rush converter second"
+      },
+      "revision_dispositions": {
+        "A2": {
+          "id": "D01",
+          "disposition": "revise",
+          "decision": "Thermal interface lifecycle first conditionally; internal converter margin second; optical post-stress serious follow-up finalist. Fan/HBM/CMP have stronger directly described return edges than the exact thermal synthesis.",
+          "reason": "Thermal combines aging/contact ambiguity and meaningful physical remount/material/surface interventions. Converter has tighter single-owner controls. Preference requires real failed cases and representative product access, not vote count.",
+          "evidence_ids": [
+            "A2-E01",
+            "A2-E04",
+            "A2-E05",
+            "A2-E09"
+          ],
+          "remaining_gap_ids": [
+            "A-G1",
+            "A-G3",
+            "A-G4",
+            "A-G5",
+            "A2-G01"
+          ],
+          "status": "disposed_for_this_revision; empirical gaps and cross-review comparison remain"
+        },
+        "B2": {
+          "id": "D01",
+          "disposition": "retain/revise",
+          "reason": "Thermal post-cycle margin is conditional lead; optical stronger observed post-stress return, internal converter sharper source-specific electrical mechanism. Preference rests on bounded local interventions and coupled thermal/material/mechanical decision, not vote. Owner access can reverse it.",
+          "evidence_ids": [
+            "R2B-E01",
+            "R2B-E03",
+            "R2B-E05",
+            "R2B-E06"
+          ],
+          "status": "addressed_with_explicit_remaining_gaps",
+          "source_of_discrepancy": "discrepancies.json",
+          "decision_provenance": "independent replacement peer-informed reviewer B2; not a vote"
+        },
+        "C2": {
+          "id": "D01",
+          "disposition": "retain",
+          "reason": "Thermal remains conditional first, now interface durability; internal converter is the narrow power alternative. Optical has stronger observed stress-return evidence but a less accessible public recipe boundary. None has proven customer access. Promote any alternative with a real unresolved case and owned variables.",
+          "evidence_ids": [
+            "C2-E-THERMAL-PROPOSAL",
+            "C2-E-POWER-INTERNAL",
+            "C2-E-OPTICAL-RETURN"
+          ],
+          "gap_ids": [
+            "G-ACCESS",
+            "G-BASELINE",
+            "G-ECON"
+          ],
+          "substantive_status": "addressed_in_this_revision; cohort convergence not asserted"
+        }
+      },
+      "coordinator_decision": "Conditional thermal-interface durability lead accepted as a pilot-selection judgment. Internal converter is the preferred narrow electrical entry; optical post-stress development has stronger directly reported failed-build return. No universal commercial ordering established.",
+      "remaining_dissent_or_unknown": "Alternative priority can reverse with owner cases/access; no material factual dissent.",
+      "resolved_at": "2026-10-04T00:23:44.358828+00:00"
+    },
+    {
+      "id": "D02",
+      "type": "return_path_evidence",
+      "question": "For each finalist distinguish an observed development return, separate verified constituent methods, and our proposed synthesis. Existing successful designs do not establish current unmet customer failures.",
+      "origins": [
+        "all_candidates"
+      ],
+      "status": "resolved",
+      "required_disposition": "Address independently in full revised answer; retain/revise/reject/research gap with evidence and change rationale.",
+      "revision_dispositions": {
+        "A2": {
+          "id": "D02",
+          "disposition": "split",
+          "decision": "Separate observed development return, documented constituents and proposed system policy for every candidate.",
+          "reason": "Fan, HBM, CMP and IBM optics report return edges; thermal constituent methods/provider development and converter successful reference do not prove the specific proposed cause-selection policy or current unmet failures. Each candidate now records that boundary.",
+          "evidence_ids": [
+            "A-E5",
+            "A2-E06",
+            "A2-E07",
+            "A2-E09",
+            "A2-E11",
+            "A2-E13"
+          ],
+          "remaining_gap_ids": [
+            "A-G1",
+            "UB-G04",
+            "A2-G02"
+          ],
+          "status": "disposed_for_this_revision; empirical gaps and cross-review comparison remain"
+        },
+        "B2": {
+          "id": "D02",
+          "disposition": "split",
+          "reason": "Observed fan/HBM/CMP/IBM return, independently verified constituent methods and proposed orchestration are separated in every candidate. Successful references do not establish current unmet failure.",
+          "evidence_ids": [
+            "UB-E06",
+            "R2B-E06",
+            "R2B-E10",
+            "R2B-E11"
+          ],
+          "status": "addressed",
+          "source_of_discrepancy": "discrepancies.json",
+          "decision_provenance": "independent replacement peer-informed reviewer B2; not a vote"
+        },
+        "C2": {
+          "id": "D02",
+          "disposition": "split",
+          "reason": "Observed general returns: fan, HBM, CMP and IBM optics. Constituent methods/successful design: thermal methods and Infineon power. Proposed synthesis: each integrated LLM policy. All current owner failures remain unverified.",
+          "evidence_ids": [
+            "E-FAN-LOOP",
+            "C2-E-HBM",
+            "C2-E-CMP",
+            "C2-E-OPTICAL-RETURN",
+            "C2-E-POWER-INTERNAL"
+          ],
+          "gap_ids": [
+            "G-ACCESS"
+          ],
+          "substantive_status": "addressed_in_this_revision; cohort convergence not asserted"
+        }
+      },
+      "coordinator_decision": "Observed fan/HBM/CMP/IBM development returns are distinct from thermal constituent methods and successful converter reference design; all integrated LLM policies remain proposals.",
+      "remaining_dissent_or_unknown": "",
+      "resolved_at": "2026-10-04T00:23:44.358828+00:00"
+    },
+    {
+      "id": "D03",
+      "type": "specific_new_thermal_challenge",
+      "question": "Does GPU package/TIM/retention/coldplate development with nonuniform load and cycling create a more specific case than generic cooling optimization? Evaluate the mechanism evidence and test-vehicle transfer, including counterevidence. Do not promote automatically.",
+      "origins": [
+        "A-C1",
+        "CB02",
+        "ROOT-S04",
+        "ROOT-S05",
+        "ROOT-S06",
+        "ROOT-S07",
+        "ROOT-S12",
+        "ROOT-S13"
+      ],
+      "status": "resolved_with_researched_gaps",
+      "required_disposition": "Address independently in full revised answer; retain/revise/reject/research gap with evidence and change rationale.",
+      "revision_dispositions": {
+        "A2": {
+          "id": "D03",
+          "disposition": "revise",
+          "decision": "Promote the specificity of TIM/retention/surface lifetime validation, not a particular material or package architecture.",
+          "reason": "Purdue controlled surrogate establishes geometry-dependent grease degradation; IEEE article motivates coupled validation but secondary numeric claims are not adopted. Corintis supports possible equipment, not guaranteed chip equivalence. OCP explicitly ties loading and mounting to processor requirements.",
+          "evidence_ids": [
+            "A2-E01",
+            "A2-E02",
+            "A2-E03",
+            "A2-E04",
+            "A2-E11"
+          ],
+          "remaining_gap_ids": [
+            "A2-G01",
+            "A-G2",
+            "A-G5"
+          ],
+          "status": "disposed_for_this_revision; empirical gaps and cross-review comparison remain"
+        },
+        "B2": {
+          "id": "D03",
+          "disposition": "retain/revise",
+          "reason": "Warpage and cycling sharpen a concrete thermal question. Purdue is an illustrative grease surrogate; IEEE vendor strategy supplies no accepted numeric GPU recipe. Current emulator capability does not prove transfer or identifiability.",
+          "evidence_ids": [
+            "R2B-E01",
+            "R2B-E02",
+            "R2B-E03",
+            "R2B-E04"
+          ],
+          "status": "addressed_with_explicit_remaining_gaps",
+          "source_of_discrepancy": "discrepancies.json",
+          "decision_provenance": "independent replacement peer-informed reviewer B2; not a vote"
+        },
+        "C2": {
+          "id": "D03",
+          "disposition": "add",
+          "reason": "Replace generic thermal optimization with initial-versus-aged interface margin under curvature/nonuniform load. Keep contact/fluid controls. Counterevidence prevents monotonic clamp/flatness claims; metal TIM and grease mechanisms cannot be conflated.",
+          "evidence_ids": [
+            "C2-E-TIM",
+            "C2-E-PURDUE",
+            "C2-E-TTV",
+            "C2-E-THERMAL-PROPOSAL"
+          ],
+          "gap_ids": [
+            "G-COLD-TRANSFER",
+            "C2-G-AGING"
+          ],
+          "substantive_status": "addressed_in_this_revision; cohort convergence not asserted"
+        }
+      },
+      "coordinator_decision": "Narrow to initial-versus-aged thermal margin across material, mounting and surface geometry. Purdue grease/lens surrogate establishes mechanism only. No universal pressure/flatness prescription, metal-TIM equivalence or product transfer claimed.",
+      "remaining_dissent_or_unknown": "Actual architecture, causal identifiability and test-vehicle transfer unresolved.",
+      "resolved_at": "2026-10-04T00:23:44.358828+00:00"
+    },
+    {
+      "id": "D04",
+      "type": "preserved_materials_alternatives",
+      "question": "Evaluate HBM encapsulant and CMP pad/material development as concrete alternatives; distinguish public detail/access gaps from intrinsic lack of opportunity.",
+      "origins": [
+        "A-C5",
+        "CB04",
+        "ROOT-S01",
+        "ROOT-S02"
+      ],
+      "status": "resolved_with_researched_gaps",
+      "required_disposition": "Address independently in full revised answer; retain/revise/reject/research gap with evidence and change rationale.",
+      "revision_dispositions": {
+        "A2": {
+          "id": "D04",
+          "disposition": "retain",
+          "decision": "HBM remains partner-dependent finalist; CMP strong materials alternative with fresh original article text recovered.",
+          "reason": "Both have documented material-change returns. Neither is excluded because it has existing tools or little public recipe detail. Need owner authority, representative samples and actual failure-analysis/qualification outcomes; access could reverse priority.",
+          "evidence_ids": [
+            "A2-E06",
+            "A2-E07"
+          ],
+          "remaining_gap_ids": [
+            "UB-G06",
+            "UB-G07",
+            "A-G8"
+          ],
+          "status": "disposed_for_this_revision; empirical gaps and cross-review comparison remain"
+        },
+        "B2": {
+          "id": "D04",
+          "disposition": "retain",
+          "reason": "HBM and CMP both have documented physical development returns. CMP source-access failure is now resolved. Proprietary recipe/qualification and owner access are gaps; no claim of intrinsic weak opportunity.",
+          "evidence_ids": [
+            "R2B-E10",
+            "R2B-E11"
+          ],
+          "status": "addressed_with_explicit_remaining_gaps",
+          "source_of_discrepancy": "discrepancies.json",
+          "decision_provenance": "independent replacement peer-informed reviewer B2; not a vote"
+        },
+        "C2": {
+          "id": "D04",
+          "disposition": "retain",
+          "reason": "HBM and CMP are real material-change alternatives. Reverify original sources; correct A-D-06 to risk assessment and use A-D-01…05 for the broad return. Penalize missing executable access/recipe packet, not material-domain opportunity or mature equipment.",
+          "evidence_ids": [
+            "C2-E-HBM",
+            "C2-E-CMP"
+          ],
+          "gap_ids": [
+            "G-HBM",
+            "G-ACCESS",
+            "G-OTHER"
+          ],
+          "substantive_status": "addressed_in_this_revision; cohort convergence not asserted"
+        }
+      },
+      "coordinator_decision": "Retain HBM and CMP as serious partner-dependent materials alternatives. HBM broad return uses A-D-01 through A-D-05; A-D-06 is preliminary risk assessment. First four detailed implementation records remain gaps. Original manufacturer text supports the coarse loop.",
+      "remaining_dissent_or_unknown": "Recipes, metrology, access and current cases unknown.",
+      "resolved_at": "2026-10-04T00:23:44.358828+00:00"
+    },
+    {
+      "id": "D05",
+      "type": "prior_scope_and_missing_alternatives",
+      "question": "Screen high-speed electrical link/fixture model-correlation and optical post-bond/post-stress process development using allowed original sources. They may be follow-up leads outside accepted graph, not installed-product facts. Decide whether either beats the finalists on specific experiments and access.",
+      "origins": [
+        "ROOT-S03",
+        "ROOT-S08",
+        "ROOT-S09",
+        "inputs/previous-primary-source-catalog.json"
+      ],
+      "status": "resolved_with_researched_gaps",
+      "required_disposition": "Address independently in full revised answer; retain/revise/reject/research gap with evidence and change rationale.",
+      "shared_omission": "No blind finalist develops high-speed electrical fixture correlation or optical post-stress package recipe in detail; screen explicitly, without treating them as accepted target routes.",
+      "revision_dispositions": {
+        "A2": {
+          "id": "D05",
+          "disposition": "add",
+          "decision": "Add optical post-stress finalist and distinct high-speed fixture/model-correlation lead outside accepted target routes.",
+          "reason": "IBM supplies concrete failed-stress -> materials/process/structure change -> successful retest. Samtec supplies empirical fixture characterization and modeled channel analysis, not an autonomous defect redesign return. Precise recipes/access still determine priority; no photonics preference assumed.",
+          "evidence_ids": [
+            "A2-E09",
+            "A2-E10",
+            "A2-E12",
+            "A2-E13"
+          ],
+          "remaining_gap_ids": [
+            "A2-G02",
+            "A2-G03"
+          ],
+          "status": "disposed_for_this_revision; empirical gaps and cross-review comparison remain"
+        },
+        "B2": {
+          "id": "D05",
+          "disposition": "add/split",
+          "reason": "Optical post-stress recipe is a substantive top-five source follow-up; high-speed fixture correlation is a detailed retained alternative. Neither is an accepted target route; NVLink cartridge cannot be silently relabeled either.",
+          "evidence_ids": [
+            "R2B-E06",
+            "R2B-E07",
+            "R2B-E08",
+            "R2B-E09"
+          ],
+          "status": "addressed_with_explicit_remaining_gaps",
+          "source_of_discrepancy": "discrepancies.json",
+          "decision_provenance": "independent replacement peer-informed reviewer B2; not a vote"
+        },
+        "C2": {
+          "id": "D05",
+          "disposition": "add",
+          "reason": "Add full optical post-stress candidate and electrical fixture-correlation alternative. Both are new follow-up sources, never accepted NVLink/GB300 routes. Optical documents stress→change→passing return; Samtec documents fixture design/measurement, not our diagnostic policy. Neither beats thermal automatically.",
+          "evidence_ids": [
+            "C2-E-OPTICAL-RETURN",
+            "C2-E-FICONTEC",
+            "C2-E-HIGHSPEED"
+          ],
+          "gap_ids": [
+            "C2-G-OPTICAL",
+            "C2-G-HIGHSPEED"
+          ],
+          "substantive_status": "addressed_in_this_revision; cohort convergence not asserted"
+        }
+      },
+      "coordinator_decision": "Optical post-stress recipe work and high-speed electrical fixture/model correlation explicitly added as source follow-ups outside accepted target manufacturing routes. IBM bundled changes do not isolate one causal cure. Samtec fixture measurements do not demonstrate an autonomous diagnostic redesign loop.",
+      "remaining_dissent_or_unknown": "Customer-specific samples and editable process/geometry access remain unknown.",
+      "resolved_at": "2026-10-04T00:23:44.358828+00:00"
+    },
+    {
+      "id": "D06",
+      "type": "automation_baseline_and_increment",
+      "question": "Identify existing instruments, optimizers and integrated development services as potential infrastructure and fair baselines, not automatic disqualifiers. What falsifiable additional decision capability would the LLM integration provide?",
+      "origins": [
+        "all_candidates",
+        "ROOT-S03",
+        "ROOT-S04",
+        "ROOT-S10",
+        "ROOT-S11",
+        "ROOT-S12"
+      ],
+      "status": "resolved_with_researched_gaps",
+      "required_disposition": "Address independently in full revised answer; retain/revise/reject/research gap with evidence and change rationale.",
+      "revision_dispositions": {
+        "A2": {
+          "id": "D06",
+          "disposition": "revise",
+          "decision": "Use existing integrated equipment/services as infrastructure and strongest fair baseline.",
+          "reason": "Compare expert+existing equipment, integrated deterministic/statistical orchestration and identical rig plus LLM hypothesis/experiment layer. LLM must select better cause-discriminating interventions, not merely automate data capture or generate reports.",
+          "evidence_ids": [
+            "A2-E03",
+            "A2-E08",
+            "A2-E10",
+            "A-E5",
+            "UB-E03"
+          ],
+          "remaining_gap_ids": [
+            "A-G3",
+            "UB-G02"
+          ],
+          "status": "disposed_for_this_revision; empirical gaps and cross-review comparison remain"
+        },
+        "B2": {
+          "id": "D06",
+          "disposition": "retain",
+          "reason": "Reuse existing integrated tools/services. Test LLM ability to choose a correct experiment family or identify insufficient evidence against identical instrumentation and expert/DOE baseline; no value from tool existence or report production alone.",
+          "evidence_ids": [
+            "R2B-E12",
+            "UB-E03",
+            "UB-E06",
+            "R2B-E13"
+          ],
+          "status": "addressed_with_explicit_remaining_gaps",
+          "source_of_discrepancy": "discrepancies.json",
+          "decision_provenance": "independent replacement peer-informed reviewer B2; not a vote"
+        },
+        "C2": {
+          "id": "D06",
+          "disposition": "retain",
+          "reason": "Existing rigs, service providers, optimizers, alignment and recipe systems are infrastructure and fair baselines. Falsify LLM increment against experts plus the same integrated rig/DOE by verified fixes, false fixes, avoidable experiments and active effort.",
+          "evidence_ids": [
+            "C2-E-TTV",
+            "C2-E-FICONTEC",
+            "E-FAN-AUTOMATION",
+            "E-POWER-ATS"
+          ],
+          "gap_ids": [
+            "G-BASELINE"
+          ],
+          "substantive_status": "addressed_in_this_revision; cohort convergence not asserted"
+        }
+      },
+      "coordinator_decision": "Existing equipment, numerical optimization and development services are infrastructure and comparison baselines. The proposed LLM increment concerns evidence interpretation and experiment choice; it remains unverified.",
+      "remaining_dissent_or_unknown": "Matched baseline comparison required.",
+      "resolved_at": "2026-10-04T00:23:44.358828+00:00"
+    },
+    {
+      "id": "D07",
+      "type": "proxy_and_causal_verification",
+      "question": "Require a verified engineering change: initial TIM resistance versus aging; SPI volume versus completed joint; simulated channel versus built sample; fan printed versus molded; fixture artifact versus DUT defect; controller trace versus source/load fidelity. What validates causal and product transfer claims?",
+      "origins": [
+        "all_candidates"
+      ],
+      "status": "resolved_with_researched_gaps",
+      "required_disposition": "Address independently in full revised answer; retain/revise/reject/research gap with evidence and change rationale.",
+      "revision_dispositions": {
+        "A2": {
+          "id": "D07",
+          "disposition": "revise",
+          "decision": "Require causal interventions, measurement controls and independent product-representative verification for every candidate.",
+          "reason": "Thermal initial-to-aged and TTV-to-product; SPI-to-joint; printed-to-molded fan; measured channel-to-COM-to-actual receiver; optical prebond/time-zero-to-poststress; converter commanded-to-real source/load waveform must not be conflated. Preserve interfaces before destructive remount/failure analysis.",
+          "evidence_ids": [
+            "A2-E01",
+            "A2-E04",
+            "A2-E05",
+            "A2-E09",
+            "A2-E12",
+            "A-E7"
+          ],
+          "remaining_gap_ids": [
+            "A2-G01",
+            "A2-G03",
+            "A-G7",
+            "UB-G06"
+          ],
+          "status": "disposed_for_this_revision; empirical gaps and cross-review comparison remain"
+        },
+        "B2": {
+          "id": "D07",
+          "disposition": "retain",
+          "reason": "Initial resistance must survive cycling; SPI deposit must produce reliable joints; simulated channels need built samples; printed fans need production construction; fixture effects need independent calibration; load command needs measured waveform fidelity. Holdouts, independent specimens and product transfer are required.",
+          "evidence_ids": [
+            "UB-E09",
+            "R2B-E01",
+            "R2B-E05",
+            "R2B-E08"
+          ],
+          "status": "addressed",
+          "source_of_discrepancy": "discrepancies.json",
+          "decision_provenance": "independent replacement peer-informed reviewer B2; not a vote"
+        },
+        "C2": {
+          "id": "D07",
+          "disposition": "split",
+          "reason": "Treat thermal initial/aged and TTV/product separately; require downstream joint evidence after SPI, molded confirmation after printed fan, built/device validation after simulation/COM, fixture artifact controls, and actual source/load fidelity. No proxy-only solution release.",
+          "evidence_ids": [
+            "C2-E-PURDUE",
+            "E-PASTE-LIMIT",
+            "E-FAN-LOOP",
+            "C2-E-HIGHSPEED",
+            "C2-E-POWER-INTERNAL"
+          ],
+          "gap_ids": [
+            "G-COLD-TRANSFER",
+            "G-PASTE",
+            "C2-G-POWER",
+            "C2-G-HIGHSPEED"
+          ],
+          "substantive_status": "addressed_in_this_revision; cohort convergence not asserted"
+        }
+      },
+      "coordinator_decision": "Require cause-discriminating controls and final product outcomes, not proxy-only acceptance. Preserve aged interfaces before remounting, use sister specimens for destructive inspection and verify independent builds and withheld conditions.",
+      "remaining_dissent_or_unknown": "Product-specific procedures and limits require the owner.",
+      "resolved_at": "2026-10-04T00:23:44.358828+00:00"
+    },
+    {
+      "id": "D08",
+      "type": "unresolved_economics_and_manipulation",
+      "question": "Keep modernity/consequence separate from customer budget, avoided iteration cost and market proof. Explain meaningful handling and external fabrication/stress waits. Learned manipulation is optional; no invented percentage split or speed claim.",
+      "origins": [
+        "all_candidates"
+      ],
+      "status": "resolved_with_researched_gaps",
+      "required_disposition": "Address independently in full revised answer; retain/revise/reject/research gap with evidence and change rationale.",
+      "revision_dispositions": {
+        "A2": {
+          "id": "D08",
+          "disposition": "retain",
+          "decision": "No invented economics, cycle times or robot percentages; meaningful automation and physical waits are specified.",
+          "reason": "Fixtures, deterministic instruments and precision stages improve repeatability/traceability; optional learned handling needs its own task evidence. Prototype fabrication, stabilization, reflow and reliability exposure remain. Measure whether fewer wrong experiments reduce critical delay, not assume expensive hardware implies a market.",
+          "evidence_ids": [
+            "A-E13",
+            "UB-E11"
+          ],
+          "remaining_gap_ids": [
+            "A-G4",
+            "A-G10",
+            "UB-G03"
+          ],
+          "status": "disposed_for_this_revision; empirical gaps and cross-review comparison remain"
+        },
+        "B2": {
+          "id": "D08",
+          "disposition": "retain unresolved",
+          "reason": "No prices, payback, customer recurrence or saved-cycle estimates. Fixturing/precision stages and conventional carrier or plate transfer are useful; learned handling optional. Fabrication, equilibrium and reliability waits remain explicit.",
+          "evidence_ids": [
+            "R2B-E13",
+            "R2B-E06",
+            "R2B-E12"
+          ],
+          "status": "addressed_with_explicit_remaining_gaps",
+          "source_of_discrepancy": "discrepancies.json",
+          "decision_provenance": "independent replacement peer-informed reviewer B2; not a vote"
+        },
+        "C2": {
+          "id": "D08",
+          "disposition": "retain",
+          "reason": "Modernity and engineering consequence support relevance, not recurrence, budget or avoided cost. Fixtures/precision stages/conventional robots supply useful handling; learned manipulation optional. Preserve fabrication, cure, reflow, cycling and certification waits without invented percentages or speeds.",
+          "evidence_ids": [
+            "E-LLM-GAP",
+            "C2-E-OPTICAL-RETURN",
+            "C2-E-CMP"
+          ],
+          "gap_ids": [
+            "G-ECON",
+            "G-ACCESS"
+          ],
+          "substantive_status": "addressed_in_this_revision; cohort convergence not asserted"
+        }
+      },
+      "coordinator_decision": "No invented prices, ROI, cycle savings or automation percentages. Conventional precision automation supplies repeatability; learned manipulation remains optional. Fabrication and reliability waits remain physical.",
+      "remaining_dissent_or_unknown": "Recurrence, budget, avoided cost and critical-path effect unmeasured.",
+      "resolved_at": "2026-10-04T00:23:44.358828+00:00"
+    },
+    {
+      "id": "D09",
+      "type": "coverage_and_source_integrity",
+      "question": "Confirm coverage and no lost minorities, source dependence, publication/applicability/retrieval limits. Exact target gaps and five pending proposals stay unaccepted. Source expansion beyond DB must be visible.",
+      "origins": [
+        "all_submissions",
+        "ROOT additional-evidence retrieval_limits"
+      ],
+      "status": "resolved",
+      "required_disposition": "Address independently in full revised answer; retain/revise/reject/research gap with evidence and change rationale.",
+      "revision_dispositions": {
+        "A2": {
+          "id": "D09",
+          "disposition": "retain",
+          "decision": "All18-study coverage and full traces retained as inherited;18 nominations accounted for; source expansion and retrieval limits explicit.",
+          "reason": "A2 is a replacement peer reviewer, not an original blind researcher. Personally reverified listed source passages/pixels only. Duplicate organizations/documents are not independent evidence. Five pending proposals, exact selected-product gaps and EEPROM membership remain unaccepted.",
+          "evidence_ids": [
+            "E-FRONTIER"
+          ],
+          "remaining_gap_ids": [
+            "A-G5",
+            "G-OTHER"
+          ],
+          "status": "disposed_for_this_revision; empirical gaps and cross-review comparison remain"
+        },
+        "B2": {
+          "id": "D09",
+          "disposition": "retain",
+          "reason": "All18 inherited study screens,180 graph/queue component screen and all5 unaccepted pending jobs retained. Every nomination has a disposition. Fresh B2 work targeted; inherited reading/visual claims are attributed and shared sources deduplicated.",
+          "evidence_ids": [
+            "R2B-E13"
+          ],
+          "status": "addressed",
+          "source_of_discrepancy": "discrepancies.json",
+          "decision_provenance": "independent replacement peer-informed reviewer B2; not a vote"
+        },
+        "C2": {
+          "id": "D09",
+          "disposition": "retain",
+          "reason": "Inherited 18-study/1695-record and 180-component screen is explicit. Every nomination and five unaccepted proposals preserved. Source aliases deduplicated, partial reading and personal-versus-inherited inspection labeled; no independent corroboration from shared sources.",
+          "evidence_ids": [
+            "E-FRONTIER"
+          ],
+          "gap_ids": [
+            "G-OTHER"
+          ],
+          "substantive_status": "addressed_in_this_revision; cohort convergence not asserted"
+        }
+      },
+      "coordinator_decision": "All18 original study screens,1695 indexed records,180 components,18 nomination families and5 unaccepted pending jobs accounted for. Replacement peer work and personal/inherited reading are explicit. Shared documents are not independent corroboration.",
+      "remaining_dissent_or_unknown": "",
+      "resolved_at": "2026-10-04T00:23:44.358828+00:00"
+    },
+    {
+      "id": "D10",
+      "type": "distinct_power_experiments",
+      "status": "resolved",
+      "question": "Separate A shelf current-sharing/distribution transient, B internal bulk-capacitance/load-feed-forward, and C AC-drop/recovery/re-rush candidates. They have different owner/editable variables. Do not conflate these or relabel AC/DC evidence as800V DC/DC. Which is the most concrete narrow entry?",
+      "origins": [
+        "A-C3",
+        "CB01",
+        "C2",
+        "ROOT-S14"
+      ],
+      "required_disposition": "Explicit independent disposition with source-grounded scope.",
+      "revision_dispositions": {
+        "A2": {
+          "id": "D10",
+          "disposition": "split",
+          "decision": "A-C3 shelf sharing/distribution, CB01 internal bulk/feed-forward and C2 AC dropout/recovery/re-rush remain separate; CB01 preferred narrow power entry.",
+          "reason": "Owners/editable controls differ. Infineon pp25–26 supports internal feed-forward mechanism and pp49–53 separate stimuli/results; Chroma shelf capability does not establish internal firmware rights. Neither source demonstrates800V DC/DC. Figure62 percentage wording is inconsistent and not used as an experiment recipe.",
+          "evidence_ids": [
+            "A2-E05",
+            "A-E6",
+            "UB-E03"
+          ],
+          "remaining_gap_ids": [
+            "A-G6",
+            "UB-G01",
+            "UB-G04"
+          ],
+          "status": "disposed_for_this_revision; empirical gaps and cross-review comparison remain"
+        },
+        "B2": {
+          "id": "D10",
+          "disposition": "split",
+          "reason": "Internal AC/DC feed-forward/load-step, AC dropout/baby-boost recovery and shelf current-sharing/bus-path faults are distinct. CB01 is narrowest power entry because p26 ties cause/control and p49 measurements; published success is not an unresolved owner defect. No800V DC/DC inference.",
+          "evidence_ids": [
+            "R2B-E05",
+            "UB-E03"
+          ],
+          "status": "addressed",
+          "source_of_discrepancy": "discrepancies.json",
+          "decision_provenance": "independent replacement peer-informed reviewer B2; not a vote"
+        },
+        "C2": {
+          "id": "D10",
+          "disposition": "split",
+          "reason": "C6 internal capacitance/load-feed-forward requires converter design/control owner; C2 AC recovery requires baby-boost/re-rush/line-return authority; C10 shelf sharing/bus path spans module/shelf integration. Prefer C6 as narrow power entry due to §3.1.4 mechanism plus §4.2.1 measurements. Never relabel AC/DC evidence as 800V DC/DC.",
+          "evidence_ids": [
+            "C2-E-POWER-INTERNAL",
+            "C2-E-POWER-SPLIT"
+          ],
+          "gap_ids": [
+            "C2-G-POWER",
+            "G-ACCESS"
+          ],
+          "substantive_status": "addressed_in_this_revision; cohort convergence not asserted"
+        }
+      },
+      "coordinator_decision": "Keep internal AC/DC load-step/feed-forward, AC dropout/recovery/re-rush and shelf sharing/distribution as three distinct experiments with different owner/control boundaries. Do not transfer AC/DC evidence to800V DC/DC.",
+      "remaining_dissent_or_unknown": "",
+      "resolved_at": "2026-10-04T00:23:44.358828+00:00"
+    }
+  ],
+  "created_at": "2026-10-03T23:56:41.738020+00:00",
+  "all_blind_submissions_frozen": true,
+  "round": 1,
+  "nomination_inventory": [
+    {
+      "family": "thermal contact / mounting / plate / local loop",
+      "origins": [
+        "A-C1",
+        "CB02",
+        "C1"
+      ]
+    },
+    {
+      "family": "fan geometry / acoustics / flow",
+      "origins": [
+        "A-C2",
+        "CB03",
+        "C3"
+      ]
+    },
+    {
+      "family": "shelf current sharing and bus path transient",
+      "origins": [
+        "A-C3"
+      ]
+    },
+    {
+      "family": "internal converter reduced-capacitance transient response",
+      "origins": [
+        "CB01"
+      ]
+    },
+    {
+      "family": "converter AC dropout and recovery",
+      "origins": [
+        "C2"
+      ]
+    },
+    {
+      "family": "HBM encapsulant / package process development",
+      "origins": [
+        "A coverage",
+        "CB04",
+        "C4"
+      ]
+    },
+    {
+      "family": "mixed-pad paste/reflow to final-joint outcome",
+      "origins": [
+        "A-C4",
+        "CB05",
+        "C5"
+      ]
+    },
+    {
+      "family": "CMP pad / filler material substitution",
+      "origins": [
+        "A-C5",
+        "B minority",
+        "C minority"
+      ]
+    },
+    {
+      "family": "PCB plating/etch/via/stack-up qualification",
+      "origins": [
+        "all coverage"
+      ]
+    },
+    {
+      "family": "CoWoS/package warpage/interconnect reliability",
+      "origins": [
+        "all coverage"
+      ]
+    },
+    {
+      "family": "high-speed cartridge termination/contact / broader fixture correlation",
+      "origins": [
+        "all coverage",
+        "ROOT-S08"
+      ]
+    },
+    {
+      "family": "optical post-bond/post-stress recipe development",
+      "origins": [
+        "ROOT-S03",
+        "ROOT-S09"
+      ],
+      "scope": "followup outside accepted route inventory"
+    },
+    {
+      "family": "busbar / crimp contact thermal process",
+      "origins": [
+        "all coverage",
+        "pending AC whips"
+      ]
+    },
+    {
+      "family": "SSD compatibility / thermal prototype qualification",
+      "origins": [
+        "all coverage"
+      ]
+    },
+    {
+      "family": "rack/tray image and test root-cause infrastructure",
+      "origins": [
+        "all coverage",
+        "ROOT-S11"
+      ]
+    },
+    {
+      "family": "manifold / fluid connector / loop durability",
+      "origins": [
+        "all coverage",
+        "pending"
+      ]
+    },
+    {
+      "family": "drip-pan containment and storage carrier assembly",
+      "origins": [
+        "all pending screens"
+      ],
+      "initial_disposition": "no sufficiently concrete high-consequence R&D problem"
+    },
+    {
+      "family": "logic-wafer metrology / feedback / mask cleaning / probe development",
+      "origins": [
+        "all coverage"
+      ],
+      "initial_disposition": "retain specialized partner-constrained alternatives"
+    }
+  ],
+  "closed_at": "2026-10-04T00:23:44.358828+00:00",
+  "coordinator_rule": "Evidence, scope and unknowns compared; no voting. Conditional recommendation is not market validation.",
+  "original_peer_input_snapshot": "frozen/review-inputs/discrepancies.json"
+}

@@ -1,0 +1,1494 @@
+{
+  "job_id": "usecase-db-review-2026-10-04",
+  "contract": "delphi-review/v1",
+  "scope_version": 1,
+  "outcome": "converged_with_gaps",
+  "accepted_at": "2026-10-04T00:23:44.358828+00:00",
+  "acceptance_boundary": "Accepts a source-grounded opportunity assessment and conditional pilot recommendation only. Does not accept a manufacturing route, demonstrate an autonomous bench, or validate a business.",
+  "recommendation": {
+    "id": "UC-THERMAL-01",
+    "title": "Develop and verify a durable thermal interface and mounting configuration for a new accelerator assembly",
+    "status": "proposed_integration; conditional_first_pilot",
+    "owner": "Package/cooling-module developer or server thermal team with authority over the accessible interface and retention/local cooling boundaries.",
+    "trigger": "Authentic new assembly loses thermal margin after power cycling or under representative spatial load/assembly variation. No selected GB300 defect alleged.",
+    "editable_variables": [
+      "approved interface material/application",
+      "retention and contact geometry within package limits",
+      "plate and local fluid-path variants under owner control"
+    ],
+    "stimulus": "Calibrated spatial heat patterns, controlled inlet/flow conditions and owner-defined cycling.",
+    "sensing": [
+      "local temperatures and heat input",
+      "inlet/outlet fluid temperature",
+      "flow and differential pressure with fixture baseline",
+      "surface metrology",
+      "force/displacement and specimen/assembly history"
+    ],
+    "physical_return": "Preserve aged evidence; choose a controlled contact/material versus fluid/plate intervention; build a fresh traceable variant; repeat and independently verify.",
+    "deliverable": "Qualified engineering change/assembly recipe, raw evidence, uncertainty, tested operating envelope and remaining limits.",
+    "llm_role": "Proposed interpretation of heterogeneous evidence and selection of discriminating experiments; specialist numerical tools and deterministic controls execute calculations and hardware actions.",
+    "robotics_role": "Fixtures, controlled dispensing/fastening and conventional sample transfer first; learned handling only for demonstrated variable manipulation needs.",
+    "verification": "Known-good and known-cause controls, separate destructive specimens, independent builds/remounts, held-out conditions, applicable durability/leak/mechanical checks and actual-product transfer.",
+    "disqualifiers": [
+      "No relevant owner cases or change rights",
+      "Surrogate fails product correlation",
+      "Setup variation overwhelms effect",
+      "Existing expert/DOE baseline solves equally well",
+      "Dominant external waits leave no useful improvement"
+    ],
+    "why_preferred": "Bounded physically changeable assembly and a coupled material/mechanical/thermal/hydraulic decision; evidence supports a testable hypothesis. This is coordinator judgment consistent with independent revisions, not a vote or economic ranking.",
+    "evidence_ids": [
+      "E-THERMAL-METHOD",
+      "E-AGING-MECHANISM",
+      "E-PACKAGE-CONTEXT",
+      "E-THERMAL-SYNTHESIS",
+      "E-INFRASTRUCTURE",
+      "E-INCREMENT"
+    ],
+    "gap_ids": [
+      "G-OWNER",
+      "G-TRANSFER",
+      "G-LLM",
+      "G-ECON",
+      "G-LATENCY",
+      "G-RECIPES"
+    ]
+  },
+  "alternative_priority": "No universal ordering accepted. Internal AC/DC transient-margin work is strongest narrow electrical entry; optical post-stress work has stronger directly reported failed-build return. Access and owner cases may reverse priority.",
+  "all_nomination_families": [
+    {
+      "family": "thermal contact / mounting / plate / local loop",
+      "origins": [
+        "A-C1",
+        "CB02",
+        "C1"
+      ]
+    },
+    {
+      "family": "fan geometry / acoustics / flow",
+      "origins": [
+        "A-C2",
+        "CB03",
+        "C3"
+      ]
+    },
+    {
+      "family": "shelf current sharing and bus path transient",
+      "origins": [
+        "A-C3"
+      ]
+    },
+    {
+      "family": "internal converter reduced-capacitance transient response",
+      "origins": [
+        "CB01"
+      ]
+    },
+    {
+      "family": "converter AC dropout and recovery",
+      "origins": [
+        "C2"
+      ]
+    },
+    {
+      "family": "HBM encapsulant / package process development",
+      "origins": [
+        "A coverage",
+        "CB04",
+        "C4"
+      ]
+    },
+    {
+      "family": "mixed-pad paste/reflow to final-joint outcome",
+      "origins": [
+        "A-C4",
+        "CB05",
+        "C5"
+      ]
+    },
+    {
+      "family": "CMP pad / filler material substitution",
+      "origins": [
+        "A-C5",
+        "B minority",
+        "C minority"
+      ]
+    },
+    {
+      "family": "PCB plating/etch/via/stack-up qualification",
+      "origins": [
+        "all coverage"
+      ]
+    },
+    {
+      "family": "CoWoS/package warpage/interconnect reliability",
+      "origins": [
+        "all coverage"
+      ]
+    },
+    {
+      "family": "high-speed cartridge termination/contact / broader fixture correlation",
+      "origins": [
+        "all coverage",
+        "ROOT-S08"
+      ]
+    },
+    {
+      "family": "optical post-bond/post-stress recipe development",
+      "origins": [
+        "ROOT-S03",
+        "ROOT-S09"
+      ],
+      "scope": "followup outside accepted route inventory"
+    },
+    {
+      "family": "busbar / crimp contact thermal process",
+      "origins": [
+        "all coverage",
+        "pending AC whips"
+      ]
+    },
+    {
+      "family": "SSD compatibility / thermal prototype qualification",
+      "origins": [
+        "all coverage"
+      ]
+    },
+    {
+      "family": "rack/tray image and test root-cause infrastructure",
+      "origins": [
+        "all coverage",
+        "ROOT-S11"
+      ]
+    },
+    {
+      "family": "manifold / fluid connector / loop durability",
+      "origins": [
+        "all coverage",
+        "pending"
+      ]
+    },
+    {
+      "family": "drip-pan containment and storage carrier assembly",
+      "origins": [
+        "all pending screens"
+      ],
+      "initial_disposition": "no sufficiently concrete high-consequence R&D problem"
+    },
+    {
+      "family": "logic-wafer metrology / feedback / mask cleaning / probe development",
+      "origins": [
+        "all coverage"
+      ],
+      "initial_disposition": "retain specialized partner-constrained alternatives"
+    }
+  ],
+  "complete_alternative_workflows": {
+    "A2": {
+      "path": "frozen/round-02/reviewer-A2/round2.json",
+      "nomination_dispositions": [
+        {
+          "family": "thermal contact / mounting / plate / local loop",
+          "origins": [
+            "A-C1",
+            "CB02",
+            "C1"
+          ],
+          "disposition": "revise",
+          "normalized_candidate_id": "A-C1",
+          "reason": "Core now interface lifecycle decision; local hydraulics is an explicit competing cause/control.",
+          "evidence_boundary": "accepted_reference_methods_plus_new_source_followup_proposed_synthesis",
+          "status": "accounted_for_in_reviewer_A2_revision"
+        },
+        {
+          "family": "fan geometry / acoustics / flow",
+          "origins": [
+            "A-C2",
+            "CB03",
+            "C3"
+          ],
+          "disposition": "retain",
+          "normalized_candidate_id": "A-C2",
+          "reason": "Observed prototype/measurement/model return; reference comparator and conditional alternative.",
+          "evidence_boundary": "accepted_reference_workflow_proposed_orchestration",
+          "status": "accounted_for_in_reviewer_A2_revision"
+        },
+        {
+          "family": "shelf current sharing and bus path transient",
+          "origins": [
+            "A-C3"
+          ],
+          "disposition": "split",
+          "normalized_candidate_id": "A-C3",
+          "reason": "Keep shelf-level current share and bus-path experiment separate from two internal AC/DC experiments.",
+          "evidence_boundary": "accepted_test_infrastructure_proposed_synthesis",
+          "status": "accounted_for_in_reviewer_A2_revision"
+        },
+        {
+          "family": "internal converter reduced-capacitance transient response",
+          "origins": [
+            "CB01"
+          ],
+          "disposition": "add",
+          "normalized_candidate_id": "CB01",
+          "reason": "Best narrow power entry with internal waveform/control access; source extends existing DB Infineon reference.",
+          "evidence_boundary": "new_source_detail_from_DB_indexed_source_proposed_synthesis",
+          "status": "accounted_for_in_reviewer_A2_revision"
+        },
+        {
+          "family": "converter AC dropout and recovery",
+          "origins": [
+            "C2"
+          ],
+          "disposition": "split",
+          "normalized_candidate_id": "C2",
+          "reason": "AC dropout, hold-up and re-rush requires its own stimulus and editable circuit/control boundary.",
+          "evidence_boundary": "new_source_detail_from_DB_indexed_source_proposed_synthesis",
+          "status": "accounted_for_in_reviewer_A2_revision"
+        },
+        {
+          "family": "HBM encapsulant / package process development",
+          "origins": [
+            "A coverage",
+            "CB04",
+            "C4"
+          ],
+          "disposition": "add",
+          "normalized_candidate_id": "CB04",
+          "reason": "True manufacturer material/countermeasure return; partner access and metrology details are the limiting gaps.",
+          "evidence_boundary": "accepted_reference_workflow_proposed_orchestration",
+          "status": "accounted_for_in_reviewer_A2_revision"
+        },
+        {
+          "family": "mixed-pad paste/reflow to final-joint outcome",
+          "origins": [
+            "A-C4",
+            "CB05",
+            "C5"
+          ],
+          "disposition": "retain",
+          "normalized_candidate_id": "A-C4",
+          "reason": "Cross-stage final-joint verification may matter; simple SPI-volume correction is already infrastructure.",
+          "evidence_boundary": "accepted_reference_workflow_proposed_extension",
+          "status": "accounted_for_in_reviewer_A2_revision"
+        },
+        {
+          "family": "CMP pad / filler material substitution",
+          "origins": [
+            "A-C5",
+            "B minority",
+            "C minority"
+          ],
+          "disposition": "retain",
+          "normalized_candidate_id": "A-C5",
+          "reason": "Material substitution with real combination tests; source reverified; no intrinsic opportunity rejection.",
+          "evidence_boundary": "accepted_reference_workflow_proposed_orchestration",
+          "status": "accounted_for_in_reviewer_A2_revision"
+        },
+        {
+          "family": "PCB plating/etch/via/stack-up qualification",
+          "origins": [
+            "all coverage"
+          ],
+          "disposition": "retain",
+          "normalized_candidate_id": null,
+          "reason": "PCB plating/etch/via/stack-up remains fabricator-owned alternative requiring particular failure, build controls and test truth.",
+          "evidence_boundary": "accepted_reference_alternative",
+          "status": "accounted_for_in_reviewer_A2_revision"
+        },
+        {
+          "family": "CoWoS/package warpage/interconnect reliability",
+          "origins": [
+            "all coverage"
+          ],
+          "disposition": "retain",
+          "normalized_candidate_id": null,
+          "reason": "CoWoS warpage/interconnect reliability needs package-owner assembly authority and failure analysis; not absorbed into externally editable TIM work.",
+          "evidence_boundary": "accepted_reference_alternative",
+          "status": "accounted_for_in_reviewer_A2_revision"
+        },
+        {
+          "family": "high-speed cartridge termination/contact / broader fixture correlation",
+          "origins": [
+            "all coverage",
+            "ROOT-S08"
+          ],
+          "disposition": "split",
+          "normalized_candidate_id": "A2-CHS",
+          "reason": "Preserve accepted cartridge termination/contact lead; broader RF fixture/model correlation is distinct new follow-up with measured-versus-modeled limits.",
+          "evidence_boundary": "accepted_reference_lead_plus_new_followup",
+          "status": "accounted_for_in_reviewer_A2_revision"
+        },
+        {
+          "family": "optical post-bond/post-stress recipe development",
+          "origins": [
+            "ROOT-S03",
+            "ROOT-S09"
+          ],
+          "scope": "followup outside accepted route inventory",
+          "disposition": "add",
+          "normalized_candidate_id": "A2-COPT",
+          "reason": "Promote optical post-stress recipe development; observed IBM failed-build return but no accepted NVIDIA optical route.",
+          "evidence_boundary": "new_followup_outside_accepted_graph",
+          "status": "accounted_for_in_reviewer_A2_revision"
+        },
+        {
+          "family": "busbar / crimp contact thermal process",
+          "origins": [
+            "all coverage",
+            "pending AC whips"
+          ],
+          "disposition": "retain",
+          "normalized_candidate_id": null,
+          "reason": "Busbar/crimp thermal process is measurable, but current failed-to-revised owner case is absent; AC-whip proposal stays unaccepted.",
+          "evidence_boundary": "accepted_reference_alternative_plus_pending_lead",
+          "status": "accounted_for_in_reviewer_A2_revision"
+        },
+        {
+          "family": "SSD compatibility / thermal prototype qualification",
+          "origins": [
+            "all coverage"
+          ],
+          "disposition": "retain",
+          "normalized_candidate_id": null,
+          "reason": "SSD prototype compatibility/thermal qualification is real; specific physical change versus mostly software validation remains unknown.",
+          "evidence_boundary": "accepted_reference_alternative",
+          "status": "accounted_for_in_reviewer_A2_revision"
+        },
+        {
+          "family": "rack/tray image and test root-cause infrastructure",
+          "origins": [
+            "all coverage",
+            "ROOT-S11"
+          ],
+          "disposition": "relocate",
+          "normalized_candidate_id": null,
+          "reason": "Rack/tray image/test root-cause infrastructure supports investigation; generic image dashboard is not an experimental design solution.",
+          "evidence_boundary": "accepted_reference_infrastructure",
+          "status": "accounted_for_in_reviewer_A2_revision"
+        },
+        {
+          "family": "manifold / fluid connector / loop durability",
+          "origins": [
+            "all coverage",
+            "pending"
+          ],
+          "disposition": "retain",
+          "normalized_candidate_id": null,
+          "reason": "Manifold/fluid connector/loop durability may extend thermal interfaces; pending proposals are not accepted routes.",
+          "evidence_boundary": "accepted_reference_context_plus_pending_lead",
+          "status": "accounted_for_in_reviewer_A2_revision"
+        },
+        {
+          "family": "drip-pan containment and storage carrier assembly",
+          "origins": [
+            "all pending screens"
+          ],
+          "initial_disposition": "no sufficiently concrete high-consequence R&D problem",
+          "disposition": "retain",
+          "normalized_candidate_id": null,
+          "reason": "Drip-pan/storage-carrier lead preserved with no sufficiently concrete high-consequence R&D decision currently evidenced.",
+          "evidence_boundary": "pending_lead_not_first_pilot",
+          "status": "accounted_for_in_reviewer_A2_revision"
+        },
+        {
+          "family": "logic-wafer metrology / feedback / mask cleaning / probe development",
+          "origins": [
+            "all coverage"
+          ],
+          "initial_disposition": "retain specialized partner-constrained alternatives",
+          "disposition": "retain",
+          "normalized_candidate_id": null,
+          "reason": "Logic-wafer feedback/metrology/mask/probe development remains a specialized partner-constrained family; current automation is infrastructure not categorical exclusion.",
+          "evidence_boundary": "accepted_reference_alternative",
+          "status": "accounted_for_in_reviewer_A2_revision"
+        }
+      ]
+    },
+    "B2": {
+      "path": "frozen/round-02/reviewer-B2/round2.json",
+      "nomination_dispositions": [
+        {
+          "family": "thermal contact / mounting / plate / local loop",
+          "origins": [
+            "A-C1",
+            "CB02",
+            "C1"
+          ],
+          "disposition": "retain/revise",
+          "candidate_id": "CB02",
+          "reason": "Top-five lead narrowed to post-cycle margin; interface and local hydraulic causes remain competing hypotheses.",
+          "provenance": "All origins inherited from frozen discrepancy inventory; B2 decision is peer-informed."
+        },
+        {
+          "family": "fan geometry / acoustics / flow",
+          "origins": [
+            "A-C2",
+            "CB03",
+            "C3"
+          ],
+          "disposition": "retain",
+          "candidate_id": "CB03",
+          "reason": "Documented prototype/measurement/design feedback; strongest inherited benchmark for model-mismatch orchestration.",
+          "provenance": "All origins inherited from frozen discrepancy inventory; B2 decision is peer-informed."
+        },
+        {
+          "family": "shelf current sharing and bus path transient",
+          "origins": [
+            "A-C3"
+          ],
+          "disposition": "split/retain",
+          "candidate_id": "A-C3",
+          "reason": "Separate shelf integration problem, not internal controller diagnosis.",
+          "provenance": "All origins inherited from frozen discrepancy inventory; B2 decision is peer-informed."
+        },
+        {
+          "family": "internal converter reduced-capacitance transient response",
+          "origins": [
+            "CB01"
+          ],
+          "disposition": "retain",
+          "candidate_id": "CB01",
+          "reason": "Most concrete narrow power entry from Infineon p26 plus p49 measurements.",
+          "provenance": "All origins inherited from frozen discrepancy inventory; B2 decision is peer-informed."
+        },
+        {
+          "family": "converter AC dropout and recovery",
+          "origins": [
+            "C2"
+          ],
+          "disposition": "split/retain",
+          "candidate_id": "C2",
+          "reason": "Separate AC loss/recovery/energy-path problem; successful reference evidence.",
+          "provenance": "All origins inherited from frozen discrepancy inventory; B2 decision is peer-informed."
+        },
+        {
+          "family": "HBM encapsulant / package process development",
+          "origins": [
+            "A coverage",
+            "CB04",
+            "C4"
+          ],
+          "disposition": "retain",
+          "candidate_id": "CB04",
+          "reason": "Real material-countermeasure loop; recipes/access unresolved, not intrinsic rejection.",
+          "provenance": "All origins inherited from frozen discrepancy inventory; B2 decision is peer-informed."
+        },
+        {
+          "family": "mixed-pad paste/reflow to final-joint outcome",
+          "origins": [
+            "A-C4",
+            "CB05",
+            "C5"
+          ],
+          "disposition": "retain/relocate",
+          "candidate_id": "CB05",
+          "reason": "Full candidate preserved as alternative; completed-joint verification remains mandatory.",
+          "provenance": "All origins inherited from frozen discrepancy inventory; B2 decision is peer-informed."
+        },
+        {
+          "family": "CMP pad / filler material substitution",
+          "origins": [
+            "A-C5",
+            "B minority",
+            "C minority"
+          ],
+          "disposition": "retain",
+          "candidate_id": "A-C5",
+          "reason": "Original newly verified; real supplier/fab material development, not current customer demand proof.",
+          "provenance": "All origins inherited from frozen discrepancy inventory; B2 decision is peer-informed."
+        },
+        {
+          "family": "PCB plating/etch/via/stack-up qualification",
+          "origins": [
+            "all coverage"
+          ],
+          "disposition": "retain",
+          "candidate_id": null,
+          "reason": "PCB fabrication/stack-up/via alternative retains original study traces; needs a recurring owned failure and build/return data.",
+          "provenance": "All origins inherited from frozen discrepancy inventory; B2 decision is peer-informed."
+        },
+        {
+          "family": "CoWoS/package warpage/interconnect reliability",
+          "origins": [
+            "all coverage"
+          ],
+          "disposition": "retain",
+          "candidate_id": null,
+          "reason": "CoWoS/package warpage/interconnect qualification remains separate from external TIM/mount; no package edit authority assumed.",
+          "provenance": "All origins inherited from frozen discrepancy inventory; B2 decision is peer-informed."
+        },
+        {
+          "family": "high-speed cartridge termination/contact / broader fixture correlation",
+          "origins": [
+            "all coverage",
+            "ROOT-S08"
+          ],
+          "disposition": "split/add",
+          "candidate_id": "B2-CSI",
+          "reason": "Cartridge termination remains inherited DB minority; broader fixture correlation is explicit new-source follow-up, not same physical identity.",
+          "provenance": "All origins inherited from frozen discrepancy inventory; B2 decision is peer-informed."
+        },
+        {
+          "family": "optical post-bond/post-stress recipe development",
+          "origins": [
+            "ROOT-S03",
+            "ROOT-S09"
+          ],
+          "scope": "followup outside accepted route inventory",
+          "disposition": "add",
+          "candidate_id": "B2-COPT",
+          "reason": "Top-five new-source alternative; IBM post-stress return is real, complete proposed integration unproved.",
+          "provenance": "All origins inherited from frozen discrepancy inventory; B2 decision is peer-informed."
+        },
+        {
+          "family": "busbar / crimp contact thermal process",
+          "origins": [
+            "all coverage",
+            "pending AC whips"
+          ],
+          "disposition": "retain",
+          "candidate_id": null,
+          "reason": "Busbar accepted-method alternative and unaccepted AC-whip crimp lead remain distinct; no observed current failure inferred.",
+          "provenance": "All origins inherited from frozen discrepancy inventory; B2 decision is peer-informed."
+        },
+        {
+          "family": "SSD compatibility / thermal prototype qualification",
+          "origins": [
+            "all coverage"
+          ],
+          "disposition": "retain",
+          "candidate_id": null,
+          "reason": "SSD prototype qualification retained; physical variables and failure case uncertain.",
+          "provenance": "All origins inherited from frozen discrepancy inventory; B2 decision is peer-informed."
+        },
+        {
+          "family": "rack/tray image and test root-cause infrastructure",
+          "origins": [
+            "all coverage",
+            "ROOT-S11"
+          ],
+          "disposition": "retain/relocate",
+          "candidate_id": null,
+          "reason": "Image/test root-cause systems are infrastructure and comparator; not sufficient alone for experimental solution discovery.",
+          "provenance": "All origins inherited from frozen discrepancy inventory; B2 decision is peer-informed."
+        },
+        {
+          "family": "manifold / fluid connector / loop durability",
+          "origins": [
+            "all coverage",
+            "pending"
+          ],
+          "disposition": "retain",
+          "candidate_id": null,
+          "reason": "Loop/manifold/QD durability supports thermal boundary; five pending proposals retain unaccepted status.",
+          "provenance": "All origins inherited from frozen discrepancy inventory; B2 decision is peer-informed."
+        },
+        {
+          "family": "drip-pan containment and storage carrier assembly",
+          "origins": [
+            "all pending screens"
+          ],
+          "initial_disposition": "no sufficiently concrete high-consequence R&D problem",
+          "disposition": "retain exclusion",
+          "candidate_id": null,
+          "reason": "No specific high-consequence unresolved experimental decision found in inherited screen; pending inventory preserved.",
+          "provenance": "All origins inherited from frozen discrepancy inventory; B2 decision is peer-informed."
+        },
+        {
+          "family": "logic-wafer metrology / feedback / mask cleaning / probe development",
+          "origins": [
+            "all coverage"
+          ],
+          "initial_disposition": "retain specialized partner-constrained alternatives",
+          "disposition": "retain",
+          "candidate_id": null,
+          "reason": "Specialized lithography/metrology/mask/probe alternatives remain partner-constrained; existing correction does not disqualify new experiments.",
+          "provenance": "All origins inherited from frozen discrepancy inventory; B2 decision is peer-informed."
+        }
+      ]
+    },
+    "C2": {
+      "path": "frozen/round-02/reviewer-C2/round2.json",
+      "nomination_dispositions": [
+        {
+          "family": "thermal contact / mounting / plate / local loop",
+          "origins": [
+            "A-C1",
+            "CB02",
+            "C1"
+          ],
+          "disposition": "retain",
+          "destination": "C1",
+          "reason": "Retained explicitly in candidates, detailed alternatives or inherited study/frontier screen. This is not a claim of no opportunity."
+        },
+        {
+          "family": "fan geometry / acoustics / flow",
+          "origins": [
+            "A-C2",
+            "CB03",
+            "C3"
+          ],
+          "disposition": "retain",
+          "destination": "C3",
+          "reason": "Retained explicitly in candidates, detailed alternatives or inherited study/frontier screen. This is not a claim of no opportunity."
+        },
+        {
+          "family": "shelf current sharing and bus path transient",
+          "origins": [
+            "A-C3"
+          ],
+          "disposition": "split",
+          "destination": "C10",
+          "reason": "Retained explicitly in candidates, detailed alternatives or inherited study/frontier screen. This is not a claim of no opportunity."
+        },
+        {
+          "family": "internal converter reduced-capacitance transient response",
+          "origins": [
+            "CB01"
+          ],
+          "disposition": "split",
+          "destination": "C6",
+          "reason": "Retained explicitly in candidates, detailed alternatives or inherited study/frontier screen. This is not a claim of no opportunity."
+        },
+        {
+          "family": "converter AC dropout and recovery",
+          "origins": [
+            "C2"
+          ],
+          "disposition": "split",
+          "destination": "C2",
+          "reason": "Retained explicitly in candidates, detailed alternatives or inherited study/frontier screen. This is not a claim of no opportunity."
+        },
+        {
+          "family": "HBM encapsulant / package process development",
+          "origins": [
+            "A coverage",
+            "CB04",
+            "C4"
+          ],
+          "disposition": "retain",
+          "destination": "C4",
+          "reason": "Retained explicitly in candidates, detailed alternatives or inherited study/frontier screen. This is not a claim of no opportunity."
+        },
+        {
+          "family": "mixed-pad paste/reflow to final-joint outcome",
+          "origins": [
+            "A-C4",
+            "CB05",
+            "C5"
+          ],
+          "disposition": "retain",
+          "destination": "C5",
+          "reason": "Retained explicitly in candidates, detailed alternatives or inherited study/frontier screen. This is not a claim of no opportunity."
+        },
+        {
+          "family": "CMP pad / filler material substitution",
+          "origins": [
+            "A-C5",
+            "B minority",
+            "C minority"
+          ],
+          "disposition": "retain",
+          "destination": "C8",
+          "reason": "Retained explicitly in candidates, detailed alternatives or inherited study/frontier screen. This is not a claim of no opportunity."
+        },
+        {
+          "family": "PCB plating/etch/via/stack-up qualification",
+          "origins": [
+            "all coverage"
+          ],
+          "disposition": "retain",
+          "destination": "fabricated-pcb",
+          "reason": "Retained explicitly in candidates, detailed alternatives or inherited study/frontier screen. This is not a claim of no opportunity."
+        },
+        {
+          "family": "CoWoS/package warpage/interconnect reliability",
+          "origins": [
+            "all coverage"
+          ],
+          "disposition": "retain",
+          "destination": "gpu-package",
+          "reason": "Retained explicitly in candidates, detailed alternatives or inherited study/frontier screen. This is not a claim of no opportunity."
+        },
+        {
+          "family": "high-speed cartridge termination/contact / broader fixture correlation",
+          "origins": [
+            "all coverage",
+            "ROOT-S08"
+          ],
+          "disposition": "split",
+          "destination": "C9",
+          "reason": "Retained explicitly in candidates, detailed alternatives or inherited study/frontier screen. This is not a claim of no opportunity."
+        },
+        {
+          "family": "optical post-bond/post-stress recipe development",
+          "origins": [
+            "ROOT-S03",
+            "ROOT-S09"
+          ],
+          "scope": "followup outside accepted route inventory",
+          "disposition": "add",
+          "destination": "C7",
+          "reason": "Retained explicitly in candidates, detailed alternatives or inherited study/frontier screen. This is not a claim of no opportunity."
+        },
+        {
+          "family": "busbar / crimp contact thermal process",
+          "origins": [
+            "all coverage",
+            "pending AC whips"
+          ],
+          "disposition": "retain",
+          "destination": "rack-busbar/ac-power-whips",
+          "reason": "Retained explicitly in candidates, detailed alternatives or inherited study/frontier screen. This is not a claim of no opportunity."
+        },
+        {
+          "family": "SSD compatibility / thermal prototype qualification",
+          "origins": [
+            "all coverage"
+          ],
+          "disposition": "retain",
+          "destination": "ssd",
+          "reason": "Retained explicitly in candidates, detailed alternatives or inherited study/frontier screen. This is not a claim of no opportunity."
+        },
+        {
+          "family": "rack/tray image and test root-cause infrastructure",
+          "origins": [
+            "all coverage",
+            "ROOT-S11"
+          ],
+          "disposition": "relocate",
+          "destination": "nvlink-tray/rack-integration",
+          "reason": "Retained explicitly in candidates, detailed alternatives or inherited study/frontier screen. This is not a claim of no opportunity."
+        },
+        {
+          "family": "manifold / fluid connector / loop durability",
+          "origins": [
+            "all coverage",
+            "pending"
+          ],
+          "disposition": "retain",
+          "destination": "local loop/frontier",
+          "reason": "Retained explicitly in candidates, detailed alternatives or inherited study/frontier screen. This is not a claim of no opportunity."
+        },
+        {
+          "family": "drip-pan containment and storage carrier assembly",
+          "origins": [
+            "all pending screens"
+          ],
+          "initial_disposition": "no sufficiently concrete high-consequence R&D problem",
+          "disposition": "retain",
+          "destination": "pending lower-priority",
+          "reason": "Retained explicitly in candidates, detailed alternatives or inherited study/frontier screen. This is not a claim of no opportunity."
+        },
+        {
+          "family": "logic-wafer metrology / feedback / mask cleaning / probe development",
+          "origins": [
+            "all coverage"
+          ],
+          "initial_disposition": "retain specialized partner-constrained alternatives",
+          "disposition": "retain",
+          "destination": "logic-wafer specialized alternatives",
+          "reason": "Retained explicitly in candidates, detailed alternatives or inherited study/frontier screen. This is not a claim of no opportunity."
+        }
+      ]
+    }
+  },
+  "evidence": [
+    {
+      "id": "E-THERMAL-METHOD",
+      "label": "documented",
+      "applicability": "general_method",
+      "claim": "OCP supplies representative mounting, surface/mechanical constraints and thermal/hydraulic qualification methods.",
+      "source_ids": [
+        "ROOT-S13"
+      ],
+      "limits": "Not proof of a selected factory loop or unique diagnosis."
+    },
+    {
+      "id": "E-AGING-MECHANISM",
+      "label": "documented",
+      "applicability": "illustrative",
+      "claim": "Controlled research surrogate shows mating-surface geometry influences grease movement/degradation during power cycling.",
+      "source_ids": [
+        "ROOT-S06"
+      ],
+      "limits": "Author abstract read; heater/transparent air-cooled lens, not a GPU/coldplate experiment."
+    },
+    {
+      "id": "E-PACKAGE-CONTEXT",
+      "label": "documented",
+      "applicability": "general_method",
+      "claim": "Multi-chip GPU/HBM thermal paths, differing heights and workload-dependent crosstalk motivate package-level investigation.",
+      "source_ids": [
+        "ROOT-S07"
+      ],
+      "limits": "2024 engineering roadmap; forecasts not current production measurements."
+    },
+    {
+      "id": "E-THERMAL-SYNTHESIS",
+      "label": "reconstructed",
+      "applicability": "illustrative",
+      "claim": "An integrated campaign could choose and verify material/mounting/surface/plate corrections that preserve thermal margin after cycling.",
+      "source_ids": [
+        "ROOT-S06",
+        "ROOT-S13",
+        "ROOT-S04",
+        "ROOT-S12"
+      ],
+      "inference": "Combines distinct supported mechanisms/methods with proposed controlled interventions and verification; no exact installed system claimed.",
+      "gap_ids": [
+        "G-OWNER",
+        "G-TRANSFER",
+        "G-LLM",
+        "G-ECON",
+        "G-LATENCY",
+        "G-RECIPES"
+      ]
+    },
+    {
+      "id": "E-POWER",
+      "label": "documented",
+      "applicability": "general_method",
+      "claim": "Infineon explains reduced-capacitance/load-step control tradeoffs and reports successful reference measurements.",
+      "source_ids": [
+        "ROOT-S14"
+      ],
+      "limits": "AC/DC reference; not an unresolved customer fault or800V DC/DC proof."
+    },
+    {
+      "id": "E-OPTICAL",
+      "label": "documented",
+      "applicability": "illustrative",
+      "claim": "IBM reports early stress failures, physical material/process/structure revisions and successful later test results.",
+      "source_ids": [
+        "ROOT-S09"
+      ],
+      "limits": "Polymer-waveguide test vehicle; bundled changes do not isolate a single cause; no selected NVIDIA adoption."
+    },
+    {
+      "id": "E-HBM",
+      "label": "documented",
+      "applicability": "product_family",
+      "claim": "SK hynix describes representative material-development samples, reliability defects and improved-material admission.",
+      "source_ids": [
+        "ROOT-S01"
+      ],
+      "limits": "Broad manufacturer account; detailed instruments, recipes and actual accessible cases unknown."
+    },
+    {
+      "id": "E-INFRASTRUCTURE",
+      "label": "documented",
+      "applicability": "general_method",
+      "claim": "Programmable thermal test hardware and integrated thermal/optical development equipment/services exist.",
+      "source_ids": [
+        "ROOT-S03",
+        "ROOT-S04",
+        "ROOT-S12"
+      ],
+      "limits": "Capabilities are infrastructure and baseline evidence, not proof for or against our proposed business."
+    },
+    {
+      "id": "E-INCREMENT",
+      "label": "unknown",
+      "applicability": "illustrative",
+      "claim": "Commercial demand, achievable savings and incremental LLM performance for the proposed bench remain unverified.",
+      "source_ids": [],
+      "gap_ids": [
+        "G-OWNER",
+        "G-LLM",
+        "G-ECON",
+        "G-LATENCY"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "ROOT-S01",
+      "url": "https://news.skhynix.com/en/rulebreaker-revolutions-mr-muf-unlocks-hbm-heat-control/",
+      "title": "How MR-MUF's Heat Control Breakthrough Elevated HBM to New Heights",
+      "publisher": "SK hynix",
+      "published_at": "2024-07-30",
+      "reading_extent": "Retrieved original article, main technology account and complete Kyoung-Moo Harr interview; no figure-pixel inspection in this run.",
+      "claim": "The manufacturer describes applying new epoxy molding compound to universal test vehicles, wafer-level packaging, look-ahead reliability tests, countermeasures and admission of improved passing materials.",
+      "label": "documented",
+      "applicability": "product_family",
+      "db_anchor": "hbm3e.json: A-R-SK-DEV / A-D-06 / A-S-MR; full surrounding development records required",
+      "limit": "Manufacturer account; no complete recipe, current customer campaign economics or autonomous system.",
+      "accepted_trace_clarification": "A-R-SK-DEV / A-D-01…05 describes broad UTV/WLP/LAR/countermeasure/admission sequence. A-D-06 is preliminary material-risk assessment. Detailed implementations remain gaps."
+    },
+    {
+      "id": "ROOT-S02",
+      "url": "https://esg.tsmc.com/en-US/articles/338",
+      "title": "The Transformation of CMP Pads in TSMC: Toward a Chlorine-Free Era",
+      "publisher": "TSMC",
+      "published_at": "2024-12-06",
+      "reading_extent": "Retrieved full substantive original article.",
+      "claim": "TSMC reports material analysis and combination tests using nearly 90 pad types while developing a chlorine-free pore filler and process parameters, followed by validation and named-fab implementation.",
+      "label": "documented",
+      "applicability": "product_family",
+      "db_anchor": "logic-wafer.json: I-O-PADTEST / I-S-023",
+      "limit": "Historical sustainability/material substitution campaign; no proof of recurring high-ticket purchasable campaign or B300 recipe."
+    },
+    {
+      "id": "ROOT-S03",
+      "url": "https://www.ficontec.com/capabilities/",
+      "title": "Capabilities for photonics assembly and testing",
+      "publisher": "ficonTEC",
+      "published_at": null,
+      "reading_extent": "Original capability article: positioning, passive/active alignment, active tracking during bonding, process control, recipes, component tracking, data records, process development and AOI.",
+      "claim": "Vendor offers integrated alignment/assembly/test, active correction during bonding, recipe/SQL records, customer process development and machine-learning performance analytics.",
+      "label": "documented",
+      "applicability": "general_method",
+      "limit": "Constituent infrastructure and relevant comparator; neither proves nor disproves a broader LLM-led experiment-to-solution product."
+    },
+    {
+      "id": "ROOT-S04",
+      "url": "https://corintis.com/therminator",
+      "title": "Therminator",
+      "publisher": "Corintis",
+      "published_at": null,
+      "reading_extent": "Original product main body and status disclosure; no current visual inspection.",
+      "claim": "Vendor offers programmable heat maps, spatial temperature sensing, integrated power/data/control, and TIM power-cycle testing capability; certification is described as underway.",
+      "label": "documented",
+      "applicability": "general_method",
+      "limit": "Advertised capability; not exact emulation of every GPU or independently validated proposed robotic system."
+    },
+    {
+      "id": "ROOT-S05",
+      "url": "https://eps.ieee.org/wp-content/uploads/2026/03/M-and-P-TC-Thermal-Interface-Materials-TIM-Strategy-for-Thermal-Management-in-AI-and-HPC-Applications-2026-IEEE-EPS-Newsletter_Final_YL2.pdf",
+      "title": "Thermal Interface Materials (TIM) Strategy for Thermal Management in AI and HPC Applications",
+      "publisher": "IEEE EPS; Jie Geng, Indium Corporation",
+      "published_at": null,
+      "reading_extent": "Original seven-page PDF text: abstract, package/warpage discussion, validation, practical implementation, conclusions and references; no figure-pixel inspection.",
+      "claim": "Author argues package curvature, interface thickness, contact load and cycling jointly govern performance and calls for representative non-flat validation. This is an author/vendor technical strategy article; follow experimental references before accepting numeric findings.",
+      "label": "documented",
+      "applicability": "general_method",
+      "limit": "New follow-up source outside the initial DB snapshot; vendor material viewpoint and secondary experimental citations. Do not adopt its quoted ranges as a target recipe."
+    },
+    {
+      "id": "ROOT-S06",
+      "url": "https://engineering.purdue.edu/MTEC/publications/experimental-characterization-of-thermal-grease-degradation-between-warped-mating-surfaces-in-powercycled-assemblies",
+      "title": "Experimental characterization of thermal grease degradation between warped mating surfaces in power-cycled assemblies",
+      "publisher": "Purdue MTEC / Kulkarni, Gronowski, Marconnet",
+      "published_at": "2026",
+      "reading_extent": "Original author-lab abstract and metadata only. Full journal text not read; graphical abstract URL discovered, pixels not yet inspected.",
+      "claim": "Authors report a grease layer between a metal heater and transparent air-cooled lens, controlled flat/convex/concave surfaces, power cycling and microscope observation of voids, cracks and motion. Degradation differs with surface geometry.",
+      "label": "documented",
+      "applicability": "illustrative",
+      "limit": "Controlled research surrogate, not a coldplate/GPU trial or validation of our integration; study supports mechanism and experiment design only."
+    },
+    {
+      "id": "ROOT-S07",
+      "url": "https://www.opencompute.org/documents/30-coolant-a-durable-roadmap-for-the-future-rev1-0-pdf",
+      "title": "30 C Coolant - A Durable Roadmap for the Future",
+      "publisher": "Open Compute Project contributors",
+      "published_at": "2024-10-01",
+      "reading_extent": "Original PDF text sections on modern GPU/HBM stack, differing heights, thermal paths and workload-dependent crosstalk; later technology projections inspected as forecasts, not current deployment.",
+      "claim": "Multi-chip thermal behavior includes differing component heights, thermal paths and workload-dependent neighboring-chip heat; distinct junction constraints must be considered.",
+      "label": "documented",
+      "applicability": "general_method",
+      "limit": "Roadmap/engineering guidance with dated forecasts; not measured performance of the selected Lenovo part."
+    },
+    {
+      "id": "ROOT-S08",
+      "url": "https://suddendocs.samtec.com/notesandwhitepapers/samtec-developing-a-test-fixture-for-200g-with-pathway-to-400g.pdf",
+      "title": "Developing a Test Fixture for 200G with Pathway to 400G",
+      "publisher": "Samtec authors",
+      "published_at": "2025-07-14",
+      "reading_extent": "Original PDF text pp1-3, plus personally viewed saved p3 image including fixture photo and configurable interfaces.",
+      "claim": "Paper describes modeled/measured fixture development, configurable channel lengths and precision compression interfaces. 448G is pathfinding in this paper.",
+      "label": "documented",
+      "applicability": "illustrative",
+      "limit": "Does not demonstrate automated diagnostic redesign, robotic repeatability or buyer economics."
+    },
+    {
+      "id": "ROOT-S09",
+      "url": "https://arxiv.org/pdf/2412.06570",
+      "title": "Next generation Co-Packaged Optics Technology",
+      "publisher": "IBM research authors",
+      "published_at": "2024-12-09",
+      "reading_extent": "Original text personally read in preceding photonics turn: model/build updates and reliability pp6-10; re-viewed saved p9 figures5/6 in current audit.",
+      "claim": "Experimental package development returned from early stress failures to material/process/structure changes and successful subsequent tests.",
+      "label": "documented",
+      "applicability": "illustrative",
+      "limit": "IBM polymer-waveguide test vehicle, not NVIDIA CPO production or an autonomous bench."
+    },
+    {
+      "id": "ROOT-S10",
+      "url": "https://www.asml.com/en/technology/lithography-principles/measuring-accuracy",
+      "title": "Measuring accuracy",
+      "publisher": "ASML",
+      "published_at": null,
+      "reading_extent": "Original article introductory metrology, optical measurement and real-time correction sections.",
+      "claim": "Vendor describes metrology and internal sensor data combined with algorithms to feed real-time lithography correction.",
+      "label": "documented",
+      "applicability": "general_method",
+      "limit": "Existing closed-loop constituent; not an automatic reason to exclude all semiconductor experimentation."
+    },
+    {
+      "id": "ROOT-S11",
+      "url": "https://instrumental.com/case-studies/instrumental-accelerates-nvidia-final-system-builds-by-14-days/",
+      "title": "Instrumental Taps AI and Accelerated Computing to Speed Server Production With NVIDIA",
+      "publisher": "Instrumental",
+      "published_at": null,
+      "reading_extent": "Original case-study problem, technology, defect categories and correction/logging/feedback sections.",
+      "claim": "Supplier reports image capture, defect detection, on-line correction and shared image/test evidence for NVIDIA L10 assembly.",
+      "label": "documented",
+      "applicability": "product_family",
+      "limit": "Vendor-reported inspection/correction example; no independent study of our physical experimental discovery system."
+    },
+    {
+      "id": "ROOT-S12",
+      "url": "https://www.coolitsystems.com/capabilities/design-engineering/",
+      "title": "Custom Liquid Cooling Design and Prototyping",
+      "publisher": "CoolIT Systems",
+      "published_at": null,
+      "reading_extent": "Current original page, main sections design, fabrication, test/validation, certification and manufacturing engineering. No image-pixel inspection.",
+      "claim": "Vendor describes existing customer requirements, material compatibility, CFD/FEA, prototype fabrication, qualification, lifecycle testing and manufacturing robotics.",
+      "label": "documented",
+      "applicability": "general_method",
+      "limit": "Strong current integration comparator; vendor capability statement, no autonomous engineering claim. Does not disqualify the proposed experimental integration but raises the comparison baseline."
+    },
+    {
+      "id": "ROOT-S13",
+      "url": "https://www.opencompute.org/documents/ocp-cold-plate-development-and-qualification-with-integrated-comments-pdf",
+      "title": "Cold Plate Development and Qualification",
+      "publisher": "Open Compute Project",
+      "reading_extent": "Fresh original PDF text: mechanical/interface requirements pp11-15, thermal test and matched-flow blank-loop pressure subtraction pp16-17; no fresh figure-pixel inspection.",
+      "claim": "Representative powered processor mounting and controlled thermal/pressure measurements establish a baseline for experimental qualification.",
+      "label": "documented",
+      "applicability": "general_method",
+      "limit": "Reference methods, not evidence that causal localization from these observables alone is unique or that our integrated system exists."
+    },
+    {
+      "id": "ROOT-S14",
+      "url": "https://www.infineon.com/assets/row/public/documents/24/42/infineon-ref-8kw-hfhd-psu-applicationnotes-en.pdf",
+      "title": "8 kW high power density and high frequency PSU for AI data centers and servers",
+      "publisher": "Infineon",
+      "published_at": "2025-09-19",
+      "reading_extent": "Fresh web fetch exceeded parser size. Read agent-B original-PDF extracted text p26 §3.1.4 and p49 §4.2.1; personally viewed rendered p49 waveforms/captions.",
+      "claim": "Lower bulk capacitance creates load-step protection-margin tradeoffs; the reference uses load feed-forward and reports measured transient performance.",
+      "label": "documented",
+      "applicability": "general_method",
+      "limit": "Successful reference engineering, not unresolved customer failure; AC/DC topology cannot be silently relabelled800V DC/DC. Figure62 caption and surrounding percentage wording differ; no numerical reproduction based on that ambiguous caption."
+    }
+  ],
+  "gaps": [
+    {
+      "id": "G-OWNER",
+      "status": "researched_unresolved",
+      "question": "Which owner has recurring unresolved failures and authority over the required physical/design changes?",
+      "resolution_needed": "Authentic failed and corrected cases, limits, change rights and representative specimens; no outreach performed."
+    },
+    {
+      "id": "G-TRANSFER",
+      "status": "researched_unresolved",
+      "question": "Can the chosen measurements discriminate causes and can surrogate results transfer to actual product?",
+      "resolution_needed": "Calibration, known-cause controls, remount repeatability, uncertainty, independent specimens and actual-product holdouts."
+    },
+    {
+      "id": "G-LLM",
+      "status": "researched_unresolved",
+      "question": "Does LLM interpretation/experiment selection improve verified engineering outcomes over the same tools and skilled engineers?",
+      "resolution_needed": "Matched comparison with expert workflow and integrated deterministic/statistical experiment planning; count false fixes and avoidable experiments."
+    },
+    {
+      "id": "G-ECON",
+      "status": "researched_unresolved",
+      "question": "Are recurrence, avoided iteration costs, budgets and willingness to pay sufficient?",
+      "resolution_needed": "Owner campaign records and a measured pilot; hardware consequence alone does not establish economics."
+    },
+    {
+      "id": "G-LATENCY",
+      "status": "researched_unresolved",
+      "question": "What fraction of delay is changeable versus fabrication, equilibrium or stress exposure?",
+      "resolution_needed": "Timestamp complete campaigns and separate active work, instrument time and external waits."
+    },
+    {
+      "id": "G-RECIPES",
+      "status": "researched_unresolved",
+      "question": "Which detailed thermal/material/optical/electrical procedures and thresholds apply to the owner product?",
+      "resolution_needed": "Product-specific recipes and access; do not import source examples or patent/roadmap parameters as target settings."
+    }
+  ],
+  "coverage": {
+    "passed": true,
+    "accepted_studies": 18,
+    "indexed_operation_and_reference_records": 1695,
+    "graph_components": 180,
+    "accepted_with_gaps_component_ids": 43,
+    "in_research_component_ids": 10,
+    "queued_component_ids": 127,
+    "pending_proposal_groups": 5,
+    "nomination_families": 18,
+    "reading_limit": "All original blind researchers screened summaries and operation identity/name indexes; selected candidate fields, authoritative traces and originals deeply inspected. Not every historical evidence field or original source reread. Replacement reviewers inherited coverage explicitly and personally investigated source challenges.",
+    "studies": [
+      {
+        "study": "compute-tray",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/compute-tray.json",
+        "sha256": "d4e89565d16e340958d2f7d17b3b0c0b719bf11f4885643ec9c8d16be340453e",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/compute-tray.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/compute-tray-operation-index.json",
+        "counts": {
+          "operations": 18,
+          "reference_operations": 30,
+          "reference_routes": 3,
+          "sources": 31,
+          "evidence": 112,
+          "gaps": 25,
+          "reference_edges": 10,
+          "process_edges": 0
+        }
+      },
+      {
+        "study": "fabricated-pcb",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/fabricated-pcb.json",
+        "sha256": "0f93710a93f2432aa35ae0c981eb8c077e8f1afbb6c0034ff3ea7f214c35cc8a",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/fabricated-pcb.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/fabricated-pcb-operation-index.json",
+        "counts": {
+          "operations": 0,
+          "reference_operations": 156,
+          "reference_routes": 14,
+          "sources": 104,
+          "evidence": 4606,
+          "gaps": 950,
+          "reference_edges": 116,
+          "process_edges": 0
+        }
+      },
+      {
+        "study": "fan-modules",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/fan-modules.json",
+        "sha256": "4fb25508125ab4088e91184caff7d73830efcc272b01d7710592fa10c01ce4b8",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/fan-modules.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/fan-modules-operation-index.json",
+        "counts": {
+          "operations": 2,
+          "reference_operations": 59,
+          "reference_routes": 12,
+          "sources": 30,
+          "evidence": 1253,
+          "gaps": 39,
+          "reference_edges": 24,
+          "process_edges": 0
+        }
+      },
+      {
+        "study": "gpu-coldplate",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/gpu-coldplate.json",
+        "sha256": "08bffb121d7694ab574159e130b7f2232f504052a82c31b8f4040e092b8d7552",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/gpu-coldplate.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/gpu-coldplate-operation-index.json",
+        "counts": {
+          "operations": 14,
+          "reference_operations": 265,
+          "reference_routes": 26,
+          "sources": 60,
+          "evidence": 3125,
+          "gaps": 552,
+          "reference_edges": 206,
+          "process_edges": 0
+        }
+      },
+      {
+        "study": "gpu-package",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/gpu-package.json",
+        "sha256": "b80c304d8a4ef5cb06c066f27b3c5b46f9bcfe55cdee2be1e0f4fac5ff39df18",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/gpu-package.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/gpu-package-operation-index.json",
+        "counts": {
+          "operations": 9,
+          "reference_operations": 80,
+          "reference_routes": 11,
+          "sources": 33,
+          "evidence": 646,
+          "gaps": 19,
+          "reference_edges": 71,
+          "process_edges": 0
+        }
+      },
+      {
+        "study": "hbm3e",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/hbm3e.json",
+        "sha256": "c54d9fb642cdb3fab264a0a7977ac9efe2d9cd5b0c7d12580aefd2329a7dbd48",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/hbm3e.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/hbm3e-operation-index.json",
+        "counts": {
+          "operations": 7,
+          "reference_operations": 138,
+          "reference_routes": 15,
+          "sources": 38,
+          "evidence": 2050,
+          "gaps": 25,
+          "reference_edges": 74,
+          "process_edges": 0
+        }
+      },
+      {
+        "study": "hpm",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/hpm.json",
+        "sha256": "558d524742a3e35c1967efa79090f84b61f20080b6b13ba9c4e5050cb05de143",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/hpm.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/hpm-operation-index.json",
+        "counts": {
+          "operations": 16,
+          "reference_operations": 109,
+          "reference_routes": 16,
+          "sources": 60,
+          "evidence": 3052,
+          "gaps": 87,
+          "reference_edges": 95,
+          "process_edges": 3
+        }
+      },
+      {
+        "study": "logic-wafer",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/logic-wafer.json",
+        "sha256": "5550cf40f547d6d102c8e686d8a49335a31c6eeba7f6bf320b93011b422178ab",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/logic-wafer.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/logic-wafer-operation-index.json",
+        "counts": {
+          "operations": 12,
+          "reference_operations": 177,
+          "reference_routes": 50,
+          "sources": 68,
+          "evidence": 2291,
+          "gaps": 16,
+          "reference_edges": 80,
+          "process_edges": 0
+        }
+      },
+      {
+        "study": "management-switch",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/management-switch.json",
+        "sha256": "bce219f2e308be95212e5a6db4cba2c504041d604563f758c9347d9430f25169",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/management-switch.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/management-switch-operation-index.json",
+        "counts": {
+          "operations": 18,
+          "reference_operations": 34,
+          "reference_routes": 8,
+          "sources": 41,
+          "evidence": 1054,
+          "gaps": 80,
+          "reference_edges": 14,
+          "process_edges": 0
+        }
+      },
+      {
+        "study": "nvlink-cartridge",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/nvlink-cartridge.json",
+        "sha256": "affa4fe85a23c550dc0fbb092b06f9276e8de3ca34eab0f598f49c051d7ea1fd",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/nvlink-cartridge.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/nvlink-cartridge-operation-index.json",
+        "counts": {
+          "operations": 12,
+          "reference_operations": 19,
+          "reference_routes": 8,
+          "sources": 98,
+          "evidence": 1491,
+          "gaps": 55,
+          "reference_edges": 14,
+          "process_edges": 0
+        }
+      },
+      {
+        "study": "nvlink-tray",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/nvlink-tray.json",
+        "sha256": "46ae70171212d4fd1378ec668f9469299dac61df1c2c118b8f7abf962d2d4898",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/nvlink-tray.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/nvlink-tray-operation-index.json",
+        "counts": {
+          "operations": 14,
+          "reference_operations": 44,
+          "reference_routes": 9,
+          "sources": 54,
+          "evidence": 841,
+          "gaps": 96,
+          "reference_edges": 30,
+          "process_edges": 0
+        }
+      },
+      {
+        "study": "other-coldplates",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/other-coldplates.json",
+        "sha256": "c6098adeb439801ee4af29d6ce19496175772b4b39e56e7300131d989bfdb777",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/other-coldplates.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/other-coldplates-operation-index.json",
+        "counts": {
+          "operations": 4,
+          "reference_operations": 68,
+          "reference_routes": 19,
+          "sources": 105,
+          "evidence": 1138,
+          "gaps": 23,
+          "reference_edges": 31,
+          "process_edges": 0
+        }
+      },
+      {
+        "study": "power-converter",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/power-converter.json",
+        "sha256": "74e93e28780a92dfbc5c349189ca3805edce9046e4abce1d997ff21132c8bc1c",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/power-converter.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/power-converter-operation-index.json",
+        "counts": {
+          "operations": 0,
+          "reference_operations": 74,
+          "reference_routes": 11,
+          "sources": 34,
+          "evidence": 308,
+          "gaps": 16,
+          "reference_edges": 58,
+          "process_edges": 0
+        }
+      },
+      {
+        "study": "power-shelf",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/power-shelf.json",
+        "sha256": "09249f8870baf49f2fba722dde8e702199aac0e5c6693609c9cb73b985852198",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/power-shelf.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/power-shelf-operation-index.json",
+        "counts": {
+          "operations": 16,
+          "reference_operations": 54,
+          "reference_routes": 10,
+          "sources": 111,
+          "evidence": 1537,
+          "gaps": 62,
+          "reference_edges": 16,
+          "process_edges": 0
+        }
+      },
+      {
+        "study": "rack-busbar",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/rack-busbar.json",
+        "sha256": "308ffb1a31c48ca2bec6a7d2642662a62883c65a060d83e7cbfca13e5fcf6288",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/rack-busbar.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/rack-busbar-operation-index.json",
+        "counts": {
+          "operations": 39,
+          "reference_operations": 84,
+          "reference_routes": 7,
+          "sources": 129,
+          "evidence": 1864,
+          "gaps": 57,
+          "reference_edges": 29,
+          "process_edges": 0
+        }
+      },
+      {
+        "study": "rack-integration",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/rack-integration.json",
+        "sha256": "81a4b496dad2accc8a9a54727f4d349b37962d7c7b94deb6c1020b0314eaf4ac",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/rack-integration.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/rack-integration-operation-index.json",
+        "counts": {
+          "operations": 42,
+          "reference_operations": 1,
+          "reference_routes": 0,
+          "sources": 51,
+          "evidence": 371,
+          "gaps": 19,
+          "reference_edges": 2,
+          "process_edges": 21
+        }
+      },
+      {
+        "study": "ssd",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/ssd.json",
+        "sha256": "37f0d4750eba1f36ca565615e7bdfbc6c61dbe43d5dc653a19becbc4be7e0464",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/ssd.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/ssd-operation-index.json",
+        "counts": {
+          "operations": 14,
+          "reference_operations": 65,
+          "reference_routes": 8,
+          "sources": 48,
+          "evidence": 1539,
+          "gaps": 72,
+          "reference_edges": 27,
+          "process_edges": 0
+        }
+      },
+      {
+        "study": "sxm-module",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/sxm-module.json",
+        "sha256": "a506d239b024100a0ca735540ab22c62bce396352bb32e681a50b95904b563af",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/sxm-module.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/sxm-module-operation-index.json",
+        "counts": {
+          "operations": 1,
+          "reference_operations": 0,
+          "reference_routes": 0,
+          "sources": 50,
+          "evidence": 60,
+          "gaps": 16,
+          "reference_edges": 0,
+          "process_edges": 0
+        }
+      }
+    ],
+    "unaccounted_supported_nominations": [],
+    "whole_manufacturing_atlas_complete": false
+  },
+  "convergence": {
+    "passed": true,
+    "basis": "All ten discrepancies explicitly disposed; independent revisions agree on conditional thermal lead, scope/evidence distinctions, power splits, retained alternatives and unknowns. Alternative commercial ordering remains unknown, not a resolved market fact.",
+    "material_factual_disputes": [],
+    "remaining_unknowns": [
+      "G-OWNER",
+      "G-TRANSFER",
+      "G-LLM",
+      "G-ECON",
+      "G-LATENCY",
+      "G-RECIPES"
+    ],
+    "not_independent_corroboration": "Repeated underlying sources across reviewers counted once."
+  },
+  "provenance": {
+    "original_blind_cohort": [
+      "A",
+      "B",
+      "C"
+    ],
+    "blind_isolation": "procedural on shared filesystem",
+    "replacement_peer_reviewers": [
+      "A2",
+      "B2",
+      "C2"
+    ],
+    "reason_for_replacements": "User interruption ended original agents before revisions were saved; preserved originals and reused saved source files.",
+    "no_peer_round2_exposure_reported": true,
+    "canonical_files_unchanged": true,
+    "outreach_publication_experiments_performed": false
+  },
+  "artifacts": {
+    "result": "result.md",
+    "discrepancies": "discrepancies.json",
+    "blind_manifest": "frozen/round-01/manifest.json",
+    "peer_manifest": "frozen/round-02/manifest.json",
+    "peer_input_manifest": "frozen/review-inputs/manifest.json"
+  },
+  "next_evidence_needed": "A real owner-controlled failure packet and measured baseline campaign to test access, transfer, integration value and economics. No outreach authorized or performed."
+}

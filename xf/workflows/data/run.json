@@ -1,0 +1,449 @@
+{
+  "job_id": "usecase-db-review-2026-10-04",
+  "contract": "delphi-review/v1",
+  "phase": "finished",
+  "round": 2,
+  "scope_version": 1,
+  "created_at": "2026-10-03T23:28:38.258340+00:00",
+  "outcome": "converged_with_gaps",
+  "isolation": "procedural",
+  "input_hashes": {
+    "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/graph.json.gz": "a4260b210f6712870fd8a8cb1870dfdacd0212a1dd7877f9c827a13b4b9e1ea0",
+    "/Users/dan/repos/XF/research/nvidia-chain/gb300-manufacturing-continuation-2026-09-28/queue.json": "2d9686147377e8bb8f6429469b0854d6ac6b5d4752586c9e0afdc21fe03a2476",
+    "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/task.json": "b7a24517dbd77231b9ab4ae676254616c3004b1e1ccd184946e0ce03437f42d2"
+  },
+  "study_inventory": "inputs/study-inventory.json",
+  "next_action": "Current database use-case audit complete. A partner-owned failure case and controlled comparison are the next evidence step; no outreach or manufacturing continuation automatically started.",
+  "cohort": {
+    "A": {
+      "agent": "/root/db_usecase_a",
+      "fresh_context": true,
+      "isolation": "procedural",
+      "contamination": false
+    },
+    "B": {
+      "agent": "/root/db_usecase_b",
+      "fresh_context": true,
+      "isolation": "procedural",
+      "contamination": false
+    },
+    "C": {
+      "agent": "/root/db_usecase_c",
+      "fresh_context": true,
+      "isolation": "procedural",
+      "contamination": false
+    }
+  },
+  "blind_freeze_manifest": "frozen/round-01/manifest.json",
+  "discrepancy_ledger": "discrepancies.json",
+  "blind_completed_at": "2026-10-03T23:56:41.738020+00:00",
+  "recovery": {
+    "at": "2026-10-04T00:05:10.840261+00:00",
+    "reason": "User resumed after interruption. Original agents no longer live; no complete round2 submissions saved.",
+    "first_round_hashes_verified": true,
+    "preserved_partial_sources": "round-02/agent-B/sources and round-02/agent-C/sources",
+    "replacement_reviewers": {
+      "A2": {
+        "agent": "/root/db_usecase_revision_a",
+        "role": "replacement_peer_informed_reviewer",
+        "fresh_context": true,
+        "not_original_blind_participant": true,
+        "output": "round-02/reviewer-A2"
+      },
+      "B2": {
+        "agent": "/root/db_usecase_revision_b",
+        "role": "replacement_peer_informed_reviewer",
+        "fresh_context": true,
+        "not_original_blind_participant": true,
+        "output": "round-02/reviewer-B2"
+      },
+      "C2": {
+        "agent": "/root/db_usecase_revision_c",
+        "role": "replacement_peer_informed_reviewer",
+        "fresh_context": true,
+        "not_original_blind_participant": true,
+        "output": "round-02/reviewer-C2"
+      }
+    }
+  },
+  "finished_at": "2026-10-04T00:23:44.358828+00:00",
+  "peer_freeze_manifest": "frozen/round-02/manifest.json",
+  "peer_input_manifest": "frozen/review-inputs/manifest.json",
+  "coverage_findings": {
+    "passed": true,
+    "accepted_studies": 18,
+    "indexed_operation_and_reference_records": 1695,
+    "graph_components": 180,
+    "accepted_with_gaps_component_ids": 43,
+    "in_research_component_ids": 10,
+    "queued_component_ids": 127,
+    "pending_proposal_groups": 5,
+    "nomination_families": 18,
+    "reading_limit": "All original blind researchers screened summaries and operation identity/name indexes; selected candidate fields, authoritative traces and originals deeply inspected. Not every historical evidence field or original source reread. Replacement reviewers inherited coverage explicitly and personally investigated source challenges.",
+    "studies": [
+      {
+        "study": "compute-tray",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/compute-tray.json",
+        "sha256": "d4e89565d16e340958d2f7d17b3b0c0b719bf11f4885643ec9c8d16be340453e",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/compute-tray.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/compute-tray-operation-index.json",
+        "counts": {
+          "operations": 18,
+          "reference_operations": 30,
+          "reference_routes": 3,
+          "sources": 31,
+          "evidence": 112,
+          "gaps": 25,
+          "reference_edges": 10,
+          "process_edges": 0
+        }
+      },
+      {
+        "study": "fabricated-pcb",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/fabricated-pcb.json",
+        "sha256": "0f93710a93f2432aa35ae0c981eb8c077e8f1afbb6c0034ff3ea7f214c35cc8a",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/fabricated-pcb.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/fabricated-pcb-operation-index.json",
+        "counts": {
+          "operations": 0,
+          "reference_operations": 156,
+          "reference_routes": 14,
+          "sources": 104,
+          "evidence": 4606,
+          "gaps": 950,
+          "reference_edges": 116,
+          "process_edges": 0
+        }
+      },
+      {
+        "study": "fan-modules",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/fan-modules.json",
+        "sha256": "4fb25508125ab4088e91184caff7d73830efcc272b01d7710592fa10c01ce4b8",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/fan-modules.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/fan-modules-operation-index.json",
+        "counts": {
+          "operations": 2,
+          "reference_operations": 59,
+          "reference_routes": 12,
+          "sources": 30,
+          "evidence": 1253,
+          "gaps": 39,
+          "reference_edges": 24,
+          "process_edges": 0
+        }
+      },
+      {
+        "study": "gpu-coldplate",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/gpu-coldplate.json",
+        "sha256": "08bffb121d7694ab574159e130b7f2232f504052a82c31b8f4040e092b8d7552",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/gpu-coldplate.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/gpu-coldplate-operation-index.json",
+        "counts": {
+          "operations": 14,
+          "reference_operations": 265,
+          "reference_routes": 26,
+          "sources": 60,
+          "evidence": 3125,
+          "gaps": 552,
+          "reference_edges": 206,
+          "process_edges": 0
+        }
+      },
+      {
+        "study": "gpu-package",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/gpu-package.json",
+        "sha256": "b80c304d8a4ef5cb06c066f27b3c5b46f9bcfe55cdee2be1e0f4fac5ff39df18",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/gpu-package.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/gpu-package-operation-index.json",
+        "counts": {
+          "operations": 9,
+          "reference_operations": 80,
+          "reference_routes": 11,
+          "sources": 33,
+          "evidence": 646,
+          "gaps": 19,
+          "reference_edges": 71,
+          "process_edges": 0
+        }
+      },
+      {
+        "study": "hbm3e",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/hbm3e.json",
+        "sha256": "c54d9fb642cdb3fab264a0a7977ac9efe2d9cd5b0c7d12580aefd2329a7dbd48",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/hbm3e.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/hbm3e-operation-index.json",
+        "counts": {
+          "operations": 7,
+          "reference_operations": 138,
+          "reference_routes": 15,
+          "sources": 38,
+          "evidence": 2050,
+          "gaps": 25,
+          "reference_edges": 74,
+          "process_edges": 0
+        }
+      },
+      {
+        "study": "hpm",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/hpm.json",
+        "sha256": "558d524742a3e35c1967efa79090f84b61f20080b6b13ba9c4e5050cb05de143",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/hpm.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/hpm-operation-index.json",
+        "counts": {
+          "operations": 16,
+          "reference_operations": 109,
+          "reference_routes": 16,
+          "sources": 60,
+          "evidence": 3052,
+          "gaps": 87,
+          "reference_edges": 95,
+          "process_edges": 3
+        }
+      },
+      {
+        "study": "logic-wafer",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/logic-wafer.json",
+        "sha256": "5550cf40f547d6d102c8e686d8a49335a31c6eeba7f6bf320b93011b422178ab",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/logic-wafer.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/logic-wafer-operation-index.json",
+        "counts": {
+          "operations": 12,
+          "reference_operations": 177,
+          "reference_routes": 50,
+          "sources": 68,
+          "evidence": 2291,
+          "gaps": 16,
+          "reference_edges": 80,
+          "process_edges": 0
+        }
+      },
+      {
+        "study": "management-switch",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/management-switch.json",
+        "sha256": "bce219f2e308be95212e5a6db4cba2c504041d604563f758c9347d9430f25169",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/management-switch.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/management-switch-operation-index.json",
+        "counts": {
+          "operations": 18,
+          "reference_operations": 34,
+          "reference_routes": 8,
+          "sources": 41,
+          "evidence": 1054,
+          "gaps": 80,
+          "reference_edges": 14,
+          "process_edges": 0
+        }
+      },
+      {
+        "study": "nvlink-cartridge",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/nvlink-cartridge.json",
+        "sha256": "affa4fe85a23c550dc0fbb092b06f9276e8de3ca34eab0f598f49c051d7ea1fd",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/nvlink-cartridge.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/nvlink-cartridge-operation-index.json",
+        "counts": {
+          "operations": 12,
+          "reference_operations": 19,
+          "reference_routes": 8,
+          "sources": 98,
+          "evidence": 1491,
+          "gaps": 55,
+          "reference_edges": 14,
+          "process_edges": 0
+        }
+      },
+      {
+        "study": "nvlink-tray",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/nvlink-tray.json",
+        "sha256": "46ae70171212d4fd1378ec668f9469299dac61df1c2c118b8f7abf962d2d4898",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/nvlink-tray.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/nvlink-tray-operation-index.json",
+        "counts": {
+          "operations": 14,
+          "reference_operations": 44,
+          "reference_routes": 9,
+          "sources": 54,
+          "evidence": 841,
+          "gaps": 96,
+          "reference_edges": 30,
+          "process_edges": 0
+        }
+      },
+      {
+        "study": "other-coldplates",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/other-coldplates.json",
+        "sha256": "c6098adeb439801ee4af29d6ce19496175772b4b39e56e7300131d989bfdb777",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/other-coldplates.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/other-coldplates-operation-index.json",
+        "counts": {
+          "operations": 4,
+          "reference_operations": 68,
+          "reference_routes": 19,
+          "sources": 105,
+          "evidence": 1138,
+          "gaps": 23,
+          "reference_edges": 31,
+          "process_edges": 0
+        }
+      },
+      {
+        "study": "power-converter",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/power-converter.json",
+        "sha256": "74e93e28780a92dfbc5c349189ca3805edce9046e4abce1d997ff21132c8bc1c",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/power-converter.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/power-converter-operation-index.json",
+        "counts": {
+          "operations": 0,
+          "reference_operations": 74,
+          "reference_routes": 11,
+          "sources": 34,
+          "evidence": 308,
+          "gaps": 16,
+          "reference_edges": 58,
+          "process_edges": 0
+        }
+      },
+      {
+        "study": "power-shelf",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/power-shelf.json",
+        "sha256": "09249f8870baf49f2fba722dde8e702199aac0e5c6693609c9cb73b985852198",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/power-shelf.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/power-shelf-operation-index.json",
+        "counts": {
+          "operations": 16,
+          "reference_operations": 54,
+          "reference_routes": 10,
+          "sources": 111,
+          "evidence": 1537,
+          "gaps": 62,
+          "reference_edges": 16,
+          "process_edges": 0
+        }
+      },
+      {
+        "study": "rack-busbar",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/rack-busbar.json",
+        "sha256": "308ffb1a31c48ca2bec6a7d2642662a62883c65a060d83e7cbfca13e5fcf6288",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/rack-busbar.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/rack-busbar-operation-index.json",
+        "counts": {
+          "operations": 39,
+          "reference_operations": 84,
+          "reference_routes": 7,
+          "sources": 129,
+          "evidence": 1864,
+          "gaps": 57,
+          "reference_edges": 29,
+          "process_edges": 0
+        }
+      },
+      {
+        "study": "rack-integration",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/rack-integration.json",
+        "sha256": "81a4b496dad2accc8a9a54727f4d349b37962d7c7b94deb6c1020b0314eaf4ac",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/rack-integration.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/rack-integration-operation-index.json",
+        "counts": {
+          "operations": 42,
+          "reference_operations": 1,
+          "reference_routes": 0,
+          "sources": 51,
+          "evidence": 371,
+          "gaps": 19,
+          "reference_edges": 2,
+          "process_edges": 21
+        }
+      },
+      {
+        "study": "ssd",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/ssd.json",
+        "sha256": "37f0d4750eba1f36ca565615e7bdfbc6c61dbe43d5dc653a19becbc4be7e0464",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/ssd.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/ssd-operation-index.json",
+        "counts": {
+          "operations": 14,
+          "reference_operations": 65,
+          "reference_routes": 8,
+          "sources": 48,
+          "evidence": 1539,
+          "gaps": 72,
+          "reference_edges": 27,
+          "process_edges": 0
+        }
+      },
+      {
+        "study": "sxm-module",
+        "status": "accepted_with_gaps",
+        "path": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/sxm-module.json",
+        "sha256": "a506d239b024100a0ca735540ab22c62bce396352bb32e681a50b95904b563af",
+        "summary": "/Users/dan/repos/XF/research/nvidia-chain/products/gb300-nvl72/manufacturing/sxm-module.md",
+        "index": "/Users/dan/repos/XF/research/nvidia-chain/usecase-db-review-2026-10-04/inputs/sxm-module-operation-index.json",
+        "counts": {
+          "operations": 1,
+          "reference_operations": 0,
+          "reference_routes": 0,
+          "sources": 50,
+          "evidence": 60,
+          "gaps": 16,
+          "reference_edges": 0,
+          "process_edges": 0
+        }
+      }
+    ],
+    "unaccounted_supported_nominations": [],
+    "whole_manufacturing_atlas_complete": false
+  },
+  "convergence_findings": {
+    "passed": true,
+    "basis": "All ten discrepancies explicitly disposed; independent revisions agree on conditional thermal lead, scope/evidence distinctions, power splits, retained alternatives and unknowns. Alternative commercial ordering remains unknown, not a resolved market fact.",
+    "material_factual_disputes": [],
+    "remaining_unknowns": [
+      "G-OWNER",
+      "G-TRANSFER",
+      "G-LLM",
+      "G-ECON",
+      "G-LATENCY",
+      "G-RECIPES"
+    ],
+    "not_independent_corroboration": "Repeated underlying sources across reviewers counted once."
+  },
+  "unresolved_discrepancies": [],
+  "researched_gap_ids": [
+    "G-OWNER",
+    "G-TRANSFER",
+    "G-LLM",
+    "G-ECON",
+    "G-LATENCY",
+    "G-RECIPES"
+  ],
+  "artifacts": {
+    "result": "result.md",
+    "discrepancies": "discrepancies.json",
+    "blind_manifest": "frozen/round-01/manifest.json",
+    "peer_manifest": "frozen/round-02/manifest.json",
+    "peer_input_manifest": "frozen/review-inputs/manifest.json",
+    "accepted": "accepted.json",
+    "integrity": "coordinator/final-integrity-check.json"
+  },
+  "save_verification": {
+    "json_parsed": true,
+    "all_peer_files_frozen": true,
+    "canonical_input_hashes_unchanged": true
+  }
+}

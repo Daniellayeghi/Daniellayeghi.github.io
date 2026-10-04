@@ -1,0 +1,140 @@
+[
+  {
+    "id": "ROOT-S01",
+    "url": "https://news.skhynix.com/en/rulebreaker-revolutions-mr-muf-unlocks-hbm-heat-control/",
+    "title": "How MR-MUF's Heat Control Breakthrough Elevated HBM to New Heights",
+    "publisher": "SK hynix",
+    "published_at": "2024-07-30",
+    "reading_extent": "Retrieved original article, main technology account and complete Kyoung-Moo Harr interview; no figure-pixel inspection in this run.",
+    "claim": "The manufacturer describes applying new epoxy molding compound to universal test vehicles, wafer-level packaging, look-ahead reliability tests, countermeasures and admission of improved passing materials.",
+    "label": "documented",
+    "applicability": "product_family",
+    "db_anchor": "hbm3e.json: A-R-SK-DEV / A-D-06 / A-S-MR; full surrounding development records required",
+    "limit": "Manufacturer account; no complete recipe, current customer campaign economics or autonomous system.",
+    "accepted_trace_clarification": "A-R-SK-DEV / A-D-01\u202605 describes broad UTV/WLP/LAR/countermeasure/admission sequence. A-D-06 is preliminary material-risk assessment. Detailed implementations remain gaps."
+  },
+  {
+    "id": "ROOT-S03",
+    "url": "https://www.ficontec.com/capabilities/",
+    "title": "Capabilities for photonics assembly and testing",
+    "publisher": "ficonTEC",
+    "published_at": null,
+    "reading_extent": "Original capability article: positioning, passive/active alignment, active tracking during bonding, process control, recipes, component tracking, data records, process development and AOI.",
+    "claim": "Vendor offers integrated alignment/assembly/test, active correction during bonding, recipe/SQL records, customer process development and machine-learning performance analytics.",
+    "label": "documented",
+    "applicability": "general_method",
+    "limit": "Constituent infrastructure and relevant comparator; neither proves nor disproves a broader LLM-led experiment-to-solution product."
+  },
+  {
+    "id": "ROOT-S04",
+    "url": "https://corintis.com/therminator",
+    "title": "Therminator",
+    "publisher": "Corintis",
+    "published_at": null,
+    "reading_extent": "Original product main body and status disclosure; no current visual inspection.",
+    "claim": "Vendor offers programmable heat maps, spatial temperature sensing, integrated power/data/control, and TIM power-cycle testing capability; certification is described as underway.",
+    "label": "documented",
+    "applicability": "general_method",
+    "limit": "Advertised capability; not exact emulation of every GPU or independently validated proposed robotic system."
+  },
+  {
+    "id": "ROOT-S06",
+    "url": "https://engineering.purdue.edu/MTEC/publications/experimental-characterization-of-thermal-grease-degradation-between-warped-mating-surfaces-in-powercycled-assemblies",
+    "title": "Experimental characterization of thermal grease degradation between warped mating surfaces in power-cycled assemblies",
+    "publisher": "Purdue MTEC / Kulkarni, Gronowski, Marconnet",
+    "published_at": "2026",
+    "reading_extent": "Original author-lab abstract and metadata only. Full journal text not read; graphical abstract URL discovered, pixels not yet inspected.",
+    "claim": "Authors report a grease layer between a metal heater and transparent air-cooled lens, controlled flat/convex/concave surfaces, power cycling and microscope observation of voids, cracks and motion. Degradation differs with surface geometry.",
+    "label": "documented",
+    "applicability": "illustrative",
+    "limit": "Controlled research surrogate, not a coldplate/GPU trial or validation of our integration; study supports mechanism and experiment design only."
+  },
+  {
+    "id": "ROOT-S07",
+    "url": "https://www.opencompute.org/documents/30-coolant-a-durable-roadmap-for-the-future-rev1-0-pdf",
+    "title": "30 C Coolant - A Durable Roadmap for the Future",
+    "publisher": "Open Compute Project contributors",
+    "published_at": "2024-10-01",
+    "reading_extent": "Original PDF text sections on modern GPU/HBM stack, differing heights, thermal paths and workload-dependent crosstalk; later technology projections inspected as forecasts, not current deployment.",
+    "claim": "Multi-chip thermal behavior includes differing component heights, thermal paths and workload-dependent neighboring-chip heat; distinct junction constraints must be considered.",
+    "label": "documented",
+    "applicability": "general_method",
+    "limit": "Roadmap/engineering guidance with dated forecasts; not measured performance of the selected Lenovo part."
+  },
+  {
+    "id": "ROOT-S08",
+    "url": "https://suddendocs.samtec.com/notesandwhitepapers/samtec-developing-a-test-fixture-for-200g-with-pathway-to-400g.pdf",
+    "title": "Developing a Test Fixture for 200G with Pathway to 400G",
+    "publisher": "Samtec authors",
+    "published_at": "2025-07-14",
+    "reading_extent": "Original PDF text pp1-3, plus personally viewed saved p3 image including fixture photo and configurable interfaces.",
+    "claim": "Paper describes modeled/measured fixture development, configurable channel lengths and precision compression interfaces. 448G is pathfinding in this paper.",
+    "label": "documented",
+    "applicability": "illustrative",
+    "limit": "Does not demonstrate automated diagnostic redesign, robotic repeatability or buyer economics."
+  },
+  {
+    "id": "ROOT-S09",
+    "url": "https://arxiv.org/pdf/2412.06570",
+    "title": "Next generation Co-Packaged Optics Technology",
+    "publisher": "IBM research authors",
+    "published_at": "2024-12-09",
+    "reading_extent": "Original text personally read in preceding photonics turn: model/build updates and reliability pp6-10; re-viewed saved p9 figures5/6 in current audit.",
+    "claim": "Experimental package development returned from early stress failures to material/process/structure changes and successful subsequent tests.",
+    "label": "documented",
+    "applicability": "illustrative",
+    "limit": "IBM polymer-waveguide test vehicle, not NVIDIA CPO production or an autonomous bench."
+  },
+  {
+    "id": "ROOT-S12",
+    "url": "https://www.coolitsystems.com/capabilities/design-engineering/",
+    "title": "Custom Liquid Cooling Design and Prototyping",
+    "publisher": "CoolIT Systems",
+    "published_at": null,
+    "reading_extent": "Current original page, main sections design, fabrication, test/validation, certification and manufacturing engineering. No image-pixel inspection.",
+    "claim": "Vendor describes existing customer requirements, material compatibility, CFD/FEA, prototype fabrication, qualification, lifecycle testing and manufacturing robotics.",
+    "label": "documented",
+    "applicability": "general_method",
+    "limit": "Strong current integration comparator; vendor capability statement, no autonomous engineering claim. Does not disqualify the proposed experimental integration but raises the comparison baseline."
+  },
+  {
+    "id": "ROOT-S13",
+    "url": "https://www.opencompute.org/documents/ocp-cold-plate-development-and-qualification-with-integrated-comments-pdf",
+    "title": "Cold Plate Development and Qualification",
+    "publisher": "Open Compute Project",
+    "reading_extent": "Fresh original PDF text: mechanical/interface requirements pp11-15, thermal test and matched-flow blank-loop pressure subtraction pp16-17; no fresh figure-pixel inspection.",
+    "claim": "Representative powered processor mounting and controlled thermal/pressure measurements establish a baseline for experimental qualification.",
+    "label": "documented",
+    "applicability": "general_method",
+    "limit": "Reference methods, not evidence that causal localization from these observables alone is unique or that our integrated system exists."
+  },
+  {
+    "id": "ROOT-S14",
+    "url": "https://www.infineon.com/assets/row/public/documents/24/42/infineon-ref-8kw-hfhd-psu-applicationnotes-en.pdf",
+    "title": "8 kW high power density and high frequency PSU for AI data centers and servers",
+    "publisher": "Infineon",
+    "published_at": "2025-09-19",
+    "reading_extent": "Fresh web fetch exceeded parser size. Read agent-B original-PDF extracted text p26 \u00a73.1.4 and p49 \u00a74.2.1; personally viewed rendered p49 waveforms/captions.",
+    "claim": "Lower bulk capacitance creates load-step protection-margin tradeoffs; the reference uses load feed-forward and reports measured transient performance.",
+    "label": "documented",
+    "applicability": "general_method",
+    "limit": "Successful reference engineering, not unresolved customer failure; AC/DC topology cannot be silently relabelled800V DC/DC. Figure62 caption and surrounding percentage wording differ; no numerical reproduction based on that ambiguous caption."
+  },
+  {
+    "id": "A-S-FAN",
+    "title": "San Ace Company \u2014 Technology and Strengths, Technical Report 60",
+    "publisher": "Sanyo Denki",
+    "url": "https://publish.sanyodenki.com/library/books/TR60_E/book/data/TR60_E.pdf",
+    "published_at": "2025-11",
+    "accessed_at": "2026-10-04",
+    "retrieval_status": "retrieved_original",
+    "underlying_source_id": "A-S-FAN",
+    "limitations": "Manufacturer account with concrete loop, but unknown selected GB300 fan supplier. PDF says November 2025; current web report index search labels No.60 November 2026. Use PDF date and preserve discrepancy.",
+    "reading_locator": "Printed pp.3\u20138 / PDF pp.6\u201311, sections 2\u20134, figures 2\u20135 and 15\u201317",
+    "actual_reading_extent": "Original researcher A reported: Downloaded original 45-page PDF; read six relevant pages fully; visually inspected PDF pp.7 and 11.",
+    "provenance": {
+      "inherited_from": "frozen/round-01/agent-A/round1.json",
+      "reviewer_A2_status": "inherited unless a separate personal_reverification field says otherwise"
+    }
+  }
+]

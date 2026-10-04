@@ -1,0 +1,39 @@
+{
+  "review_id": "usecase-db-review-2026-10-04",
+  "review_date": "2026-10-04",
+  "acceptance_boundary": "Accepts a source-grounded opportunity assessment and conditional pilot recommendation only. Does not accept a manufacturing route, demonstrate an autonomous bench, or validate a business.",
+  "graph_version": "7.18-rack-busbar-manufacturing-linked",
+  "components": 180,
+  "accepted_studies": 18,
+  "covered_component_ids": 43,
+  "queued_component_ids": 127,
+  "in_research_component_ids": 10,
+  "presentation_scope": "Six candidate experimental workflows selected from the completed opportunity review. This is an editorial view, not the complete database or a new manufacturing-route acceptance.",
+  "inputs": [
+    {
+      "path": "research/nvidia-chain/usecase-db-review-2026-10-04/accepted.json",
+      "sha256": "62c6fa58b6b4d13e02520482cfe354b1e6864bade9542917aef6c28cb2cff30b"
+    },
+    {
+      "path": "research/nvidia-chain/usecase-db-review-2026-10-04/result.md",
+      "sha256": "eed20a7abdaf5af5c37a0b103f7f4f12047d03fe9913993ac119cb95078096c8"
+    },
+    {
+      "path": "research/nvidia-chain/usecase-db-review-2026-10-04/frozen/round-02/reviewer-A2/round2.json",
+      "sha256": "d2fd46e9fa3d6dafca0f836f4a33eb501db520e0f46816be48a33b548b1798ad"
+    },
+    {
+      "path": "research/nvidia-chain/usecase-db-review-2026-10-04/frozen/round-02/reviewer-B2/round2.json",
+      "sha256": "2a7df90392d19b2e02db201d8bb9f03b8e949ba901932f65ae636cf38ae8f1e5"
+    },
+    {
+      "path": "research/nvidia-chain/usecase-db-review-2026-10-04/frozen/round-02/reviewer-C2/round2.json",
+      "sha256": "2f0ea5055f4a02802e09af2465dbe3f831459ef0e883220ac3478f7d5b1463b1"
+    },
+    {
+      "path": "research/nvidia-chain/usecase-db-review-2026-10-04/inputs/study-inventory.json",
+      "sha256": "47ea1eaa59088d6d3392a3571c8fcf2cc26461a498ec3f205aace6485d685aad"
+    }
+  ],
+  "graph_sha256": "a4260b210f6712870fd8a8cb1870dfdacd0212a1dd7877f9c827a13b4b9e1ea0"
+}

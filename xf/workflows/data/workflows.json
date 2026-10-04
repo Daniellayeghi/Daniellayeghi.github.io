@@ -1,0 +1,859 @@
+[
+  {
+    "id": "thermal",
+    "record": "A-C1",
+    "name": "Accelerator thermal interface",
+    "domain": "Thermal systems",
+    "title": "Keep thermal margin after cycling.",
+    "summary": "Find whether the fix belongs in the interface material, mounting, coldplate or local coolant path.",
+    "position": "Conditional first pilot",
+    "owner": "Server thermal team or cooling-module developer",
+    "problem": "An assembly passes initially but develops a hotspot or thermal drift under representative loads and repeated heating. A real owner case is still needed.",
+    "value": "Avoid changing the wrong part of an expensive accelerator assembly. The potential value is a qualified design change and fewer unnecessary prototypes; the saving is unmeasured.",
+    "change": "Interface material, application, mounting load, plate or local fluid path.",
+    "measure": "Temperature maps, heat input, surface form, mounting load, flow and pressure drop.",
+    "deliver": "A repeatable assembly recipe that meets thermal, mechanical and hydraulic requirements after cycling.",
+    "evidenceLabel": "Methods + mechanism documented",
+    "evidenceSummary": "OCP documents qualification methods. Purdue reports geometry-dependent grease degradation in a controlled surrogate. The combined diagnostic bench is our proposal.",
+    "scope": "General qualification methods and a research surrogate; no current GB300 defect or exact factory route is established.",
+    "sourceIds": [
+      "ROOT-S13",
+      "ROOT-S06",
+      "ROOT-S07",
+      "ROOT-S04",
+      "ROOT-S12"
+    ],
+    "steps": [
+      {
+        "title": "Establish baseline",
+        "subtitle": "Geometry + repeatability",
+        "action": "Identify the accessible interface, inspect surfaces and assemble a traceable reference specimen. Calibrate the thermal and hydraulic rig.",
+        "change": "Repeat controlled mounts on separate specimens; keep an undisturbed control.",
+        "measure": "Surface form, force/displacement, applied power, temperatures, flow and fixture pressure loss.",
+        "decision": "Is the effect larger than measurement and assembly variation? Torque alone does not establish contact pressure.",
+        "sourceIds": [
+          "ROOT-S13"
+        ],
+        "basis": "Reference method; proposed combined baseline"
+      },
+      {
+        "title": "Reproduce drift",
+        "subtitle": "Load + power cycles",
+        "action": "Apply defined spatial heat patterns and owner-specified power cycles at controlled inlet conditions.",
+        "change": "Heat distribution and exposure; hold the assembly and coolant conditions controlled.",
+        "measure": "Local temperature rise and drift, inlet/outlet temperature, flow and differential pressure.",
+        "decision": "Which conditions reproduce the loss of margin? Record the aged assembly before remounting destroys evidence.",
+        "sourceIds": [
+          "ROOT-S06",
+          "ROOT-S07",
+          "ROOT-S04"
+        ],
+        "basis": "Mechanism and test infrastructure documented; campaign proposed"
+      },
+      {
+        "title": "Separate causes",
+        "subtitle": "Contact or coolant?",
+        "action": "Compare contact/material interventions against fluid-path interventions with known-good controls.",
+        "change": "One approved interface or hydraulic factor per discriminating experiment.",
+        "measure": "Thermal-map changes alongside pressure/flow and assembly records.",
+        "decision": "Does the evidence support mounting, material aging, fluid restriction or a combination? A lower temperature alone does not prove the cause.",
+        "sourceIds": [
+          "ROOT-S13",
+          "ROOT-S06"
+        ],
+        "basis": "Proposed interpretation and experiment selection"
+      },
+      {
+        "title": "Build a revision",
+        "subtitle": "Make the physical change",
+        "action": "Install the justified material, retention or plate variant and record its actual assembled condition.",
+        "change": "Material/application, retention hardware or approved geometry. New plates require fabrication.",
+        "measure": "Incoming geometry, material identity, assembly loads and initial thermal/hydraulic response.",
+        "decision": "Did the intended physical change occur, and did it produce the predicted effect?",
+        "sourceIds": [
+          "ROOT-S12",
+          "ROOT-S13"
+        ],
+        "basis": "Existing development methods; proposed orchestration"
+      },
+      {
+        "title": "Verify durability",
+        "subtitle": "Fresh builds + held-out loads",
+        "action": "Freeze the revision and repeat on independent builds, withheld conditions and the actual product.",
+        "change": "Fresh specimens and validation conditions; keep the requirements fixed.",
+        "measure": "Aged thermal margin, leak integrity, mechanical limits and repeatability.",
+        "decision": "Release only a reproducible, product-relevant solution. A passing representative heater cannot release the product.",
+        "sourceIds": [
+          "ROOT-S13"
+        ],
+        "basis": "Proposed verification campaign grounded in qualification methods"
+      }
+    ],
+    "bench": {
+      "specimen": "One package-to-coldplate interface, its retention assembly and a defined local coolant branch.",
+      "stimulus": "Programmable representative heat source, controlled coolant supply and owner-defined cycling.",
+      "instruments": [
+        "Spatial temperature and electrical-power acquisition",
+        "Flow meter and differential-pressure measurement",
+        "Surface metrology and calibrated force/displacement",
+        "Traceable material and specimen inspection"
+      ],
+      "hard": "Dedicated thermal/fluid controls, deterministic protection, controlled dispensing and instrumented fastening establish repeatability.",
+      "robot": "Exchange identifiable specimens and plate variants; transfer to inspection; operate controlled fastening tools after fixtures are proven.",
+      "flexible": "Potential hose/cable presentation or variable connector handling. Useful only if a demonstrated task cannot be handled well by a fixture.",
+      "llmInputs": [
+        "Geometry and material specifications",
+        "Assembly and specimen history",
+        "Thermal maps and pressure/flow traces",
+        "Previous interventions, failures and uncertainty"
+      ],
+      "llmDecision": "Maintain competing explanations, propose a test that separates them, interpret the combined results and prepare the change record.",
+      "tools": "Numerical fitting, physics simulation and experiment optimization calculate results. Validated controllers operate equipment and enforce limits.",
+      "wait": "Thermal stabilization, drain/fill, new plate fabrication and reliability exposure remain physical waits."
+    },
+    "verification": [
+      "Preserve aged evidence before disturbing the interface.",
+      "Confirm the change on fresh assemblies and held-out conditions.",
+      "Demonstrate transfer from test vehicle to actual product."
+    ],
+    "baseline": "Expert thermal engineering with the same integrated rig, CFD/FEA and conventional experiment planning. Existing cooling suppliers already combine design, prototypes and qualification.",
+    "access": "An owner-controlled failing assembly, mechanical limits, material permissions and authority to change the interface and local cooling.",
+    "unknowns": [
+      "Recurring owner failures and avoidable engineering effort",
+      "Sensor and test-vehicle fidelity on the actual package",
+      "Incremental value of the LLM beyond the same rig plus an expert",
+      "Campaign economics and customer budget"
+    ],
+    "nextTest": "Use one real initial-pass / aged-fail case to compare the current workflow, an integrated conventional bench, and that same bench with LLM-assisted experiment selection.",
+    "anchors": [
+      {
+        "study": "gpu-coldplate",
+        "component": "L3-012",
+        "ids": [
+          "A-R-OCP-QUAL",
+          "A2-O-02-MOUNT",
+          "A2-O-03-BASELINE",
+          "A2-O-03-SUBTRACT",
+          "A2-OCP-SURFACE"
+        ],
+        "label": "Coldplate qualification methods",
+        "route_id": "M-L3-012-COLDPLATE-01",
+        "url": "https://daniellayeghi.github.io/xf/#component=L3-012&view=manufacturing&study=M-L3-012-COLDPLATE-01",
+        "source_sha256": "08bffb121d7694ab574159e130b7f2232f504052a82c31b8f4040e092b8d7552"
+      }
+    ],
+    "tags": [
+      "TIM",
+      "thermal grease",
+      "warpage",
+      "power cycling",
+      "cooling",
+      "mounting",
+      "pressure",
+      "flow"
+    ]
+  },
+  {
+    "id": "power",
+    "record": "CB01",
+    "name": "Power-converter transients",
+    "domain": "Power electronics",
+    "title": "Recover transient margin without adding bulk.",
+    "summary": "Resolve the control, capacitance and load-response tradeoff inside a high-density AC/DC converter.",
+    "position": "Narrow electrical alternative",
+    "owner": "Converter design team with firmware and circuit authority",
+    "problem": "Repeated load steps push the internal bus towards protection limits or cause unacceptable output deviation. More capacitance may conflict with density targets.",
+    "value": "Find a stable design or control change across the operating envelope, avoiding repeated hardware revisions. No unresolved customer case or commercial saving is established.",
+    "change": "Approved control/feed-forward parameters and capacitor-bank or connection variants.",
+    "measure": "Synchronized internal bus voltage, output voltage/current, input waveforms and protection events.",
+    "deliver": "A reproducible hardware/firmware revision meeting transient, thermal and input-quality limits.",
+    "evidenceLabel": "Reference fix documented",
+    "evidenceSummary": "Infineon describes reduced-capacitance load-step constraints and a successful feed-forward implementation. Our proposed bench would address a new owner-specific case.",
+    "scope": "An AC/DC reference design, not a confirmed Lenovo PSU route or an 800 V DC/DC design.",
+    "sourceIds": [
+      "ROOT-S14"
+    ],
+    "steps": [
+      {
+        "title": "Capture the failure",
+        "subtitle": "Validate load fidelity",
+        "action": "Reproduce an owner-supplied failing load transition on an instrumented converter.",
+        "change": "Defined load amplitude, slope and repetition within the allowed envelope.",
+        "measure": "Actual load current, bus/output voltage and protection flags with synchronized instruments.",
+        "decision": "Does the physical stimulus reproduce the failure, and can the acquisition resolve the fast event?",
+        "sourceIds": [
+          "ROOT-S14"
+        ],
+        "basis": "Reference transient tests; owner campaign proposed"
+      },
+      {
+        "title": "Separate mechanisms",
+        "subtitle": "Control, energy or path?",
+        "action": "Compare relevant internal waveforms with the schematic, firmware and thermal state.",
+        "change": "Load timing relative to AC phase, source conditions and approved temperature conditions.",
+        "measure": "Input current/voltage, branch currents where accessible, Vbulk, Vout and controller events.",
+        "decision": "Does the fault point to control latency, energy storage, sensing or connection impedance?",
+        "sourceIds": [
+          "ROOT-S14"
+        ],
+        "basis": "Proposed multi-signal diagnosis"
+      },
+      {
+        "title": "Change the design",
+        "subtitle": "Firmware + hardware",
+        "action": "Apply a bounded control revision or install an approved component variant after verified isolation and discharge.",
+        "change": "Feed-forward/filter settings or a keyed capacitor/interface variant; preserve protection requirements.",
+        "measure": "Revision identity, connection checks and predicted waveform response.",
+        "decision": "Did the change address the proposed mechanism without introducing a new failure?",
+        "sourceIds": [
+          "ROOT-S14"
+        ],
+        "basis": "Reference control fix; broader bench proposed"
+      },
+      {
+        "title": "Sweep the corners",
+        "subtitle": "Source + load + temperature",
+        "action": "Repeat the test over a preregistered operating envelope and compare against the original design.",
+        "change": "Permitted source/load conditions and thermal state, not the acceptance criteria.",
+        "measure": "Transient limits, component temperatures, efficiency and input-current quality.",
+        "decision": "Is the benefit robust or merely tuned to one trace?",
+        "sourceIds": [
+          "ROOT-S14"
+        ],
+        "basis": "Proposed verification using documented electrical measurements"
+      },
+      {
+        "title": "Confirm the revision",
+        "subtitle": "Independent retest",
+        "action": "Restore normal chassis/cooling geometry and test held-out traces and independent builds.",
+        "change": "Representative installation and fresh verification units.",
+        "measure": "Owner performance limits plus the applicable release checks.",
+        "decision": "Accept a verified change. Formal EMC and safety qualification remain separate release gates.",
+        "sourceIds": [
+          "ROOT-S14"
+        ],
+        "basis": "Proposed release campaign; source EMI work is preliminary"
+      }
+    ],
+    "bench": {
+      "specimen": "One editable AC/DC converter with approved internal test access.",
+      "stimulus": "Programmable AC source, high-bandwidth electronic load and deterministic switching.",
+      "instruments": [
+        "Synchronized oscilloscope and appropriately isolated probes",
+        "Current measurement and power analyzer",
+        "Temperature acquisition and firmware/event logging",
+        "Validated source/load and remote-sense fixtures"
+      ],
+      "hard": "Source/load sequencing, discharge verification, interlocks and fast protection. The converter controller retains real-time control.",
+      "robot": "Potential loading of standardized cartridges or fixtures after verified isolation. Qualified manual rework remains appropriate initially.",
+      "flexible": "No necessary role established. Variable harness or probe tasks would need their own reliability case.",
+      "llmInputs": [
+        "Schematics and component limits",
+        "Firmware revisions and telemetry",
+        "Synchronized waveforms",
+        "Test conditions and previous changes"
+      ],
+      "llmDecision": "Reconcile electrical evidence with design context, choose a discriminating diagnostic branch and produce a traceable change-and-retest record.",
+      "tools": "Control models, circuit simulation and constrained numerical optimization do the quantitative work; validated hardware controls enforce the action envelope.",
+      "wait": "Discharge, rework, thermal equilibrium, fabrication and formal qualification remain. Fast waveform capture is not the full iteration time."
+    },
+    "verification": [
+      "Validate stimulus and measurement bandwidth.",
+      "Keep protection and performance requirements fixed.",
+      "Retest unseen traces and the restored product installation."
+    ],
+    "baseline": "Converter engineers using scripted automated test, scopes, simulation and conventional experiment optimization. Successful feed-forward control already exists.",
+    "access": "Internal test points, editable firmware/schematics, failing traces and authority to change the design. A sealed purchased PSU is insufficient.",
+    "unknowns": [
+      "A new unsolved owner case",
+      "Avoidable experiment and engineering burden",
+      "Safe, repeatable hardware-change interfaces",
+      "Benefit over current engineering and scripted test"
+    ],
+    "nextTest": "Replay a real failing case with synchronized measurements, then compare diagnosis and verified fixes using the same bench with and without LLM assistance.",
+    "anchors": [
+      {
+        "study": "power-converter",
+        "component": "L2-019",
+        "ids": [
+          "M-L2-019-PSU-01",
+          "B-R04",
+          "B-S07"
+        ],
+        "label": "Converter research and Infineon reference",
+        "route_id": "M-L2-019-PSU-01",
+        "url": "https://daniellayeghi.github.io/xf/#component=L2-019&view=manufacturing&study=M-L2-019-PSU-01",
+        "source_sha256": "74e93e28780a92dfbc5c349189ca3805edce9046e4abce1d997ff21132c8bc1c"
+      }
+    ],
+    "tags": [
+      "electrical",
+      "PSU",
+      "feed-forward",
+      "capacitance",
+      "oscilloscope",
+      "transient",
+      "load step",
+      "firmware"
+    ]
+  },
+  {
+    "id": "optical",
+    "record": "A2-COPT",
+    "name": "Optical package reliability",
+    "domain": "Photonics",
+    "title": "Keep optical performance after bonding and stress.",
+    "summary": "Find the material, attachment and package recipe that preserves optical-loss margin through the real assembly lifecycle.",
+    "position": "Documented physical iteration",
+    "owner": "Optical module or packaging-process owner",
+    "problem": "Good initial alignment does not guarantee good performance after bonding, reflow or environmental stress. A real candidate must expose that failure history.",
+    "value": "Avoid a package that couples well initially but fails later qualification. The opportunity is in selecting the next physical build; customer economics are unverified.",
+    "change": "Approved adhesive, cure/dispense recipe, attachment geometry and package support.",
+    "measure": "Per-channel optical loss across assembly and stress, position records and failure analysis.",
+    "deliver": "An attachment/material recipe retaining the owner's optical margin after required stress.",
+    "evidenceLabel": "Failure → revision → retest reported",
+    "evidenceSummary": "IBM reports package development returning from early stress failures to material/process/structure changes and subsequent passing tests. The proposed LLM integration is not demonstrated.",
+    "scope": "IBM polymer-waveguide research and vendor assembly capabilities; follow-up evidence outside the accepted Lenovo rack manufacturing graph.",
+    "sourceIds": [
+      "ROOT-S09",
+      "ROOT-S03"
+    ],
+    "steps": [
+      {
+        "title": "Establish optical truth",
+        "subtitle": "Reference + repeat mates",
+        "action": "Calibrate the optical path and record channel performance before attachment.",
+        "change": "Controlled remates and reference specimens.",
+        "measure": "Insertion loss under defined wavelength/polarization conditions and remating variability.",
+        "decision": "Can persistent package loss be distinguished from connector or fixture variation?",
+        "sourceIds": [
+          "ROOT-S09",
+          "ROOT-S03"
+        ],
+        "basis": "Proposed baseline around documented optical methods"
+      },
+      {
+        "title": "Align and attach",
+        "subtitle": "Record each transition",
+        "action": "Build traceable material/process splits using precision stages, vision and controlled bonding.",
+        "change": "Approved adhesive, dispense geometry, cure and attachment variants.",
+        "measure": "Loss before, during and after bonding; position and recipe history.",
+        "decision": "At which physical transition does loss appear?",
+        "sourceIds": [
+          "ROOT-S03",
+          "ROOT-S09"
+        ],
+        "basis": "Assembly capabilities documented; diagnostic policy proposed"
+      },
+      {
+        "title": "Apply stress",
+        "subtitle": "Expose latent drift",
+        "action": "Run required assembly and reliability exposures with unstressed sister specimens.",
+        "change": "Exposure status while retaining defined controls and requirements.",
+        "measure": "Channel-by-channel loss after reflow/stress and approved dimensional or failure analysis.",
+        "decision": "Is the change persistent, and does it follow a material, structure or recipe factor?",
+        "sourceIds": [
+          "ROOT-S09"
+        ],
+        "basis": "Failure-driven stress testing reported"
+      },
+      {
+        "title": "Revise the package",
+        "subtitle": "New recipe, fresh builds",
+        "action": "Use stagewise loss and failure evidence to choose an approved material/process/structure change.",
+        "change": "Build a fresh package variant rather than merely realigning the failed sample.",
+        "measure": "Actual build genealogy and optical response through the same stages.",
+        "decision": "Does the revision address the failure without trading it for another weakness?",
+        "sourceIds": [
+          "ROOT-S09"
+        ],
+        "basis": "Physical development return reported; LLM selection proposed"
+      },
+      {
+        "title": "Verify retention",
+        "subtitle": "Independent lots + stress",
+        "action": "Freeze the recipe and qualify independent builds under unchanged optical limits.",
+        "change": "Fresh lots and complete required stress.",
+        "measure": "Post-stress loss, repeatability and reference-path stability.",
+        "decision": "Accept durable performance, not only time-zero coupling.",
+        "sourceIds": [
+          "ROOT-S09"
+        ],
+        "basis": "Reported retest foundation; owner-specific verification proposed"
+      }
+    ],
+    "bench": {
+      "specimen": "A defined optical attachment/package family with traceable channel and process history.",
+      "stimulus": "Controlled optical input plus the owner's bonding, reflow and environmental-stress sequences.",
+      "instruments": [
+        "Calibrated optical source and power/loss measurement",
+        "Precision multi-axis alignment and vision",
+        "Dispense, bond and cure controls",
+        "Stress chambers and approved failure-analysis tools"
+      ],
+      "hard": "Precision alignment, active tracking during bonding, dispensing and optical acquisition use specialist equipment.",
+      "robot": "Transfer carriers and specimens among assembly, stress and optical retest while preserving identity.",
+      "flexible": "Optional loading or variable connection tasks only. Learned dexterity is not the precision-alignment mechanism.",
+      "llmInputs": [
+        "Stagewise optical-loss histories",
+        "Material and cure specifications",
+        "Recipe, fixture and lot genealogy",
+        "Failure analysis and prior package changes"
+      ],
+      "llmDecision": "Compare bonding, material, structure and fixture explanations; choose the next controlled build and interpret results across stages.",
+      "tools": "Alignment controllers, optical models, statistical experiment design and fitting provide numerical control and analysis.",
+      "wait": "Fabrication, adhesive preparation/cure, reflow, reliability exposure and destructive analysis remain. Decisions may occur between lots."
+    },
+    "verification": [
+      "Separate remating variability from persistent package damage.",
+      "Test all required assembly and stress stages.",
+      "Confirm on independent builds with unchanged optical limits."
+    ],
+    "baseline": "Existing active align/attach/test systems, package engineering, optical modelling and conventional experiment design. These provide a substantial integration baseline.",
+    "access": "A module/process owner with failed lots, recipe/data access, stress capacity and material/package change rights.",
+    "unknowns": [
+      "Access to an unresolved package campaign",
+      "How much latency is reducible engineering work versus exposure",
+      "Transfer from the IBM example to the intended package",
+      "Incremental LLM benefit and buyer economics"
+    ],
+    "nextTest": "Take one post-stress failure family and test whether combined process genealogy and loss history lead to better next-build choices than the current engineering workflow.",
+    "anchors": [],
+    "tags": [
+      "photonics",
+      "CPO",
+      "co-packaged optics",
+      "alignment",
+      "bonding",
+      "adhesive",
+      "insertion loss",
+      "reliability"
+    ]
+  },
+  {
+    "id": "hbm",
+    "record": "CB04",
+    "name": "HBM encapsulant development",
+    "domain": "Advanced packaging",
+    "title": "Improve heat transfer without creating stack defects.",
+    "summary": "Choose a molded-underfill material and process that survives filling, warpage and package reliability requirements.",
+    "position": "Manufacturer development loop",
+    "owner": "Memory manufacturer and material-development partner",
+    "problem": "A promising material can improve conductivity yet fail when thin dies are stacked and packaged. Material-coupon success is not package success.",
+    "value": "Resolve a coupled material/process qualification problem in high-value memory packaging. Access, campaign economics and our incremental contribution remain unknown.",
+    "change": "Owner-approved encapsulant candidates and mold/fill/cure process splits.",
+    "measure": "Package thermal behavior, warpage, defects and owner-selected electrical/reliability outcomes.",
+    "deliver": "A repeatable material/process combination that passes package qualification across appropriate lots.",
+    "evidenceLabel": "Test vehicles + countermeasures reported",
+    "evidenceSummary": "SK hynix describes new molding compounds, universal test vehicles, packaging, reliability testing, countermeasures and improved passing materials.",
+    "scope": "Manufacturer material-development account. Specific instruments below are a proposed implementation, not disclosed SK hynix production equipment.",
+    "sourceIds": [
+      "ROOT-S01"
+    ],
+    "steps": [
+      {
+        "title": "Define material splits",
+        "subtitle": "Trace formulation + recipe",
+        "action": "Select approved candidates and representative test vehicles with a production baseline.",
+        "change": "Material and process factors in a controlled experimental plan.",
+        "measure": "Material identity, conditioning, geometry and planned build genealogy.",
+        "decision": "Does the experiment separate material effects from packaging-process changes?",
+        "sourceIds": [
+          "ROOT-S01"
+        ],
+        "basis": "Material and test-vehicle development documented"
+      },
+      {
+        "title": "Package test vehicles",
+        "subtitle": "Use precision equipment",
+        "action": "Prepare candidate compound and build test vehicles using the owner's packaging line.",
+        "change": "Approved mold/fill/cure settings and material candidates.",
+        "measure": "Actual recipe and build conditions; proposed fill/defect and warpage inspection.",
+        "decision": "Which builds are physically representative and suitable for qualification?",
+        "sourceIds": [
+          "ROOT-S01"
+        ],
+        "basis": "Packaging documented; detailed metrology proposed"
+      },
+      {
+        "title": "Measure and stress",
+        "subtitle": "Thermal + defect outcomes",
+        "action": "Characterize the package, apply required reliability exposures and repeat relevant measurements.",
+        "change": "Defined exposure; preserve witness coupons and baseline samples.",
+        "measure": "Proposed thermal/warpage, acoustic or X-ray inspection and owner-selected electrical tests.",
+        "decision": "Which failure mechanism limits the otherwise promising material?",
+        "sourceIds": [
+          "ROOT-S01"
+        ],
+        "basis": "Reliability work documented; instrument suite proposed"
+      },
+      {
+        "title": "Apply a countermeasure",
+        "subtitle": "Material or process?",
+        "action": "Connect failure evidence to a revised formulation or controlled process split.",
+        "change": "Approved material/process countermeasure and a new traceable build.",
+        "measure": "Defect recurrence and performance under the original conditions.",
+        "decision": "Did the countermeasure remove the defect without compromising another requirement?",
+        "sourceIds": [
+          "ROOT-S01"
+        ],
+        "basis": "Physical countermeasure loop reported"
+      },
+      {
+        "title": "Qualify the combination",
+        "subtitle": "Repeat across lots",
+        "action": "Confirm passing package behavior on independent builds and appropriate lots.",
+        "change": "Fresh builds with a fixed selected recipe.",
+        "measure": "Complete owner qualification results, not only conductivity.",
+        "decision": "Admit a reproducible material/process combination; do not substitute a fast proxy for required reliability tests.",
+        "sourceIds": [
+          "ROOT-S01"
+        ],
+        "basis": "Passing material-development outcome reported; campaign details undisclosed"
+      }
+    ],
+    "bench": {
+      "specimen": "Representative stacked-memory test vehicles and controlled material/process splits.",
+      "stimulus": "The owner's packaging recipe and fixed reliability qualification conditions.",
+      "instruments": [
+        "Proposed thermal characterization and warpage measurement",
+        "Proposed acoustic/X-ray inspection",
+        "Owner-selected electrical or daisy-chain tests",
+        "Reliability chambers and material traceability"
+      ],
+      "hard": "Specialist wafer/die handling, bonding, molding and process controls are the core physical infrastructure.",
+      "robot": "Standard carriers and automated transfers between packaging, stress and metrology where supported by the existing line.",
+      "flexible": "No necessary role established at fragile die interfaces. This candidate is primarily specialist automation plus experiment reasoning.",
+      "llmInputs": [
+        "Material specifications and conditioning",
+        "Recipe and lot histories",
+        "Metrology and failure-analysis reports",
+        "Thermal, electrical and reliability outcomes"
+      ],
+      "llmDecision": "Reconcile competing material/process explanations, identify confounding factors and propose the next informative experimental split.",
+      "tools": "Materials models, statistical experiment design and existing process controls provide quantitative analysis and execution.",
+      "wait": "Material preparation, wafer/package builds, supplier iterations and long reliability tests may dominate."
+    },
+    "verification": [
+      "Use a representative package and production baseline.",
+      "Check defects and reliability alongside thermal improvement.",
+      "Confirm repeatability across the owner's required lots."
+    ],
+    "baseline": "Manufacturer material engineering, precision packaging equipment, materials informatics and conventional experiment design.",
+    "access": "Committed manufacturer/material partner, confidential formulation and recipe data, packaging capacity and permission to change them.",
+    "unknowns": [
+      "Proprietary recipes and meaningful action access",
+      "Specific metrology and causal identifiability",
+      "Avoidable experimental burden",
+      "Commercial terms and LLM advantage"
+    ],
+    "nextTest": "Partner on a new material/process campaign with real failed test vehicles and compare the quality of next-split decisions against the existing team and tools.",
+    "anchors": [
+      {
+        "study": "hbm3e",
+        "component": "L5-001",
+        "ids": [
+          "A-R-SK-DEV",
+          "A-D-01",
+          "A-D-06",
+          "A-D-07",
+          "A-S-MR"
+        ],
+        "label": "HBM material-development reference",
+        "route_id": "M-L5-001-HBM3E-01",
+        "url": "https://daniellayeghi.github.io/xf/#component=L5-001&view=manufacturing&study=M-L5-001-HBM3E-01",
+        "source_sha256": "c54d9fb642cdb3fab264a0a7977ac9efe2d9cd5b0c7d12580aefd2329a7dbd48"
+      }
+    ],
+    "tags": [
+      "HBM3E",
+      "MR-MUF",
+      "encapsulant",
+      "molded underfill",
+      "warpage",
+      "materials",
+      "thermal conductivity",
+      "X-ray"
+    ]
+  },
+  {
+    "id": "signal",
+    "record": "A2-CHS",
+    "name": "High-speed channel correlation",
+    "domain": "Electrical interconnects",
+    "title": "Fix the channel—or prove the fixture is wrong.",
+    "summary": "Separate measurement and model error from a real hardware problem before committing to a new board or interconnect.",
+    "position": "Follow-up candidate",
+    "owner": "Signal-integrity team with channel and fixture ownership",
+    "problem": "Measured loss or receiver behavior disagrees with the model. Fixture contacts, calibration, de-embedding and actual geometry can all be plausible causes.",
+    "value": "Avoid a false hardware redesign while verifying real link performance. The cost and recurrence of that problem have not been measured in an owner campaign.",
+    "change": "Controlled remates, reference fixtures, channel/launch variants and measured model inputs.",
+    "measure": "Calibrated S-parameters, mating repeatability, geometry and actual receiver error performance.",
+    "deliver": "A verified channel correction—or evidence that the original channel needs no redesign.",
+    "evidenceLabel": "Fixture development documented",
+    "evidenceSummary": "Samtec describes modeled/measured fixture development, configurable channel lengths and precision compression interfaces. The broader diagnostic bench is proposed.",
+    "scope": "Follow-up fixture research, not a confirmed NVLink manufacturing or automated diagnostic route. Higher-speed pathfinding is not a demonstrated production result.",
+    "sourceIds": [
+      "ROOT-S08"
+    ],
+    "steps": [
+      {
+        "title": "Establish reference planes",
+        "subtitle": "Calibration + repeatability",
+        "action": "Calibrate the measurement chain and repeatedly measure reference standards and controlled mates.",
+        "change": "Repeat connections with defined compression and geometry.",
+        "measure": "S-parameter uncertainty and connection repeatability.",
+        "decision": "Can the discrepancy be explained by the measurement chain?",
+        "sourceIds": [
+          "ROOT-S08"
+        ],
+        "basis": "Fixture-method foundation; diagnostic baseline proposed"
+      },
+      {
+        "title": "Compare model and build",
+        "subtitle": "Use actual geometry",
+        "action": "Compare measured response with a model tied to the real specimen and calibration history.",
+        "change": "Known channel lengths and characterized fixture or launch variants.",
+        "measure": "Model residuals, fixture behavior and available dimensional metrology.",
+        "decision": "Does the discrepancy track the fixture, the channel or a modeling assumption?",
+        "sourceIds": [
+          "ROOT-S08"
+        ],
+        "basis": "Modeled/measured development documented; causal policy proposed"
+      },
+      {
+        "title": "Run a discriminating swap",
+        "subtitle": "Reference or new channel",
+        "action": "Choose a characterized reference or channel specimen that separates competing explanations.",
+        "change": "One fixture/sample family at a time; order a revised board only when justified.",
+        "measure": "Recalibrated response after the swap and its repeatability.",
+        "decision": "Is a hardware change supported, or should the fixture/model be corrected?",
+        "sourceIds": [
+          "ROOT-S08"
+        ],
+        "basis": "Proposed experimental selection"
+      },
+      {
+        "title": "Test the actual link",
+        "subtitle": "Receiver + traffic",
+        "action": "Validate with representative receiver hardware and approved traffic/crosstalk conditions.",
+        "change": "Held-out lanes and operating conditions within the owner envelope.",
+        "measure": "Bit-error and eye behavior; distinguish measured errors from model-based metrics.",
+        "decision": "Does the proposed correction improve actual product behavior?",
+        "sourceIds": [
+          "ROOT-S08"
+        ],
+        "basis": "Proposed product verification; not established by the fixture paper"
+      },
+      {
+        "title": "Confirm independently",
+        "subtitle": "Fresh boards + calibration",
+        "action": "Repeat on independent specimens and, where feasible, an independent fixture/calibration path.",
+        "change": "Fresh boards and repeated mates with fixed acceptance limits.",
+        "measure": "Repeatability and representative link performance.",
+        "decision": "Release only within measured bandwidth and verified product conditions.",
+        "sourceIds": [
+          "ROOT-S08"
+        ],
+        "basis": "Proposed verification campaign"
+      }
+    ],
+    "bench": {
+      "specimen": "An editable channel with characterized launches, fixtures and representative receiver hardware.",
+      "stimulus": "Calibrated network-analyzer sweeps and defined link traffic/crosstalk.",
+      "instruments": [
+        "Vector network analyzer and reference standards",
+        "TDR where suitable and dimensional metrology",
+        "Bit-error-rate/receiver test equipment",
+        "Repeatable compression and protected RF connections"
+      ],
+      "hard": "Calibration, defined mating force/torque, instrument sequencing and numerical de-embedding.",
+      "robot": "Potential standardized specimen exchange and compression mating, after repeatability is proven.",
+      "flexible": "No demonstrated necessity. Expert setup and protected precision interfaces take priority over dexterity.",
+      "llmInputs": [
+        "Fixture and calibration provenance",
+        "Measured versus modeled responses",
+        "Geometry and revision history",
+        "Receiver outcomes and prior swaps"
+      ],
+      "llmDecision": "Choose the next reference or specimen test that distinguishes a measurement artifact from a real design problem.",
+      "tools": "EM simulation, calibration/de-embedding and numerical correlation perform the quantitative analysis.",
+      "wait": "Board fabrication, fixture calibration and long error-rate acquisitions remain."
+    },
+    "verification": [
+      "Quantify calibration and mating uncertainty.",
+      "Confirm model-based conclusions on actual receiver hardware.",
+      "Use independent specimens and a second calibration path where feasible."
+    ],
+    "baseline": "Expert RF calibration, EM simulation, configurable fixtures and existing signal-integrity analysis tools.",
+    "access": "Raw calibration/model files, representative devices, measured geometry and authority to build channel variants.",
+    "unknowns": [
+      "An owner-specific model/measurement failure",
+      "Which intervention actually separates the causes",
+      "Robotic connection repeatability",
+      "Avoided redesign cost and LLM contribution"
+    ],
+    "nextTest": "Take a known fixture-origin and a known channel-origin failure, hide their causes, and compare diagnosis and unnecessary redesigns under identical instrumentation.",
+    "anchors": [],
+    "tags": [
+      "signal integrity",
+      "VNA",
+      "S-parameters",
+      "BERT",
+      "BER",
+      "RF",
+      "calibration",
+      "de-embedding",
+      "200G",
+      "400G"
+    ]
+  },
+  {
+    "id": "fan",
+    "record": "A-C2",
+    "name": "Fan geometry and acoustics",
+    "domain": "Airflow systems",
+    "title": "Reduce loaded noise without losing airflow.",
+    "summary": "Connect simulation, physical prototypes and measurements to correct a fan's behavior at the actual operating point.",
+    "position": "Documented development comparator",
+    "owner": "Fan development team with CAD and prototype access",
+    "problem": "A design looks acceptable in free air or simulation but misses the required noise, flow or strength envelope under representative resistance and mounting.",
+    "value": "Reduce unproductive prototype changes while preserving performance. The development loop is well documented; a distinctive advantage for our system is not.",
+    "change": "Impeller/frame geometry, approved materials, mounting and speed/control variants.",
+    "measure": "Pressure-flow curves, loaded acoustic spectra, vibration, speed, power and temperature.",
+    "deliver": "A production-representative design meeting the required airflow, noise and strength envelope.",
+    "evidenceLabel": "Simulation → prototype → measurement reported",
+    "evidenceSummary": "SANYO DENKI documents simulation, physical prototypes, acoustic/flow measurements and feedback into development. Existing optimization is a strong baseline.",
+    "scope": "Manufacturer development methods and example products; the supplier of the selected Lenovo fan is not established.",
+    "sourceIds": [
+      "A-S-FAN"
+    ],
+    "steps": [
+      {
+        "title": "Set the operating point",
+        "subtitle": "Load + mounting",
+        "action": "Define the customer resistance, acoustic limits and representative mounting.",
+        "change": "Controlled speed and resistance sweeps.",
+        "measure": "Baseline pressure-flow and loaded noise behavior.",
+        "decision": "Where does the candidate miss the required envelope?",
+        "sourceIds": [
+          "A-S-FAN"
+        ],
+        "basis": "Documented development measurements"
+      },
+      {
+        "title": "Predict a revision",
+        "subtitle": "Model + physical evidence",
+        "action": "Compare simulation with acoustic, vibration and airflow observations.",
+        "change": "Candidate geometry/material or mounting hypotheses.",
+        "measure": "Model/measurement mismatch and the relevant spectral or flow features.",
+        "decision": "Which change is supported, and which experiment would distinguish a rotor, mounting or model issue?",
+        "sourceIds": [
+          "A-S-FAN"
+        ],
+        "basis": "Simulation feedback documented; LLM cause selection proposed"
+      },
+      {
+        "title": "Build the prototype",
+        "subtitle": "Print + assemble + inspect",
+        "action": "Produce and assemble a traceable impeller/frame variant through a qualified prototype path.",
+        "change": "Geometry or approved material/process variant.",
+        "measure": "Actual geometry, assembly quality and required pre-test checks.",
+        "decision": "Is this a representative, testable physical revision?",
+        "sourceIds": [
+          "A-S-FAN"
+        ],
+        "basis": "Physical prototyping documented"
+      },
+      {
+        "title": "Measure under load",
+        "subtitle": "Acoustics + flow + vibration",
+        "action": "Repeat the same operating envelope and compare with the baseline.",
+        "change": "The prototype; retain comparable mounting and test conditions.",
+        "measure": "Pressure-flow curve, loaded spectra, vibration, speed/current and temperature.",
+        "decision": "Was noise reduced without sacrificing required airflow or other limits?",
+        "sourceIds": [
+          "A-S-FAN"
+        ],
+        "basis": "Documented measurement and development return"
+      },
+      {
+        "title": "Verify production parts",
+        "subtitle": "Molded samples + repeat runs",
+        "action": "Confirm the design on production-representative parts and the intended installation.",
+        "change": "Fresh samples and the actual material/process route.",
+        "measure": "Required pressure/flow, acoustic and strength results.",
+        "decision": "A successful printed prototype alone is insufficient for release.",
+        "sourceIds": [
+          "A-S-FAN"
+        ],
+        "basis": "Proposed verification campaign grounded in development methods"
+      }
+    ],
+    "bench": {
+      "specimen": "A fan family with editable impeller/frame CAD and a representative customer mounting.",
+      "stimulus": "Controlled speed, flow resistance and selected temperature/strength conditions.",
+      "instruments": [
+        "Pressure-flow test chamber",
+        "Loaded acoustic measurement and spectra",
+        "Noncontact vibration and velocity mapping",
+        "Speed, current and temperature acquisition"
+      ],
+      "hard": "Repeatable mounting, electrical connection, speed/load sweeps and automated measurements.",
+      "robot": "Load interchangeable carriers and transfer qualified samples between stations if throughput warrants it.",
+      "flexible": "Possible variable harness presentation; unnecessary with a standardized carrier.",
+      "llmInputs": [
+        "Customer operating requirements",
+        "CAD and simulation revisions",
+        "Acoustic, vibration and flow data",
+        "Prototype and mounting observations"
+      ],
+      "llmDecision": "Interpret conflicts between predictions and physical results and propose a test that separates geometry, mounting and sample defects.",
+      "tools": "Existing fluid/motor simulation and numerical geometry optimization remain the quantitative engines.",
+      "wait": "Prototype printing/finishing, assembly, stabilization, strength tests and molded sample availability remain."
+    },
+    "verification": [
+      "Compare within the same loaded operating envelope.",
+      "Preserve airflow and strength while reducing noise.",
+      "Confirm on molded production-representative parts."
+    ],
+    "baseline": "Existing automatic simulation/optimization, load-noise mapping and acoustic/vibration inspection; incremental orchestration value must be demonstrated.",
+    "access": "Editable CAD, raw flow/acoustic data, a safe prototype route and production-representative samples.",
+    "unknowns": [
+      "A persistent owner model/measurement mismatch",
+      "Meaningful advantage over established optimization",
+      "Prototype turnaround and production transfer",
+      "Campaign economics"
+    ],
+    "nextTest": "Use a real loaded-noise failure to compare next-prototype choices and final verified performance against the current design team and optimizer.",
+    "anchors": [
+      {
+        "study": "fan-modules",
+        "component": "L2-008",
+        "ids": [
+          "I-D01",
+          "I-D02",
+          "I-D03",
+          "I-D04",
+          "I-D05",
+          "I-D06",
+          "I-D07"
+        ],
+        "label": "Fan development and measurement references",
+        "route_id": "M-L2-008-FAN-01",
+        "url": "https://daniellayeghi.github.io/xf/#component=L2-008&view=manufacturing&study=M-L2-008-FAN-01",
+        "source_sha256": "4fb25508125ab4088e91184caff7d73830efcc272b01d7710592fa10c01ce4b8"
+      }
+    ],
+    "tags": [
+      "fan",
+      "acoustics",
+      "vibration",
+      "impeller",
+      "CFD",
+      "prototype",
+      "noise",
+      "pressure-flow"
+    ]
+  }
+]
