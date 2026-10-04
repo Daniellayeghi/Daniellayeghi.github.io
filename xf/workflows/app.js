@@ -6,7 +6,12 @@ const arrow = '<span aria-hidden="true">↗</span>';
 const number = n => String(n + 1).padStart(2, '0');
 const list = items => '<ul class="plain-list">' + items.map(x => '<li>' + e(x) + '</li>').join('') + '</ul>';
 const section = (label, text, className = '') => '<section class="info-block ' + className + '"><h3>' + e(label) + '</h3><p>' + e(text) + '</p></section>';
-const sourceLinks = ids => '<div class="source-links">' + ids.map(id => '<a href="' + link(state, { view:'evidence', source:id }) + '">' + e(sources.get(id)?.publisher || id) + ' ' + arrow + '</a>').join('') + '</div>';
+const sourceLabels = {'ROOT-S13':'OCP qualification','ROOT-S06':'Purdue experiment','ROOT-S07':'OCP roadmap','ROOT-S04':'Corintis','ROOT-S12':'CoolIT','ROOT-S14':'Infineon','ROOT-S09':'IBM','ROOT-S03':'ficonTEC','ROOT-S01':'SK hynix','ROOT-S08':'Samtec','A-S-FAN':'SANYO DENKI'};
+const sourceLinks = ids => '<div class="source-links">' + ids.map(id => {
+  const w = workflows.find(x => x.id === state.workflow);
+  const n = w.sourceIds.indexOf(id) + 1;
+  return '<a title="' + e(sources.get(id)?.title) + '" href="' + link(state, { view:'evidence', source:id }) + '"><span class="citation-number">[' + n + ']</span> ' + e(sourceLabels[id] || sources.get(id)?.publisher || id) + '</a>';
+}).join('') + '</div>';
 
 function renderSidebar() {
   const found = searchWorkflows(workflows, $('search').value);
@@ -19,6 +24,7 @@ function renderSidebar() {
 
 function workflowHeader(w) {
   return '<div class="workflow-header"><div class="kicker"><span>' + number(workflows.indexOf(w)) + ' / ' + e(w.domain) + '</span><span class="pill">' + e(w.position) + '</span></div><h1>' + e(w.title) + '</h1><p class="intro">' + e(w.summary) + '</p><p class="owner"><span>Engineering owner</span> ' + e(w.owner) + '</p></div>' +
+    '<div class="evidence-line"><span class="eyebrow">Evidence</span><div><p>' + e(w.evidenceSummary) + '</p>' + sourceLinks(w.sourceIds) + '</div></div>' +
     '<div class="outcome-strip">' + section('Change', w.change) + section('Measure', w.measure) + section('Deliver', w.deliver) + '</div>' +
     '<nav class="view-tabs" aria-label="Workflow views">' + [['loop','Iteration loop'],['bench','The bench'],['evidence','Evidence & limits']].map(([v,label]) => '<a href="' + link(state,{view:v,source:null}) + '"' + (state.view === v ? ' aria-current="page"' : '') + '>' + label + '</a>').join('') + '</nav>';
 }
