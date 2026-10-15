@@ -21,3 +21,7 @@ The viewer also offers a market-size layer and an entry-friction toggle. A fixed
 compressed size scale keeps small operations visible; exact values and distinct
 planning/stress range labels remain inside the encrypted viewer. Unknown values
 are not treated as zero, and overlapping operation values must not be summed.
+
+Company hardware cards distinguish system integrators from physical robot and
+component makers. Partner-only, demonstration, historical and unresolved evidence
+remain labelled, and prices stay tied to their original hardware configuration.
