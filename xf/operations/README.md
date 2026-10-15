@@ -16,3 +16,8 @@ an operation or company, inspect its three closest alternatives and explained
 scores, then move between operations and go Back. Company claims, source evidence
 and substeps remain inspectable. Fit restores the overview. Deployment uses the
 repository's existing GitHub Pages workflow.
+
+The viewer also offers a market-size layer and an entry-friction toggle. A fixed
+compressed size scale keeps small operations visible; exact values and distinct
+planning/stress range labels remain inside the encrypted viewer. Unknown values
+are not treated as zero, and overlapping operation values must not be summed.
