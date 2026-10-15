@@ -6,7 +6,6 @@ const status = document.getElementById('status');
 const form = document.getElementById('unlock-form');
 const input = document.getElementById('access-key');
 const button = form.querySelector('button');
-let frameUrl = null;
 let attempt = 0;
 
 function readKey(value) {
@@ -26,7 +25,7 @@ async function openMap(encodedKey) {
     if (!/^[A-Za-z0-9_-]{43}$/.test(encodedKey)) throw new Error('key');
     const keyBytes = Uint8Array.from(atob(encodedKey.replace(/-/g, '+').replace(/_/g, '/') + '='), x => x.charCodeAt(0));
     const key = await crypto.subtle.importKey('raw', keyBytes, 'AES-GCM', false, ['decrypt']);
-    const response = await fetch('./map.encrypted', {credentials: 'omit', referrerPolicy: 'no-referrer'});
+    const response = await fetch('./map.encrypted', {credentials: 'omit', referrerPolicy: 'no-referrer', cache: 'no-store'});
     if (!response.ok) throw new Error('download');
     const bytes = new Uint8Array(await response.arrayBuffer());
     if (new TextDecoder().decode(bytes.subarray(0, 8)) !== 'ROMAP001') throw new Error('format');
@@ -35,15 +34,15 @@ async function openMap(encodedKey) {
       additionalData: new TextEncoder().encode('robotics-operations-map/v1'), tagLength: 128
     }, key, bytes.subarray(20));
     if (current !== attempt) return;
-    if (frameUrl) URL.revokeObjectURL(frameUrl);
-    frameUrl = URL.createObjectURL(new Blob([plaintext], {type: 'text/html;charset=utf-8'}));
     frame.onload = () => {
       if (current !== attempt) return;
       gate.hidden = true;
       frame.hidden = false;
       input.value = '';
     };
-    frame.src = frameUrl;
+    // Embed the verified document directly. Some embedded browsers cannot
+    // navigate a child frame to a blob URL, leaving the unlock view waiting.
+    frame.srcdoc = new TextDecoder().decode(plaintext);
   } catch (error) {
     if (current !== attempt) return;
     status.className = 'error';

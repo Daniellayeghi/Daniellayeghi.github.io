@@ -11,6 +11,8 @@ link can open the map. Do not commit access links or keys here.
 Payload format: `ROMAP001` (8 bytes), random IV (12 bytes), ciphertext and a 16-byte
 authentication tag. Additional authenticated data: `robotics-operations-map/v1`.
 
-The map retains its existing search, sector filters, Outline / Visual map views,
-operation and source inspectors, comparisons and export. Deployment is handled by
-the repository's existing GitHub Pages workflow.
+The map shows one global operation-distance view with work-sector colours. Find
+an operation or company, inspect its three closest alternatives and explained
+scores, then move between operations and go Back. Company claims, source evidence
+and substeps remain inspectable. Fit restores the overview. Deployment uses the
+repository's existing GitHub Pages workflow.
