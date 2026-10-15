@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#f6f7f3">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self'; frame-src blob:; img-src 'self' data: blob:; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Robotics operations map</title>
+  <link rel="stylesheet" href="./viewer.css">
+  <script src="./viewer.js" defer></script>
+</head>
+<body>
+  <main id="gate">
+    <p class="eyebrow">DANIEL / GREG</p>
+    <h1>Robotics operations map</h1>
+    <p id="status" role="status" aria-live="polite">Open the complete private link shared with you to view the map.</p>
+    <form id="unlock-form">
+      <label for="access-key">Access key or complete link</label>
+      <input id="access-key" type="password" autocomplete="off" spellcheck="false">
+      <button type="submit">Open map</button>
+    </form>
+    <p class="note">The map opens in your browser. The access key is not sent to the website.</p>
+  </main>
+  <iframe id="map" title="Robotics operations map" hidden sandbox="allow-scripts allow-same-origin allow-downloads allow-popups allow-popups-to-escape-sandbox allow-modals" referrerpolicy="no-referrer"></iframe>
+  <noscript>Enable JavaScript to open this map.</noscript>
+</body>
+</html>

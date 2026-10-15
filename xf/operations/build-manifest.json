@@ -1,0 +1,9 @@
+{
+  "format": 1,
+  "created_at": "2026-10-15T08:00:07.607Z",
+  "encryption": "AES-256-GCM",
+  "plaintext_sha256": "7f726471573895996ad07afc53fe425cd535e22c3525b1507f28a5f2cafb3ac7",
+  "ciphertext_sha256": "8cc4266dbc355f82f1f196320b2be1357d7152cf2006f4d19a026eadb63d30b1",
+  "plaintext_bytes": 5167819,
+  "ciphertext_bytes": 5167855
+}
