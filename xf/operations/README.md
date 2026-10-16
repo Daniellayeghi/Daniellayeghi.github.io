@@ -25,3 +25,6 @@ are not treated as zero, and overlapping operation values must not be summed.
 Company hardware cards distinguish system integrators from physical robot and
 component makers. Partner-only, demonstration, historical and unresolved evidence
 remain labelled, and prices stay tied to their original hardware configuration.
+
+The Market note documents the selected food-handling segment using undiscounted
+annual labour value, its represented organisations and explicit overlap treatment.
